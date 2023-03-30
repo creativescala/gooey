@@ -1,4 +1,4 @@
-package gooey
+package gooey.component
 
 final case class Checkbox(label: Option[String], default: Boolean)
     extends Component[Checkbox.Algebra, Boolean],

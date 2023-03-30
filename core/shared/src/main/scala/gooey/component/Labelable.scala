@@ -1,4 +1,4 @@
-package gooey
+package gooey.component
 
 /** API for components that can have an attached label. */
 trait Label[Self] { self: Self =>
