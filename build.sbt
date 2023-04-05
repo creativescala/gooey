@@ -76,6 +76,15 @@ lazy val core = crossProject(JSPlatform, JVMPlatform)
     moduleName := "gooey-core"
   )
 
+lazy val calico = project
+  .in(file("calico"))
+  .settings(
+    commonSettings,
+    libraryDependencies += "com.armanbilge" %%% "calico" % "0.2.0-RC2"
+  )
+  .enablePlugins(ScalaJSPlugin)
+  .dependsOn(core.js)
+
 lazy val docs =
   project
     .in(file("docs"))

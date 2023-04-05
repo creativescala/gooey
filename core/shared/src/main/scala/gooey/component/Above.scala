@@ -5,10 +5,10 @@ final case class Above[Alg <: Above.Algebra, A, B](
     bottom: Component[Alg, B]
 ) extends Component[Alg, (A, B)] {
   def apply(algebra: Alg): algebra.UI[(A, B)] =
-    algebra.above(this)
+    algebra.above(top(algebra), bottom(algebra))
 }
 object Above {
   trait Algebra extends gooey.Algebra {
-    def above[Alg <: Above.Algebra, A, B](a: Above[Alg, A, B]): UI[(A, B)]
+    def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)]
   }
 }
