@@ -60,10 +60,10 @@ lazy val commonSettings = Seq(
   )
 )
 
-lazy val root = crossProject(JSPlatform, JVMPlatform)
+lazy val root = project
   .in(file("."))
   .settings(moduleName := "gooey")
-  .aggregate(core)
+  .aggregate(core.js, core.jvm, calico)
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
