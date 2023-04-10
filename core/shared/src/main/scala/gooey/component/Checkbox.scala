@@ -28,7 +28,7 @@ final case class Checkbox(label: Option[String], default: Boolean)
   def withDefault(default: Boolean): Checkbox =
     this.copy(default = default)
 
-  def apply(algebra: Checkbox.Algebra): algebra.UI[Boolean] =
+  def create(using algebra: Checkbox.Algebra): algebra.UI[Boolean] =
     algebra.checkbox(this)
 }
 object Checkbox {

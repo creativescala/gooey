@@ -22,7 +22,7 @@ import calico.syntax.*
 import calico.unsafe.given
 import cats.effect.*
 import fs2.dom.*
-import gooey.calico.*
+import gooey.calico.{_, given}
 import gooey.component.*
 import gooey.syntax.all.*
 
@@ -44,6 +44,7 @@ object BasicCalico {
         Textbox.empty.withLabel(
           "Describe, in your own words, the amount of awesomeness"
         )
-      )(Algebra)
+      )
+      .create
       .map(_.element)
 }

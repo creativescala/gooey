@@ -22,5 +22,5 @@ import gooey.Algebra
   * value of type `A`. By convention all components should extend this.
   */
 trait Component[Alg <: Algebra, A] {
-  def apply(algebra: Alg): algebra.UI[A]
+  def create(using algebra: Alg): algebra.UI[A]
 }

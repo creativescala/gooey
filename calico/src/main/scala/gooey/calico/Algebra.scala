@@ -25,13 +25,13 @@ import fs2.concurrent.*
 import fs2.dom.*
 import gooey.component.*
 
-object Algebra
-    extends gooey.Algebra,
-      Textbox.Algebra,
-      Checkbox.Algebra,
-      Above.Algebra { self =>
+final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A])
 
-  final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A])
+given gooey.Algebra
+  with Textbox.Algebra
+  with Checkbox.Algebra
+  with Above.Algebra
+  with {
 
   type UI[A] = Resource[IO, Component[A]]
   def checkbox(c: Checkbox): UI[Boolean] = {

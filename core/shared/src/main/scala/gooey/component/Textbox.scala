@@ -38,7 +38,7 @@ final case class Textbox(
   def withDefault(default: String): Textbox =
     this.copy(default = default)
 
-  def apply(algebra: Textbox.Algebra): algebra.UI[String] =
+  def create(using algebra: Textbox.Algebra): algebra.UI[String] =
     algebra.textbox(this)
 }
 object Textbox {
