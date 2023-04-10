@@ -24,6 +24,7 @@ import cats.effect.*
 import fs2.dom.*
 import gooey.calico.*
 import gooey.component.*
+import gooey.syntax.all.*
 
 import scala.scalajs.js.annotation.*
 
@@ -37,10 +38,12 @@ object BasicCalico {
   }
 
   def render: Resource[IO, HtmlElement[IO]] =
-    Above(
-      Checkbox.empty.withLabel("Is this awesome?"),
-      Textbox.empty.withLabel(
-        "Describe, in your own words, the amount of awesomeness"
-      )
-    )(Algebra).map(_.element)
+    Checkbox.empty
+      .withLabel("Is this awesome?")
+      .above(
+        Textbox.empty.withLabel(
+          "Describe, in your own words, the amount of awesomeness"
+        )
+      )(Algebra)
+      .map(_.element)
 }
