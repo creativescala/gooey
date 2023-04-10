@@ -42,8 +42,6 @@ ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / tlSitePublishBranch := Some("main")
 
-val calicoVersion = "0.2.0-RC2"
-
 // Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
   "dependencyUpdates" ::
