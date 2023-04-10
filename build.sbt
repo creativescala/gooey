@@ -42,11 +42,14 @@ ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / tlSitePublishBranch := Some("main")
 
+val calicoVersion = "0.2.0-RC2"
+
 // Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
   "dependencyUpdates" ::
     "compile" ::
     "test" ::
+    "docs / tlSite" ::
     "scalafixAll" ::
     "scalafmtAll" ::
     state
@@ -63,7 +66,7 @@ lazy val commonSettings = Seq(
 lazy val root = project
   .in(file("."))
   .settings(moduleName := "gooey")
-  .aggregate(core.js, core.jvm, calico)
+  .aggregate(core.js, core.jvm, calico, examples.js, examples.jvm)
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
@@ -80,7 +83,7 @@ lazy val calico = project
   .in(file("calico"))
   .settings(
     commonSettings,
-    libraryDependencies += "com.armanbilge" %%% "calico" % "0.2.0-RC2"
+    libraryDependencies ++= Seq(Dependencies.calico.value)
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(core.js)
@@ -99,6 +102,11 @@ lazy val docs =
         )
       ),
       mdocIn := file("docs/src/pages"),
+      mdocVariables := {
+        mdocVariables.value ++ Map(
+          "CALICO_VERSION" -> Dependencies.calicoVersion
+        )
+      },
       css := {
         val src = file("docs/src/css")
         val dest1 = mdocOut.value
@@ -111,7 +119,12 @@ lazy val docs =
 
         cmd2 !
       },
-      Laika / sourceDirectories += file("docs/src/templates"),
+      Laika / sourceDirectories ++=
+        Seq(
+          file("docs/src/templates"),
+          (examples.js / Compile / fastOptJS / artifactPath).value
+            .getParentFile() / s"${(examples.js / moduleName).value}-fastopt"
+        ),
       laikaTheme := Theme.empty,
       laikaExtensions ++= Seq(
         laika.markdown.github.GitHubFlavor,
@@ -120,7 +133,7 @@ lazy val docs =
       ),
       tlSite := Def
         .sequential(
-          (Compile / run).toTask(""),
+          (examples.js / Compile / fastLinkJS),
           mdoc.toTask(""),
           css,
           laikaSite
@@ -156,5 +169,5 @@ lazy val examples = crossProject(JSPlatform, JVMPlatform)
   )
   .jsConfigure(
     _.settings(mimaPreviousArtifacts := Set.empty)
-      .dependsOn(core.js)
+      .dependsOn(core.js, calico)
   )
