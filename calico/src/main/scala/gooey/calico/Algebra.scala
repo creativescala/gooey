@@ -19,17 +19,40 @@ object Algebra
 
   type UI[A] = Resource[IO, Component[A]]
   def checkbox(c: Checkbox): UI[Boolean] = {
-    val Checkbox(label, default) = c
-    val element = div(p("checkbox placeholder for $label"))
+    val Checkbox(theLabel, default) = c
     val output = SignallingRef[IO].of(default).toResource
+    val element = output.flatMap { output =>
+      div(
+        theLabel.fold(span(()))(l => label(l)),
+        input.withSelf { self =>
+          (
+            `type` := "checkbox",
+            onInput --> (_.foreach(_ =>
+              self.value.get.flatMap(v => output.set(v == "on"))
+            ))
+          )
+        }
+      )
+    }
 
     (element, output).mapN((e, o) => Component(e, o))
   }
 
   def textbox(t: Textbox): UI[String] = {
-    val Textbox(label, default, style) = t
-    val element = div(p("textbox placeholder for $label"))
+    val Textbox(theLabel, default, style) = t
     val output = SignallingRef[IO].of(default).toResource
+    val element = output.flatMap { output =>
+      div(
+        theLabel.fold(span(()))(l => label(l)),
+        input.withSelf { self =>
+          (
+            value := default,
+            `type` := "text",
+            onInput --> (_.foreach(_ => self.value.get.flatMap(output.set)))
+          )
+        }
+      )
+    }
 
     (element, output).mapN((e, o) => Component(e, o))
   }
