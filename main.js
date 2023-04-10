@@ -6560,9 +6560,11 @@ $c_Lgooey_examples_BasicCalico$.prototype.mount__T__V = (function(id) {
 $c_Lgooey_examples_BasicCalico$.prototype.render__Lcats_effect_kernel_Resource = (function() {
   var top = $n($m_Lgooey_component_Checkbox$().Lgooey_component_Checkbox$__f_empty).withLabel__T__Lgooey_component_Checkbox("Is this awesome?");
   var bottom = $n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Describe, in your own words, the amount of awesomeness");
-  return $n($as_Lcats_effect_kernel_Resource(new $c_Lgooey_component_Above(top, bottom).apply__Lgooey_component_Above$Algebra__O($m_Lgooey_calico_Algebra$()))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((_$3) => {
-    var _$3$1 = $as_Lgooey_calico_Algebra$Component(_$3);
-    return $n(_$3$1).Lgooey_calico_Algebra$Component__f_element
+  var this$3 = new $c_Lgooey_component_Above(top, bottom);
+  var algebra = $m_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$();
+  return $n($as_Lcats_effect_kernel_Resource(this$3.create__Lgooey_component_Above$Algebra__O(algebra))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((_$3) => {
+    var _$3$1 = $as_Lgooey_calico_Component(_$3);
+    return $n(_$3$1).Lgooey_calico_Component__f_element
   })))
 });
 $c_Lgooey_examples_BasicCalico$.prototype.mount = (function(arg) {
@@ -35474,36 +35476,36 @@ var $d_Lfs2_internal_ScopedResource$State = new $TypeData().initClass({
 });
 $c_Lfs2_internal_ScopedResource$State.prototype.$classData = $d_Lfs2_internal_ScopedResource$State;
 /** @constructor */
-function $c_Lgooey_calico_Algebra$Component(element, output) {
-  this.Lgooey_calico_Algebra$Component__f_element = null;
-  this.Lgooey_calico_Algebra$Component__f_output = null;
-  this.Lgooey_calico_Algebra$Component__f_element = element;
-  this.Lgooey_calico_Algebra$Component__f_output = output
+function $c_Lgooey_calico_Component(element, output) {
+  this.Lgooey_calico_Component__f_element = null;
+  this.Lgooey_calico_Component__f_output = null;
+  this.Lgooey_calico_Component__f_element = element;
+  this.Lgooey_calico_Component__f_output = output
 }
-$c_Lgooey_calico_Algebra$Component.prototype = new $h_O();
-$c_Lgooey_calico_Algebra$Component.prototype.constructor = $c_Lgooey_calico_Algebra$Component;
+$c_Lgooey_calico_Component.prototype = new $h_O();
+$c_Lgooey_calico_Component.prototype.constructor = $c_Lgooey_calico_Component;
 /** @constructor */
-function $h_Lgooey_calico_Algebra$Component() {
+function $h_Lgooey_calico_Component() {
   /*<skip>*/
 }
-$h_Lgooey_calico_Algebra$Component.prototype = $c_Lgooey_calico_Algebra$Component.prototype;
-$c_Lgooey_calico_Algebra$Component.prototype.productIterator__sc_Iterator = (function() {
+$h_Lgooey_calico_Component.prototype = $c_Lgooey_calico_Component.prototype;
+$c_Lgooey_calico_Component.prototype.productIterator__sc_Iterator = (function() {
   return new $c_s_Product$$anon$1(this)
 });
-$c_Lgooey_calico_Algebra$Component.prototype.hashCode__I = (function() {
+$c_Lgooey_calico_Component.prototype.hashCode__I = (function() {
   var this$2 = $m_s_util_hashing_MurmurHash3$();
   return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
 });
-$c_Lgooey_calico_Algebra$Component.prototype.equals__O__Z = (function(x$0) {
+$c_Lgooey_calico_Component.prototype.equals__O__Z = (function(x$0) {
   if ((this === x$0)) {
     return true
-  } else if ((x$0 instanceof $c_Lgooey_calico_Algebra$Component)) {
-    var x$0$2 = $as_Lgooey_calico_Algebra$Component(x$0);
-    var x = this.Lgooey_calico_Algebra$Component__f_element;
-    var y = $n(x$0$2).Lgooey_calico_Algebra$Component__f_element;
+  } else if ((x$0 instanceof $c_Lgooey_calico_Component)) {
+    var x$0$2 = $as_Lgooey_calico_Component(x$0);
+    var x = this.Lgooey_calico_Component__f_element;
+    var y = $n(x$0$2).Lgooey_calico_Component__f_element;
     if ($m_sr_BoxesRunTime$().equals__O__O__Z(x, y)) {
-      var x$1 = this.Lgooey_calico_Algebra$Component__f_output;
-      var x$2 = $n(x$0$2).Lgooey_calico_Algebra$Component__f_output;
+      var x$1 = this.Lgooey_calico_Component__f_output;
+      var x$2 = $n(x$0$2).Lgooey_calico_Component__f_output;
       if ((x$1 === null)) {
         return (x$2 === null)
       } else {
@@ -35517,43 +35519,43 @@ $c_Lgooey_calico_Algebra$Component.prototype.equals__O__Z = (function(x$0) {
     return false
   }
 });
-$c_Lgooey_calico_Algebra$Component.prototype.toString__T = (function() {
+$c_Lgooey_calico_Component.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
 });
-$c_Lgooey_calico_Algebra$Component.prototype.productArity__I = (function() {
+$c_Lgooey_calico_Component.prototype.productArity__I = (function() {
   return 2
 });
-$c_Lgooey_calico_Algebra$Component.prototype.productPrefix__T = (function() {
+$c_Lgooey_calico_Component.prototype.productPrefix__T = (function() {
   return "Component"
 });
-$c_Lgooey_calico_Algebra$Component.prototype.productElement__I__O = (function(n) {
+$c_Lgooey_calico_Component.prototype.productElement__I__O = (function(n) {
   if ((n === 0)) {
-    return this.Lgooey_calico_Algebra$Component__f_element
+    return this.Lgooey_calico_Component__f_element
   };
   if ((n === 1)) {
-    return this.Lgooey_calico_Algebra$Component__f_output
+    return this.Lgooey_calico_Component__f_output
   };
   throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
 });
-function $as_Lgooey_calico_Algebra$Component(obj) {
-  return (((obj instanceof $c_Lgooey_calico_Algebra$Component) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.calico.Algebra$Component"))
+function $as_Lgooey_calico_Component(obj) {
+  return (((obj instanceof $c_Lgooey_calico_Component) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.calico.Component"))
 }
-function $isArrayOf_Lgooey_calico_Algebra$Component(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_calico_Algebra$Component)))
+function $isArrayOf_Lgooey_calico_Component(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_calico_Component)))
 }
-function $asArrayOf_Lgooey_calico_Algebra$Component(obj, depth) {
-  return (($isArrayOf_Lgooey_calico_Algebra$Component(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.calico.Algebra$Component;", depth))
+function $asArrayOf_Lgooey_calico_Component(obj, depth) {
+  return (($isArrayOf_Lgooey_calico_Component(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.calico.Component;", depth))
 }
-var $d_Lgooey_calico_Algebra$Component = new $TypeData().initClass({
-  Lgooey_calico_Algebra$Component: 0
-}, false, "gooey.calico.Algebra$Component", {
-  Lgooey_calico_Algebra$Component: 1,
+var $d_Lgooey_calico_Component = new $TypeData().initClass({
+  Lgooey_calico_Component: 0
+}, false, "gooey.calico.Component", {
+  Lgooey_calico_Component: 1,
   O: 1,
   s_Equals: 1,
   s_Product: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lgooey_calico_Algebra$Component.prototype.$classData = $d_Lgooey_calico_Algebra$Component;
+$c_Lgooey_calico_Component.prototype.$classData = $d_Lgooey_calico_Component;
 /** @constructor */
 function $c_Ljava_io_OutputStream() {
   /*<skip>*/
@@ -42667,17 +42669,17 @@ var $d_Lfs2_internal_Scope$State$Open = new $TypeData().initClass({
 });
 $c_Lfs2_internal_Scope$State$Open.prototype.$classData = $d_Lfs2_internal_Scope$State$Open;
 /** @constructor */
-function $c_Lgooey_calico_Algebra$() {
+function $c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$() {
   /*<skip>*/
 }
-$c_Lgooey_calico_Algebra$.prototype = new $h_O();
-$c_Lgooey_calico_Algebra$.prototype.constructor = $c_Lgooey_calico_Algebra$;
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype = new $h_O();
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype.constructor = $c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$;
 /** @constructor */
-function $h_Lgooey_calico_Algebra$() {
+function $h_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$() {
   /*<skip>*/
 }
-$h_Lgooey_calico_Algebra$.prototype = $c_Lgooey_calico_Algebra$.prototype;
-$c_Lgooey_calico_Algebra$.prototype.checkbox__Lgooey_component_Checkbox__Lcats_effect_kernel_Resource = (function(c) {
+$h_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype = $c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype;
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype.checkbox__Lgooey_component_Checkbox__Lcats_effect_kernel_Resource = (function(c) {
   matchResult4: {
     var \u03b41$___1;
     var \u03b41$___2;
@@ -42767,14 +42769,14 @@ $c_Lgooey_calico_Algebra$.prototype.checkbox__Lgooey_component_Checkbox__Lcats_e
   var $$x12 = new $c_Lcats_syntax_Tuple2SemigroupalOps(t2);
   var $$x11 = new $c_sjsr_AnonFunction2(((e, o) => {
     var o$1 = $as_Lfs2_concurrent_SignallingRef(o);
-    return new $c_Lgooey_calico_Algebra$Component(e, o$1)
+    return new $c_Lgooey_calico_Component(e, o$1)
   }));
   var F0 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
   var $$x10 = new $c_Lcats_effect_kernel_ResourceHOInstances0$$anon$9(F0);
   var F0$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
   return $as_Lcats_effect_kernel_Resource($$x12.mapN__F2__Lcats_Functor__Lcats_Semigroupal__O($$x11, $$x10, new $c_Lcats_effect_kernel_ResourceHOInstances0$$anon$9(F0$1)))
 });
-$c_Lgooey_calico_Algebra$.prototype.textbox__Lgooey_component_Textbox__Lcats_effect_kernel_Resource = (function(t) {
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype.textbox__Lgooey_component_Textbox__Lcats_effect_kernel_Resource = (function(t) {
   matchResult5: {
     var \u03b42$___1;
     var \u03b42$___2;
@@ -42874,22 +42876,22 @@ $c_Lgooey_calico_Algebra$.prototype.textbox__Lgooey_component_Textbox__Lcats_eff
   var $$x13 = new $c_Lcats_syntax_Tuple2SemigroupalOps(t2);
   var $$x12 = new $c_sjsr_AnonFunction2(((e, o) => {
     var o$1 = $as_Lfs2_concurrent_SignallingRef(o);
-    return new $c_Lgooey_calico_Algebra$Component(e, o$1)
+    return new $c_Lgooey_calico_Component(e, o$1)
   }));
   var F0 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
   var $$x11 = new $c_Lcats_effect_kernel_ResourceHOInstances0$$anon$9(F0);
   var F0$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
   return $as_Lcats_effect_kernel_Resource($$x13.mapN__F2__Lcats_Functor__Lcats_Semigroupal__O($$x12, $$x11, new $c_Lcats_effect_kernel_ResourceHOInstances0$$anon$9(F0$1)))
 });
-$c_Lgooey_calico_Algebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource = (function(t, b) {
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource = (function(t, b) {
   var this$14 = $n(t);
   var f$1 = new $c_sjsr_AnonFunction1(((top) => {
-    var top$1 = $as_Lgooey_calico_Algebra$Component(top);
+    var top$1 = $as_Lgooey_calico_Component(top);
     var this$12 = $n($n(b).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((bot) => {
-      var bot$1 = $as_Lgooey_calico_Algebra$Component(bot);
+      var bot$1 = $as_Lgooey_calico_Component(bot);
       var $$x4 = $n($m_Lcalico_html_io$().div__Lcalico_html_HtmlTag());
-      var _1 = $n(top$1).Lgooey_calico_Algebra$Component__f_element;
-      var _2 = $n(bot$1).Lgooey_calico_Algebra$Component__f_element;
+      var _1 = $n(top$1).Lgooey_calico_Component__f_element;
+      var _2 = $n(bot$1).Lgooey_calico_Component__f_element;
       var $$x3 = new $c_T2(_1, _2);
       $m_Lcalico_html_Modifier$();
       var gen$proxy5 = new $c_sr_TupleMirror(2);
@@ -42906,8 +42908,8 @@ $c_Lgooey_calico_Algebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_e
       }));
       var inst = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy5, is);
       var element = $n($$x4).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x3, new $c_Lcalico_html_Modifier$$anon$5(inst));
-      var _1$1 = $n(top$1).Lgooey_calico_Algebra$Component__f_output;
-      var _2$1 = $n(bot$1).Lgooey_calico_Algebra$Component__f_output;
+      var _1$1 = $n(top$1).Lgooey_calico_Component__f_output;
+      var _2$1 = $n(bot$1).Lgooey_calico_Component__f_output;
       var t2 = new $c_T2(_1$1, _2$1);
       var $$x6 = new $c_Lcats_syntax_Tuple2SemigroupalOps(t2);
       var this$8 = $m_Lfs2_concurrent_Signal$();
@@ -42921,11 +42923,11 @@ $c_Lgooey_calico_Algebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_e
     var f = new $c_sjsr_AnonFunction1(((x$1) => {
       var x$1$1 = $as_T3(x$1);
       if ((x$1$1 !== null)) {
-        $as_Lgooey_calico_Algebra$Component($n(x$1$1).T3__f__1);
+        $as_Lgooey_calico_Component($n(x$1$1).T3__f__1);
         var element$1 = $as_Lcats_effect_kernel_Resource($n(x$1$1).T3__f__2);
         var output$1 = $as_Lfs2_concurrent_Signal($n(x$1$1).T3__f__3);
-        return $n($n(element$1).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((e) => new $c_Lgooey_calico_Algebra$Component(e, output$1))))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((c) => {
-          var c$1 = $as_Lgooey_calico_Algebra$Component(c);
+        return $n($n(element$1).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((e) => new $c_Lgooey_calico_Component(e, output$1))))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((c) => {
+          var c$1 = $as_Lgooey_calico_Component(c);
           return c$1
         })))
       };
@@ -42935,23 +42937,23 @@ $c_Lgooey_calico_Algebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_e
   }));
   return new $c_Lcats_effect_kernel_Resource$Bind(this$14, f$1)
 });
-var $d_Lgooey_calico_Algebra$ = new $TypeData().initClass({
-  Lgooey_calico_Algebra$: 0
-}, false, "gooey.calico.Algebra$", {
-  Lgooey_calico_Algebra$: 1,
+var $d_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$ = new $TypeData().initClass({
+  Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$: 0
+}, false, "gooey.calico.Algebra$package$given_Algebra_Algebra_Algebra_Algebra$", {
+  Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$: 1,
   O: 1,
   Lgooey_Algebra: 1,
   Lgooey_component_Textbox$Algebra: 1,
   Lgooey_component_Checkbox$Algebra: 1,
   Lgooey_component_Above$Algebra: 1
 });
-$c_Lgooey_calico_Algebra$.prototype.$classData = $d_Lgooey_calico_Algebra$;
-var $n_Lgooey_calico_Algebra$;
-function $m_Lgooey_calico_Algebra$() {
-  if ((!$n_Lgooey_calico_Algebra$)) {
-    $n_Lgooey_calico_Algebra$ = new $c_Lgooey_calico_Algebra$()
+$c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$.prototype.$classData = $d_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$;
+var $n_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$;
+function $m_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$() {
+  if ((!$n_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$)) {
+    $n_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$ = new $c_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$()
   };
-  return $n_Lgooey_calico_Algebra$
+  return $n_Lgooey_calico_Algebra$package$given\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra\uff3fAlgebra$
 }
 /** @constructor */
 function $c_Lgooey_component_Above(top, bottom) {
@@ -43010,14 +43012,14 @@ $c_Lgooey_component_Above.prototype.productElement__I__O = (function(n) {
   };
   throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
 });
-$c_Lgooey_component_Above.prototype.apply__Lgooey_component_Above$Algebra__O = (function(algebra) {
+$c_Lgooey_component_Above.prototype.create__Lgooey_component_Above$Algebra__O = (function(algebra) {
   var this$1 = $n(algebra);
-  var t = $n(this.Lgooey_component_Above__f_top).apply__Lgooey_Algebra__O(algebra);
-  var b = $n(this.Lgooey_component_Above__f_bottom).apply__Lgooey_Algebra__O(algebra);
+  var t = $n(this.Lgooey_component_Above__f_top).create__Lgooey_Algebra__O(algebra);
+  var b = $n(this.Lgooey_component_Above__f_bottom).create__Lgooey_Algebra__O(algebra);
   return this$1.above__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource($as_Lcats_effect_kernel_Resource(t), $as_Lcats_effect_kernel_Resource(b))
 });
-$c_Lgooey_component_Above.prototype.apply__Lgooey_Algebra__O = (function(algebra) {
-  return this.apply__Lgooey_component_Above$Algebra__O($as_Lgooey_component_Above$Algebra(algebra))
+$c_Lgooey_component_Above.prototype.create__Lgooey_Algebra__O = (function(algebra) {
+  return this.create__Lgooey_component_Above$Algebra__O($as_Lgooey_component_Above$Algebra(algebra))
 });
 function $as_Lgooey_component_Above(obj) {
   return (((obj instanceof $c_Lgooey_component_Above) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.Above"))
@@ -52316,7 +52318,7 @@ $c_Lgooey_component_Checkbox.prototype.withLabel__T__Lgooey_component_Checkbox =
   var default$1 = this.Lgooey_component_Checkbox__f_default;
   return new $c_Lgooey_component_Checkbox(label$1, default$1)
 });
-$c_Lgooey_component_Checkbox.prototype.apply__Lgooey_Algebra__O = (function(algebra) {
+$c_Lgooey_component_Checkbox.prototype.create__Lgooey_Algebra__O = (function(algebra) {
   var algebra$1 = $as_Lgooey_component_Checkbox$Algebra(algebra);
   var this$1 = $n(algebra$1);
   return this$1.checkbox__Lgooey_component_Checkbox__Lcats_effect_kernel_Resource(this)
@@ -55900,7 +55902,7 @@ $c_Lgooey_component_Textbox.prototype.withLabel__T__Lgooey_component_Textbox = (
   var style = this.Lgooey_component_Textbox__f_style;
   return new $c_Lgooey_component_Textbox(label$1, default$1, style)
 });
-$c_Lgooey_component_Textbox.prototype.apply__Lgooey_Algebra__O = (function(algebra) {
+$c_Lgooey_component_Textbox.prototype.create__Lgooey_Algebra__O = (function(algebra) {
   var algebra$1 = $as_Lgooey_component_Textbox$Algebra(algebra);
   var this$1 = $n(algebra$1);
   return this$1.textbox__Lgooey_component_Textbox__Lcats_effect_kernel_Resource(this)
