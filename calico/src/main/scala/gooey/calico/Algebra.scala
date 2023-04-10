@@ -25,15 +25,18 @@ import fs2.concurrent.*
 import fs2.dom.*
 import gooey.component.*
 
+type UI[A] = Resource[IO, Component[A]]
+
 final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A])
 
-given gooey.Algebra
+given Algebra: gooey.Algebra
   with Textbox.Algebra
   with Checkbox.Algebra
   with Above.Algebra
   with {
 
-  type UI[A] = Resource[IO, Component[A]]
+  type UI[A] = gooey.calico.UI[A]
+
   def checkbox(c: Checkbox): UI[Boolean] = {
     val Checkbox(theLabel, default) = c
     val output = SignallingRef[IO].of(default).toResource

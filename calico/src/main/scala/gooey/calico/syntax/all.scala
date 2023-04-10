@@ -14,34 +14,28 @@
  * limitations under the License.
  */
 
-package gooey.examples
+package gooey.calico.syntax
 
-import calico.*
-import calico.html.io.{_, given}
 import calico.syntax.*
-import calico.unsafe.given
 import cats.effect.*
+import fs2.concurrent.*
 import fs2.dom.*
-import gooey.calico.syntax.all.*
-import gooey.calico.{_, given}
-import gooey.component.*
-import gooey.syntax.all.*
+import gooey.calico.*
 
-import scala.scalajs.js.annotation.*
-
-@JSExportTopLevel("BasicCalico")
-object BasicCalico {
-  @JSExport
-  def mount(id: String): Unit = {
-    Checkbox.empty
-      .withLabel("Is this awesome?")
-      .above(
-        Textbox.empty.withLabel(
-          "Describe, in your own words, the amount of awesomeness"
-        )
-      )
-      .create
-      .renderIntoId(id)
-      .unsafeRunAndForget()
+object all {
+  extension [A](component: UI[A]) {
+    def renderIntoId(id: String)(using Dom[IO]): IO[Signal[IO, A]] = {
+      val rootElement: IO[Element[cats.effect.IO]] =
+        Window[IO].document.getElementById(id).map(_.get)
+      for {
+        elt <- rootElement
+        output <- (for {
+          c <- component
+          _ <- Resource.make(elt.appendChild(c.element))(_ =>
+            elt.removeChild(c.element)
+          )
+        } yield c.output).useForever
+      } yield output
+    }
   }
 }
