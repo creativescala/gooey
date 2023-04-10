@@ -50,6 +50,7 @@ commands += Command.command("build") { state =>
     "docs / tlSite" ::
     "scalafixAll" ::
     "scalafmtAll" ::
+    "headerCreateAll" ::
     state
 }
 
