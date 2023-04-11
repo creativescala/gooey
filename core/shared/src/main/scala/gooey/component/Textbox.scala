@@ -39,11 +39,15 @@ final case class Textbox(
     this.copy(default = default)
 
   def create(using algebra: Textbox.Algebra): algebra.UI[String] =
-    algebra.textbox(this)
+    algebra.textbox(label, default, style)
 }
 object Textbox {
   trait Algebra extends gooey.Algebra {
-    def textbox(t: Textbox): UI[String]
+    def textbox(
+        label: Option[String],
+        default: String,
+        style: TextboxStyle
+    ): UI[String]
   }
 
   val empty: Textbox = Textbox(None, "", TextboxStyle.SingleLine)

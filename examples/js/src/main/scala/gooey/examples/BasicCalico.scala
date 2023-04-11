@@ -41,6 +41,19 @@ object BasicCalico {
         )
       )
       .create
+      .flatMap { c =>
+        val elt = div(
+          c.element,
+          p(
+            "Awesomeness ",
+            c.output.map((a, _) =>
+              if a then "is over 9000" else "needs improving"
+            )
+          ),
+          p("Reasons given are ", c.output.map((_, r) => r))
+        )
+        elt.map(e => Component(e, c.output))
+      }
       .renderIntoId(id)
       .unsafeRunAndForget()
   }

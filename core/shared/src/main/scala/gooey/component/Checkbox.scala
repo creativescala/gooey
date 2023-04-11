@@ -29,11 +29,11 @@ final case class Checkbox(label: Option[String], default: Boolean)
     this.copy(default = default)
 
   def create(using algebra: Checkbox.Algebra): algebra.UI[Boolean] =
-    algebra.checkbox(this)
+    algebra.checkbox(label, default)
 }
 object Checkbox {
   trait Algebra extends gooey.Algebra {
-    def checkbox(c: Checkbox): UI[Boolean]
+    def checkbox(label: Option[String], default: Boolean): UI[Boolean]
   }
 
   val empty: Checkbox = Checkbox(None, false)

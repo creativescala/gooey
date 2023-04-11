@@ -24,6 +24,7 @@ import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
 import gooey.component.*
+import gooey.component.style.*
 
 type UI[A] = Resource[IO, Component[A]]
 
@@ -37,52 +38,55 @@ given Algebra: gooey.Algebra
 
   type UI[A] = gooey.calico.UI[A]
 
-  def checkbox(c: Checkbox): UI[Boolean] = {
-    val Checkbox(theLabel, default) = c
-    val output = SignallingRef[IO].of(default).toResource
-    val element = output.flatMap { output =>
-      div(
-        theLabel.fold(span(()))(l => label(l)),
-        input.withSelf { self =>
-          (
-            `type` := "checkbox",
-            onInput --> (_.foreach(_ =>
-              self.value.get.flatMap(v => output.set(v == "on"))
-            ))
-          )
-        }
-      )
-    }
+  def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
+    theLabel.fold(span(()))(l => label(l))
 
-    (element, output).mapN((e, o) => Component(e, o))
+  def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
+    SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val element =
+        div(
+          makeLabel(label),
+          input.withSelf { self =>
+            (
+              `type` := "checkbox",
+              checked := default,
+              onChange --> (_.foreach { _ =>
+                output.getAndUpdate(v => !v).void
+              })
+            )
+          }
+        )
+      element.map(e => Component(e, output))
+    }
   }
 
-  def textbox(t: Textbox): UI[String] = {
-    val Textbox(theLabel, default, style) = t
-    val output = SignallingRef[IO].of(default).toResource
-    val element = output.flatMap { output =>
-      div(
-        theLabel.fold(span(()))(l => label(l)),
-        input.withSelf { self =>
-          (
-            value := default,
-            `type` := "text",
-            onInput --> (_.foreach(_ => self.value.get.flatMap(output.set)))
-          )
-        }
-      )
+  def textbox(
+      label: Option[String],
+      default: String,
+      style: TextboxStyle
+  ): UI[String] = {
+    SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val element =
+        div(
+          makeLabel(label),
+          input.withSelf { self =>
+            (
+              value := default,
+              `type` := "text",
+              onInput --> (_.foreach(_ => self.value.get.flatMap(output.set)))
+            )
+          }
+        )
+      element.map(e => Component(e, output))
     }
-
-    (element, output).mapN((e, o) => Component(e, o))
   }
 
   def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)] = {
     for {
       top <- t
       bot <- b
-      element = div(top.element, bot.element)
+      element <- div(top.element, bot.element)
       output = (top.output, bot.output).tupled
-      c <- element.map(e => Component(e, output))
-    } yield c
+    } yield Component(element, output)
   }
 }
