@@ -28,18 +28,33 @@ import gooey.component.style.*
 
 type UI[A] = Resource[IO, Component[A]]
 
-final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A])
+final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A]) {
+  def map[B](f: A => B): Component[B] =
+    this.copy(output = output.map(f))
+}
 
 given Algebra: gooey.Algebra
-  with Textbox.Algebra
-  with Checkbox.Algebra
   with Above.Algebra
+  with Checkbox.Algebra
+  with Map.Algebra
+  with Pure.Algebra
+  with Textbox.Algebra
   with {
 
   type UI[A] = gooey.calico.UI[A]
 
   def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
     theLabel.fold(span(()))(l => label(l))
+
+  def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)] = {
+    import calico.frp.given
+    for {
+      top <- t
+      bot <- b
+      element <- div(top.element, bot.element)
+      output = top.output.flatMap(t => bot.output.map(b => (t, b)))
+    } yield Component(element, output)
+  }
 
   def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
@@ -59,6 +74,12 @@ given Algebra: gooey.Algebra
       element.map(e => Component(e, output))
     }
   }
+
+  def map[A, B](source: UI[A], f: A => B): UI[B] =
+    source.map(component => component.map(f))
+
+  def pure[A](value: A): UI[A] =
+    span(()).map(elt => Component(elt, Signal.constant[IO, A](value)))
 
   def textbox(
       label: Option[String],
@@ -95,13 +116,4 @@ given Algebra: gooey.Algebra
     }
   }
 
-  def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)] = {
-    import calico.frp.given
-    for {
-      top <- t
-      bot <- b
-      element <- div(top.element, bot.element)
-      output = top.output.flatMap(t => bot.output.map(b => (t, b)))
-    } yield Component(element, output)
-  }
 }
