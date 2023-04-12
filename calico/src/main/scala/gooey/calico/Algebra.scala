@@ -82,11 +82,12 @@ given Algebra: gooey.Algebra
   }
 
   def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)] = {
+    import calico.frp.given
     for {
       top <- t
       bot <- b
       element <- div(top.element, bot.element)
-      output = (top.output, bot.output).tupled
+      output = top.output.flatMap(t => bot.output.map(b => (t, b)))
     } yield Component(element, output)
   }
 }
