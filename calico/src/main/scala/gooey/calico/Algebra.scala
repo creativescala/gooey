@@ -17,7 +17,7 @@
 package gooey.calico
 
 import _root_.calico.*
-import _root_.calico.html.io.{_, given}
+import _root_.calico.html.io.{*, given}
 import _root_.calico.syntax.*
 import cats.effect.*
 import cats.syntax.all.*
