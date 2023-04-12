@@ -69,12 +69,26 @@ given Algebra: gooey.Algebra
       val element =
         div(
           makeLabel(label),
-          input.withSelf { self =>
-            (
-              value := default,
-              `type` := "text",
-              onInput --> (_.foreach(_ => self.value.get.flatMap(output.set)))
-            )
+          style match {
+            case TextboxStyle.SingleLine =>
+              input.withSelf { self =>
+                (
+                  value := default,
+                  `type` := "text",
+                  onInput --> (_.foreach(_ =>
+                    self.value.get.flatMap(output.set)
+                  ))
+                )
+              }
+            case TextboxStyle.MultiLine =>
+              textArea.withSelf { self =>
+                (
+                  value := default,
+                  onInput --> (_.foreach(_ =>
+                    self.value.get.flatMap(output.set)
+                  ))
+                )
+              }
           }
         )
       element.map(e => Component(e, output))

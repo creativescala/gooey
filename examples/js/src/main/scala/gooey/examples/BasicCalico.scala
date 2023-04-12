@@ -25,6 +25,7 @@ import fs2.dom.*
 import gooey.calico.syntax.all.*
 import gooey.calico.{_, given}
 import gooey.component.*
+import gooey.component.style.*
 import gooey.syntax.all.*
 
 import scala.scalajs.js.annotation.*
@@ -36,9 +37,11 @@ object BasicCalico {
     Checkbox.empty
       .withLabel("Is this awesome?")
       .above(
-        Textbox.empty.withLabel(
-          "Describe, in your own words, the amount of awesomeness"
-        )
+        Textbox.empty
+          .withLabel(
+            "Describe, in your own words, the amount of awesomeness"
+          )
+          .withStyle(TextboxStyle.SingleLine)
       )
       .create
       .flatMap { c =>
