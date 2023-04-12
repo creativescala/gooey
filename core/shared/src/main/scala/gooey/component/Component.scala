@@ -16,11 +16,32 @@
 
 package gooey.component
 
+import cats.Applicative
 import gooey.Algebra
+import gooey.syntax.all.*
 
-/** A marker trait for UI components. Indicates that a component can produce a
-  * value of type `A`. By convention all components should extend this.
+/** A UI component that produces a value of type `A` and requires the
+  * capabilities defined in `Alg`.
+  *
+  * `Component` has an `Applicative` instance, which requires `Map` and `Pure`
+  * algebras.
   */
-trait Component[Alg <: Algebra, A] {
+trait Component[-Alg <: Algebra, A] {
+
+  /** Given implementations of the algebras required by this `Component`,
+    * produce a backend specific user interface representation.
+    */
   def create(using algebra: Alg): algebra.UI[A]
+}
+object Component {
+  given componentApplicative[Alg <: Above.Algebra & Map.Algebra & Pure.Algebra]
+      : Applicative[Component[Alg, *]] with {
+
+    def pure[A](x: A): Component[Alg, A] = Pure(x)
+
+    def ap[A, B](ff: Component[Alg, A => B])(
+        fa: Component[Alg, A]
+    ): Component[Alg, B] =
+      ff.above(fa).map((f, a) => f(a))
+  }
 }

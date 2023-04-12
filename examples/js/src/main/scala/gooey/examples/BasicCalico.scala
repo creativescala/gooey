@@ -52,7 +52,7 @@ object BasicCalico {
           ),
           p("Reasons given are ", c.output.map((_, r) => r))
         )
-        elt.map(e => Component(e, c.output))
+        elt.map(e => gooey.calico.Component(e, c.output))
       }
       .renderIntoId(id)
       .unsafeRunAndForget()

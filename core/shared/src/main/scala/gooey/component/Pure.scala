@@ -14,20 +14,15 @@
  * limitations under the License.
  */
 
-package gooey.syntax
+package gooey.component
 
-import gooey.Algebra
-import gooey.component.*
-
-object all {
-  extension [Alg1 <: Algebra, A](top: Component[Alg1, A]) {
-    def above[Alg2 <: Algebra, B](
-        bottom: Component[Alg2, B]
-    ): Component[Alg1 & Alg2 & Above.Algebra, (A, B)] =
-      Above(top, bottom)
-  }
-
-  extension [Alg <: Algebra, A](c: Component[Alg, A]) {
-    def map[B](f: A => B): Component[Alg & Map.Algebra, B] = Map(c, f)
+/** Component that produces a value but doesn't produce an visual output. */
+final case class Pure[A](value: A) extends Component[Pure.Algebra, A] {
+  def create(using algebra: Pure.Algebra): algebra.UI[A] =
+    algebra.pure(value)
+}
+object Pure {
+  trait Algebra extends gooey.Algebra {
+    def pure[A](value: A): UI[A]
   }
 }
