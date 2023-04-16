@@ -7430,15 +7430,15 @@ function $h_Lgooey_examples_BasicCalico$() {
 $h_Lgooey_examples_BasicCalico$.prototype = $c_Lgooey_examples_BasicCalico$.prototype;
 $c_Lgooey_examples_BasicCalico$.prototype.mount__T__V = (function(id) {
   var $$x14 = $m_Lgooey_calico_syntax_all$();
-  var top = $n($m_Lgooey_component_Checkbox$().Lgooey_component_Checkbox$__f_empty).withLabel__T__Lgooey_component_Checkbox("Is this awesome?");
+  var first = $n($m_Lgooey_component_Checkbox$().Lgooey_component_Checkbox$__f_empty).withLabel__T__Lgooey_component_Checkbox("Is this awesome?");
   var this$1 = $n($n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Describe, in your own words, the amount of awesomeness"));
   var style = $s_Lgooey_component_style_TextboxStyle$__SingleLine__Lgooey_component_style_TextboxStyle();
   var label = this$1.Lgooey_component_Textbox__f_label;
   var default$1 = this$1.Lgooey_component_Textbox__f_default;
-  var bottom = new $c_Lgooey_component_Textbox(label, default$1, style);
-  var this$4 = new $c_Lgooey_component_Above(top, bottom);
+  var second = new $c_Lgooey_component_Textbox(label, default$1, style);
+  var this$4 = new $c_Lgooey_component_And(first, second);
   var algebra = $m_Lgooey_calico_Algebra$package$Algebra$();
-  var this$25 = $n($as_Lcats_effect_kernel_Resource(this$4.create__Lgooey_component_Above$Algebra__O(algebra)));
+  var this$25 = $n($as_Lcats_effect_kernel_Resource(this$4.create__Lgooey_component_And$Algebra__O(algebra)));
   var f$2 = new $c_sjsr_AnonFunction1(((c) => {
     var c$1 = $as_Lgooey_calico_Component(c);
     var $$x13 = $n($m_Lcalico_html_io$().div__Lcalico_html_HtmlTag());
@@ -24342,17 +24342,17 @@ var $d_Lfs2_internal_ScopedResource$$anon$1$TheLease$ = new $TypeData().initClas
   O: 1
 });
 $c_Lfs2_internal_ScopedResource$$anon$1$TheLease$.prototype.$classData = $d_Lfs2_internal_ScopedResource$$anon$1$TheLease$;
-function $is_Lgooey_component_Above$Algebra(obj) {
-  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgooey_component_Above$Algebra)))
+function $is_Lgooey_component_And$Algebra(obj) {
+  return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgooey_component_And$Algebra)))
 }
-function $as_Lgooey_component_Above$Algebra(obj) {
-  return (($is_Lgooey_component_Above$Algebra(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.Above$Algebra"))
+function $as_Lgooey_component_And$Algebra(obj) {
+  return (($is_Lgooey_component_And$Algebra(obj) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.And$Algebra"))
 }
-function $isArrayOf_Lgooey_component_Above$Algebra(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_component_Above$Algebra)))
+function $isArrayOf_Lgooey_component_And$Algebra(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_component_And$Algebra)))
 }
-function $asArrayOf_Lgooey_component_Above$Algebra(obj, depth) {
-  return (($isArrayOf_Lgooey_component_Above$Algebra(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.component.Above$Algebra;", depth))
+function $asArrayOf_Lgooey_component_And$Algebra(obj, depth) {
+  return (($isArrayOf_Lgooey_component_And$Algebra(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.component.And$Algebra;", depth))
 }
 function $is_Lgooey_component_Checkbox$Algebra(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgooey_component_Checkbox$Algebra)))
@@ -44628,36 +44628,36 @@ var $d_Lfs2_internal_Scope$State$Open = new $TypeData().initClass({
 });
 $c_Lfs2_internal_Scope$State$Open.prototype.$classData = $d_Lfs2_internal_Scope$State$Open;
 /** @constructor */
-function $c_Lgooey_component_Above(top, bottom) {
-  this.Lgooey_component_Above__f_top = null;
-  this.Lgooey_component_Above__f_bottom = null;
-  this.Lgooey_component_Above__f_top = top;
-  this.Lgooey_component_Above__f_bottom = bottom
+function $c_Lgooey_component_And(first, second) {
+  this.Lgooey_component_And__f_first = null;
+  this.Lgooey_component_And__f_second = null;
+  this.Lgooey_component_And__f_first = first;
+  this.Lgooey_component_And__f_second = second
 }
-$c_Lgooey_component_Above.prototype = new $h_O();
-$c_Lgooey_component_Above.prototype.constructor = $c_Lgooey_component_Above;
+$c_Lgooey_component_And.prototype = new $h_O();
+$c_Lgooey_component_And.prototype.constructor = $c_Lgooey_component_And;
 /** @constructor */
-function $h_Lgooey_component_Above() {
+function $h_Lgooey_component_And() {
   /*<skip>*/
 }
-$h_Lgooey_component_Above.prototype = $c_Lgooey_component_Above.prototype;
-$c_Lgooey_component_Above.prototype.productIterator__sc_Iterator = (function() {
+$h_Lgooey_component_And.prototype = $c_Lgooey_component_And.prototype;
+$c_Lgooey_component_And.prototype.productIterator__sc_Iterator = (function() {
   return new $c_s_Product$$anon$1(this)
 });
-$c_Lgooey_component_Above.prototype.hashCode__I = (function() {
+$c_Lgooey_component_And.prototype.hashCode__I = (function() {
   var this$2 = $m_s_util_hashing_MurmurHash3$();
   return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
 });
-$c_Lgooey_component_Above.prototype.equals__O__Z = (function(x$0) {
+$c_Lgooey_component_And.prototype.equals__O__Z = (function(x$0) {
   if ((this === x$0)) {
     return true
-  } else if ((x$0 instanceof $c_Lgooey_component_Above)) {
-    var x$0$2 = $as_Lgooey_component_Above(x$0);
-    var x = this.Lgooey_component_Above__f_top;
-    var x$2 = $n(x$0$2).Lgooey_component_Above__f_top;
+  } else if ((x$0 instanceof $c_Lgooey_component_And)) {
+    var x$0$2 = $as_Lgooey_component_And(x$0);
+    var x = this.Lgooey_component_And__f_first;
+    var x$2 = $n(x$0$2).Lgooey_component_And__f_first;
     if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
-      var x$3 = this.Lgooey_component_Above__f_bottom;
-      var x$4 = $n(x$0$2).Lgooey_component_Above__f_bottom;
+      var x$3 = this.Lgooey_component_And__f_second;
+      var x$4 = $n(x$0$2).Lgooey_component_And__f_second;
       return ((x$3 === null) ? (x$4 === null) : $n(x$3).equals__O__Z(x$4))
     } else {
       return false
@@ -44666,53 +44666,53 @@ $c_Lgooey_component_Above.prototype.equals__O__Z = (function(x$0) {
     return false
   }
 });
-$c_Lgooey_component_Above.prototype.toString__T = (function() {
+$c_Lgooey_component_And.prototype.toString__T = (function() {
   return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
 });
-$c_Lgooey_component_Above.prototype.productArity__I = (function() {
+$c_Lgooey_component_And.prototype.productArity__I = (function() {
   return 2
 });
-$c_Lgooey_component_Above.prototype.productPrefix__T = (function() {
-  return "Above"
+$c_Lgooey_component_And.prototype.productPrefix__T = (function() {
+  return "And"
 });
-$c_Lgooey_component_Above.prototype.productElement__I__O = (function(n) {
+$c_Lgooey_component_And.prototype.productElement__I__O = (function(n) {
   if ((n === 0)) {
-    return this.Lgooey_component_Above__f_top
+    return this.Lgooey_component_And__f_first
   };
   if ((n === 1)) {
-    return this.Lgooey_component_Above__f_bottom
+    return this.Lgooey_component_And__f_second
   };
   throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
 });
-$c_Lgooey_component_Above.prototype.create__Lgooey_component_Above$Algebra__O = (function(algebra) {
+$c_Lgooey_component_And.prototype.create__Lgooey_component_And$Algebra__O = (function(algebra) {
   var this$1 = $n(algebra);
-  var t = $n(this.Lgooey_component_Above__f_top).create__Lgooey_Algebra__O(algebra);
-  var b = $n(this.Lgooey_component_Above__f_bottom).create__Lgooey_Algebra__O(algebra);
-  return this$1.above__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource($as_Lcats_effect_kernel_Resource(t), $as_Lcats_effect_kernel_Resource(b))
+  var f = $n(this.Lgooey_component_And__f_first).create__Lgooey_Algebra__O(algebra);
+  var s = $n(this.Lgooey_component_And__f_second).create__Lgooey_Algebra__O(algebra);
+  return this$1.and__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource($as_Lcats_effect_kernel_Resource(f), $as_Lcats_effect_kernel_Resource(s))
 });
-$c_Lgooey_component_Above.prototype.create__Lgooey_Algebra__O = (function(algebra) {
-  return this.create__Lgooey_component_Above$Algebra__O($as_Lgooey_component_Above$Algebra(algebra))
+$c_Lgooey_component_And.prototype.create__Lgooey_Algebra__O = (function(algebra) {
+  return this.create__Lgooey_component_And$Algebra__O($as_Lgooey_component_And$Algebra(algebra))
 });
-function $as_Lgooey_component_Above(obj) {
-  return (((obj instanceof $c_Lgooey_component_Above) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.Above"))
+function $as_Lgooey_component_And(obj) {
+  return (((obj instanceof $c_Lgooey_component_And) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.And"))
 }
-function $isArrayOf_Lgooey_component_Above(obj, depth) {
-  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_component_Above)))
+function $isArrayOf_Lgooey_component_And(obj, depth) {
+  return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_component_And)))
 }
-function $asArrayOf_Lgooey_component_Above(obj, depth) {
-  return (($isArrayOf_Lgooey_component_Above(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.component.Above;", depth))
+function $asArrayOf_Lgooey_component_And(obj, depth) {
+  return (($isArrayOf_Lgooey_component_And(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.component.And;", depth))
 }
-var $d_Lgooey_component_Above = new $TypeData().initClass({
-  Lgooey_component_Above: 0
-}, false, "gooey.component.Above", {
-  Lgooey_component_Above: 1,
+var $d_Lgooey_component_And = new $TypeData().initClass({
+  Lgooey_component_And: 0
+}, false, "gooey.component.And", {
+  Lgooey_component_And: 1,
   O: 1,
   Lgooey_component_Component: 1,
   s_Equals: 1,
   s_Product: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lgooey_component_Above.prototype.$classData = $d_Lgooey_component_Above;
+$c_Lgooey_component_And.prototype.$classData = $d_Lgooey_component_And;
 /** @constructor */
 function $c_Lgooey_component_style_TextboxStyle() {
   /*<skip>*/
@@ -57620,16 +57620,16 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.makeLabel__s_Option__Lcats_e
     return $n($$x1).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource(l, Modifiers_this.Lcalico_html_Html__f_calico$html$Modifiers$$_forString)
   }
 });
-$c_Lgooey_calico_Algebra$package$Algebra$.prototype.above__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource = (function(t, b) {
-  var this$17 = $n(t);
-  var f$3 = new $c_sjsr_AnonFunction1(((top) => {
-    var top$1 = $as_Lgooey_calico_Component(top);
-    var this$15 = $n(b);
-    var f$2 = new $c_sjsr_AnonFunction1(((bot) => {
-      var bot$1 = $as_Lgooey_calico_Component(bot);
+$c_Lgooey_calico_Algebra$package$Algebra$.prototype.and__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource = (function(f, s) {
+  var this$17 = $n(f);
+  var f$5 = new $c_sjsr_AnonFunction1(((fst) => {
+    var fst$1 = $as_Lgooey_calico_Component(fst);
+    var this$15 = $n(s);
+    var f$4 = new $c_sjsr_AnonFunction1(((snd) => {
+      var snd$1 = $as_Lgooey_calico_Component(snd);
       var $$x4 = $m_Lcalico_html_io$().div__Lcalico_html_HtmlTag();
-      var _1 = $n(top$1).Lgooey_calico_Component__f_element;
-      var _2 = $n(bot$1).Lgooey_calico_Component__f_element;
+      var _1 = $n(fst$1).Lgooey_calico_Component__f_element;
+      var _2 = $n(snd$1).Lgooey_calico_Component__f_element;
       var $$x3 = new $c_T2(_1, _2);
       $m_Lcalico_html_Modifier$();
       var gen$proxy1 = new $c_sr_TupleMirror(2);
@@ -57646,19 +57646,19 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.above__Lcats_effect_kernel_R
       }));
       var inst = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy1, is);
       return $n($n($n($$x4).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x3, new $c_Lcalico_html_Modifier$$anon$5(inst))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((element) => {
-        var target = $n(top$1).Lgooey_calico_Component__f_output;
+        var target = $n(fst$1).Lgooey_calico_Component__f_output;
         var evidence$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
         var tc = new $c_Lcalico_frp_frp$package$$anon$1(evidence$1);
         var this$12 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(target, tc);
-        var f$1 = new $c_sjsr_AnonFunction1(((t$1) => {
-          var target$1 = $n(bot$1).Lgooey_calico_Component__f_output;
+        var f$3 = new $c_sjsr_AnonFunction1(((f$1) => {
+          var target$1 = $n(snd$1).Lgooey_calico_Component__f_output;
           var evidence$1$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
           var tc$1 = new $c_Lcalico_frp_frp$package$$anon$1(evidence$1$1);
           var this$11 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(target$1, tc$1);
-          var f = new $c_sjsr_AnonFunction1(((b$1) => new $c_T2(t$1, b$1)));
-          return $as_Lfs2_concurrent_Signal($n(this$11.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$11.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f))
+          var f$2 = new $c_sjsr_AnonFunction1(((s$1) => new $c_T2(f$1, s$1)));
+          return $as_Lfs2_concurrent_Signal($n(this$11.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$11.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$2))
         }));
-        var output = $as_Lfs2_concurrent_Signal($n(this$12.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$12.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f$1));
+        var output = $as_Lfs2_concurrent_Signal($n(this$12.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$12.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f$3));
         return new $c_T2(element, output)
       })))).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((x$1) => {
         var x$1$1 = $as_T2(x$1);
@@ -57670,9 +57670,9 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.above__Lcats_effect_kernel_R
         throw new $c_s_MatchError(x$1$1)
       })))
     }));
-    return new $c_Lcats_effect_kernel_Resource$Bind(this$15, f$2)
+    return new $c_Lcats_effect_kernel_Resource$Bind(this$15, f$4)
   }));
-  return new $c_Lcats_effect_kernel_Resource$Bind(this$17, f$3)
+  return new $c_Lcats_effect_kernel_Resource$Bind(this$17, f$5)
 });
 $c_Lgooey_calico_Algebra$package$Algebra$.prototype.checkbox__s_Option__Z__Lcats_effect_kernel_Resource = (function(label, default$1) {
   var F = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
@@ -57871,7 +57871,7 @@ var $d_Lgooey_calico_Algebra$package$Algebra$ = new $TypeData().initClass({
   Lgooey_calico_Algebra$package$Algebra$: 1,
   O: 1,
   Lgooey_Algebra: 1,
-  Lgooey_component_Above$Algebra: 1,
+  Lgooey_component_And$Algebra: 1,
   Lgooey_component_Checkbox$Algebra: 1,
   Lgooey_component_Map$Algebra: 1,
   Lgooey_component_Pure$Algebra: 1,
