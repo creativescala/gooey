@@ -23,8 +23,8 @@ import gooey.syntax.all.*
 /** A UI component that produces a value of type `A` and requires the
   * capabilities defined in `Alg`.
   *
-  * `Component` has an `Applicative` instance, which requires `Map` and `Pure`
-  * algebras.
+  * `Component` has an `Applicative` instance, which requires `Map`, `Pure`, and
+  * `And` algebras.
   */
 trait Component[-Alg <: Algebra, A] {
 
@@ -34,7 +34,7 @@ trait Component[-Alg <: Algebra, A] {
   def create(using algebra: Alg): algebra.UI[A]
 }
 object Component {
-  given componentApplicative[Alg <: Above.Algebra & Map.Algebra & Pure.Algebra]
+  given componentApplicative[Alg <: And.Algebra & Map.Algebra & Pure.Algebra]
       : Applicative[Component[Alg, *]] with {
 
     def pure[A](x: A): Component[Alg, A] = Pure(x)
@@ -42,6 +42,6 @@ object Component {
     def ap[A, B](ff: Component[Alg, A => B])(
         fa: Component[Alg, A]
     ): Component[Alg, B] =
-      ff.above(fa).map((f, a) => f(a))
+      ff.and(fa).map((f, a) => f(a))
   }
 }

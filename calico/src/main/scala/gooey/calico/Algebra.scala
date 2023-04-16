@@ -17,7 +17,7 @@
 package gooey.calico
 
 import _root_.calico.*
-import _root_.calico.html.io.{*, given}
+import _root_.calico.html.io.{_, given}
 import _root_.calico.syntax.*
 import cats.effect.*
 import cats.syntax.all.*
@@ -34,7 +34,7 @@ final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A]) {
 }
 
 given Algebra: gooey.Algebra
-  with Above.Algebra
+  with And.Algebra
   with Checkbox.Algebra
   with Map.Algebra
   with Pure.Algebra
@@ -46,13 +46,13 @@ given Algebra: gooey.Algebra
   def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
     theLabel.fold(span(()))(l => label(l))
 
-  def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)] = {
+  def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
     import calico.frp.given
     for {
-      top <- t
-      bot <- b
-      element <- div(top.element, bot.element)
-      output = top.output.flatMap(t => bot.output.map(b => (t, b)))
+      fst <- f
+      snd <- s
+      element <- div(fst.element, snd.element)
+      output = fst.output.flatMap(f => snd.output.map(s => (f, s)))
     } yield Component(element, output)
   }
 

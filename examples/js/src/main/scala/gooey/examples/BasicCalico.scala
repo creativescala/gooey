@@ -36,7 +36,7 @@ object BasicCalico {
   def mount(id: String): Unit = {
     Checkbox.empty
       .withLabel("Is this awesome?")
-      .above(
+      .and(
         Textbox.empty
           .withLabel(
             "Describe, in your own words, the amount of awesomeness"

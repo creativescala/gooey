@@ -16,15 +16,19 @@
 
 package gooey.component
 
-final case class Above[Alg1 <: gooey.Algebra, Alg2 <: gooey.Algebra, A, B](
-    top: Component[Alg1, A],
-    bottom: Component[Alg2, B]
-) extends Component[Alg1 & Alg2 & Above.Algebra, (A, B)] {
-  def create(using algebra: Alg1 & Alg2 & Above.Algebra): algebra.UI[(A, B)] =
-    algebra.above(top.create, bottom.create)
+/** Create a component that combines two child components without specifying how
+  * the child components are laid out relative to one another. The backend can
+  * decide whether to lay them out one above the other or one next to another.
+  */
+final case class And[Alg1 <: gooey.Algebra, Alg2 <: gooey.Algebra, A, B](
+    first: Component[Alg1, A],
+    second: Component[Alg2, B]
+) extends Component[Alg1 & Alg2 & And.Algebra, (A, B)] {
+  def create(using algebra: Alg1 & Alg2 & And.Algebra): algebra.UI[(A, B)] =
+    algebra.and(first.create, second.create)
 }
-object Above {
+object And {
   trait Algebra extends gooey.Algebra {
-    def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)]
+    def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)]
   }
 }

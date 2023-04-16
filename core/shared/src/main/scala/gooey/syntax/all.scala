@@ -20,11 +20,11 @@ import gooey.Algebra
 import gooey.component.*
 
 object all {
-  extension [Alg1 <: Algebra, A](top: Component[Alg1, A]) {
-    def above[Alg2 <: Algebra, B](
-        bottom: Component[Alg2, B]
-    ): Component[Alg1 & Alg2 & Above.Algebra, (A, B)] =
-      Above(top, bottom)
+  extension [Alg1 <: Algebra, A](first: Component[Alg1, A]) {
+    def and[Alg2 <: Algebra, B](
+        second: Component[Alg2, B]
+    ): Component[Alg1 & Alg2 & And.Algebra, (A, B)] =
+      And(first, second)
   }
 
   extension [Alg <: Algebra, A](c: Component[Alg, A]) {
