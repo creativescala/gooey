@@ -65,7 +65,7 @@ lazy val commonSettings = Seq(
 lazy val root = project
   .in(file("."))
   .settings(moduleName := "gooey")
-  .aggregate(core.js, core.jvm, calico, examples.js, examples.jvm)
+  .aggregate(core.js, core.jvm, calico, swing, examples.js, examples.jvm)
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
@@ -86,6 +86,14 @@ lazy val calico = project
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(core.js)
+
+lazy val swing = project
+  .in(file("swing"))
+  .settings(
+    commonSettings,
+    libraryDependencies ++= Seq(Dependencies.fs2Core.value)
+  )
+  .dependsOn(core.jvm)
 
 lazy val docs =
   project
