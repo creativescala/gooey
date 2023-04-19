@@ -843,15 +843,7 @@ ul.nav-list li:first-child {
   text-transform: uppercase;
 }
 
-li.level1.nav-node {
-  margin-top: 1rem;
-  list-style-type: none;
-  text-transform: uppercase;
-  --tw-text-opacity: 1;
-  color: rgb(249 168 212 / var(--tw-text-opacity));
-}
-
-li.level1.nav-header {
+li.level1 {
   margin-top: 1rem;
   list-style-type: none;
   text-transform: uppercase;
