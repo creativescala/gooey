@@ -19,15 +19,12 @@ package gooey.calico
 import _root_.calico.*
 import _root_.calico.html.io.{_, given}
 import _root_.calico.syntax.*
+import cats.data.Chain
 import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
-import gooey.component.And
-import gooey.component.Checkbox
-import gooey.component.Map
-import gooey.component.Pure
-import gooey.component.Textbox
+import gooey.component.{And, Checkbox, Map, Pure, Textbox}
 import gooey.component.style.*
 
 given Algebra: gooey.Algebra
@@ -89,7 +86,7 @@ given Algebra: gooey.Algebra
     source.map(component => component.map(f))
 
   def pure[A](value: A): UI[A] =
-    span(()).map(elt => Component(elt, Signal.constant[IO, A](value)))
+    Resource.eval(IO(Component(Chain.empty, Signal.constant[IO, A](value))))
 
   def textbox(
       label: Option[String],
