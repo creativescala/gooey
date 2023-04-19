@@ -18,6 +18,8 @@ import laika.rewrite.link.LinkConfig
 import laika.rewrite.link.ApiLinks
 import laika.theme.Theme
 
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
 ThisBuild / tlBaseVersion := "0.1" // your current series x.y
 
 ThisBuild / organization := "org.creativescala"
