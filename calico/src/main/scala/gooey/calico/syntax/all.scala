@@ -16,6 +16,7 @@
 
 package gooey.calico.syntax
 
+import calico.html.io.{_, given}
 import calico.syntax.*
 import cats.effect.*
 import fs2.concurrent.*
@@ -23,19 +24,18 @@ import fs2.dom.*
 import gooey.calico.*
 
 object all {
-  extension [A](component: UI[A]) {
-    def renderIntoId(id: String)(using Dom[IO]): IO[Signal[IO, A]] = {
+  extension [A](elt: Resource[IO, HtmlElement[IO]]) {
+    def renderIntoId(id: String)(using Dom[IO]): IO[Unit] = {
       val rootElement: IO[Element[cats.effect.IO]] =
         Window[IO].document.getElementById(id).map(_.get)
-      for {
-        elt <- rootElement
-        output <- (for {
-          c <- component
-          _ <- Resource.make(elt.appendChild(c.element))(_ =>
-            elt.removeChild(c.element)
-          )
-        } yield c.output).useForever
-      } yield output
+
+      (for {
+        root <- rootElement
+        _ <- (for {
+          e <- elt
+          _ <- Resource.make(root.appendChild(e))(_ => root.removeChild(e))
+        } yield ()).useForever
+      } yield ())
     }
   }
 }

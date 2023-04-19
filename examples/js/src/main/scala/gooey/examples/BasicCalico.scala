@@ -44,18 +44,18 @@ object BasicCalico {
           .withStyle(TextboxStyle.SingleLine)
       )
       .create
-      .flatMap { c =>
-        val elt = div(
-          c.element,
+      .flatMap { c => c.build }
+      .flatMap { case (elt, signal) =>
+        div(
+          elt,
           p(
             "Awesomeness ",
-            c.output.map((a, _) =>
+            signal.map((a, _) =>
               if a then "is over 9000" else "needs improving"
             )
           ),
-          p("Reasons given are ", c.output.map((_, r) => r))
+          p("Reasons given are ", signal.map((_, r) => r))
         )
-        elt.map(e => gooey.calico.Component(e, c.output))
       }
       .renderIntoId(id)
       .unsafeRunAndForget()

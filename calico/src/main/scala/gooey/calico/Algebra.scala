@@ -23,15 +23,12 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
-import gooey.component.*
+import gooey.component.And
+import gooey.component.Checkbox
+import gooey.component.Map
+import gooey.component.Pure
+import gooey.component.Textbox
 import gooey.component.style.*
-
-type UI[A] = Resource[IO, Component[A]]
-
-final case class Component[A](element: HtmlElement[IO], output: Signal[IO, A]) {
-  def map[B](f: A => B): Component[B] =
-    this.copy(output = output.map(f))
-}
 
 given Algebra: gooey.Algebra
   with And.Algebra
@@ -43,27 +40,40 @@ given Algebra: gooey.Algebra
 
   type UI[A] = gooey.calico.UI[A]
 
+  val checkboxClass =
+    "border rounded text-gray-700 focus:outline-none focus:shadow-outline"
+
+  val elementClass =
+    "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
+  def makeComponent(
+      label: Resource[IO, HtmlElement[IO]],
+      element: Resource[IO, HtmlElement[IO]]
+  ): Resource[IO, HtmlElement[IO]] =
+    div(cls := "mb-4", label, element)
+
   def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
-    theLabel.fold(span(()))(l => label(l))
+    theLabel.fold(span(())) { l =>
+      label(cls := "block text-gray-700 text-sm font-bold font-sans mb-2", l)
+    }
 
   def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
     import calico.frp.given
     for {
       fst <- f
       snd <- s
-      element <- div(fst.element, snd.element)
-      output = fst.output.flatMap(f => snd.output.map(s => (f, s)))
-    } yield Component(element, output)
+    } yield fst.product(snd)
   }
 
   def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val element =
-        div(
+        makeComponent(
           makeLabel(label),
           input.withSelf { self =>
             (
               `type` := "checkbox",
+              cls := checkboxClass,
               checked := default,
               onChange --> (_.foreach { _ =>
                 output.getAndUpdate(v => !v).void
@@ -88,7 +98,7 @@ given Algebra: gooey.Algebra
   ): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val element =
-        div(
+        makeComponent(
           makeLabel(label),
           style match {
             case TextboxStyle.SingleLine =>
@@ -96,6 +106,7 @@ given Algebra: gooey.Algebra
                 (
                   value := default,
                   `type` := "text",
+                  cls := elementClass,
                   onInput --> (_.foreach(_ =>
                     self.value.get.flatMap(output.set)
                   ))
