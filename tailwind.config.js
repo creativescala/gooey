@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["docs/src/templates/*.html", "docs/src/css/*.css", "docs/target/docs/site/**/*.html", "docs/target/docs/site/**/*.js"],
+  content: [
+    "docs/src/templates/*.html",
+    "docs/src/css/*.css",
+    "docs/target/docs/site/**/*.html",
+    "examples/js/target/scala-3.2.2/gooey-examples-fastopt/main.js"
+  ],
   theme: {
     extend: {
       width: {
