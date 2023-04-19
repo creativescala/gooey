@@ -24,7 +24,11 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
-import gooey.component.{And, Checkbox, Map, Pure, Textbox}
+import gooey.component.And
+import gooey.component.Checkbox
+import gooey.component.Map
+import gooey.component.Pure
+import gooey.component.Textbox
 import gooey.component.style.*
 
 given Algebra: gooey.Algebra
