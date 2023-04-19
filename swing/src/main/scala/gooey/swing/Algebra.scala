@@ -28,6 +28,8 @@ import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Textbox
 import gooey.component.style.*
+import net.bulbyvr.swing.io.all.{_, given}
+import net.bulbyvr.swing.io.wrapper.*
 
 import javax.swing.*
 import javax.swing.event.DocumentEvent
@@ -41,57 +43,48 @@ given Algebra: gooey.Algebra
   with Textbox.Algebra
   with {
 
-  type UI[A] = Resource[IO, Component[A]]
+  type UI[A] = Resource[IO, (Component[IO], Signal[IO, A])]
 
-  def makeComponent(label: JLabel, element: JComponent): JPanel = {
-    val panel = JPanel()
-    panel.setLayout(BoxLayout(panel, BoxLayout.X_AXIS))
-
-    label.setLabelFor(element)
-
-    panel.add(label)
-    panel.add(element)
-
-    panel
+  def makeComponent[A](
+      label: Resource[IO, Component[IO]],
+      element: Resource[IO, Component[IO]]
+  ): Resource[IO, Component[IO]] = {
+    box(label, element)
   }
 
-  def makeLabel(theLabel: Option[String]): JLabel =
-    theLabel.fold(JLabel()) { l => JLabel(l) }
+  def makeLabel(theLabel: Option[String]): Resource[IO, Component[IO]] =
+    theLabel.fold(Label[IO]("")) { l => Label[IO](l) }
 
   def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
     for {
       fst <- f
       snd <- s
-    } yield fst.product(snd)
+      (c1, s1) = fst
+      (c2, s2) = snd
+      c <- flow(c1, c2)
+    } yield (c, (s1, s2).tupled)
   }
 
   def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
-    //   SignallingRef[IO].of(default).toResource.flatMap { output =>
-    //     val component =
-    //       makeComponent(
-    //         makeLabel(label),
-    //         input.withSelf { self =>
-    //           (
-    //             `type` := "checkbox",
-    //             cls := checkboxClass,
-    //             checked := default,
-    //             onChange --> (_.foreach { _ =>
-    //               output.getAndUpdate(v => !v).void
-    //             })
-    //           )
-    //         }
-    //       )
-    //     Component(component, output)
-    //   }
-    ???
+    SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val component =
+        makeComponent(
+          makeLabel(label),
+          net.bulbyvr.swing.io.all.checkbox.withSelf { self =>
+            onValueChange --> {
+              _.foreach(_ => self.enabled.get.flatMap(output.set))
+            }
+          }
+        )
+      component.map(c => (c, output))
+    }
   }
 
   def map[A, B](source: UI[A], f: A => B): UI[B] =
-    source.map(component => component.map(f))
+    source.map { case (c, s) => (c, s.map(f)) }
 
   def pure[A](value: A): UI[A] = {
-    val component = Component(Chain.empty, Signal.constant[IO, A](value))
-    Resource.eval(IO.pure(component))
+    ???
   }
 
   def textbox(
@@ -99,37 +92,23 @@ given Algebra: gooey.Algebra
       default: String,
       style: TextboxStyle
   ): UI[String] = {
-    SignallingRef[IO].of(default).toResource.map { output =>
+    SignallingRef[IO].of(default).toResource.flatMap { output =>
       val component =
         makeComponent(
           makeLabel(label),
           style match {
             case TextboxStyle.SingleLine =>
-              val element = JTextField(default)
-              element.addActionListener(evt => output.set(element.getText()))
-              element
+              textField.withSelf { self =>
+                onValueChange --> {
+                  _.foreach(_ => self.text.get.flatMap(output.set))
+                }
+              }
 
             case TextboxStyle.MultiLine =>
-              val element = JTextArea(default)
-              element
-                .getDocument()
-                .addDocumentListener(
-                  new DocumentListener {
-                    def changedUpdate(e: DocumentEvent): Unit = {
-                      output.set(element.getText())
-                    }
-                    def insertUpdate(e: DocumentEvent): Unit = {
-                      output.set(element.getText())
-                    }
-                    def removeUpdate(e: DocumentEvent): Unit = {
-                      output.set(element.getText())
-                    }
-                  }
-                )
-              element
+              ???
           }
         )
-      Component(component, output)
+      component.map(c => (c, output))
     }
   }
 

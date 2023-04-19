@@ -91,7 +91,7 @@ lazy val swing = project
   .in(file("swing"))
   .settings(
     commonSettings,
-    libraryDependencies ++= Seq(Dependencies.fs2Core.value)
+    libraryDependencies ++= Seq(Dependencies.swingIo.value)
   )
   .dependsOn(core.jvm)
 

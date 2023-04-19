@@ -10,6 +10,7 @@ object Dependencies {
   val catsEffectVersion = "3.4.9"
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
+  val swingIoVersion = "0.1.0-M1"
 
   val munitVersion = "0.7.29"
 
@@ -21,6 +22,9 @@ object Dependencies {
   val fs2Core = Def.setting("co.fs2" %% "fs2-core" % fs2Version)
   val scalaJsDom =
     Def.setting("org.scala-js" %%% "scalajs-dom" % scalaJsDomVersion)
+  val swingIo = Def.setting(
+    "io.github.thedrawingcoder-gamer" %%% "swing-io" % swingIoVersion
+  )
 
   val munit = Def.setting("org.scalameta" %% "munit" % munitVersion % "test")
 }
