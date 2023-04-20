@@ -174,7 +174,7 @@ lazy val examples = crossProject(JSPlatform, JVMPlatform)
   )
   .jvmConfigure(
     _.settings(mimaPreviousArtifacts := Set.empty)
-      .dependsOn(core.jvm)
+      .dependsOn(core.jvm, swing)
   )
   .jsConfigure(
     _.settings(mimaPreviousArtifacts := Set.empty)

@@ -31,10 +31,6 @@ import gooey.component.style.*
 import net.bulbyvr.swing.io.all.{_, given}
 import net.bulbyvr.swing.io.wrapper.*
 
-import javax.swing.*
-import javax.swing.event.DocumentEvent
-import javax.swing.event.DocumentListener
-
 given Algebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
@@ -53,7 +49,7 @@ given Algebra: gooey.Algebra
   }
 
   def makeLabel(theLabel: Option[String]): Resource[IO, Component[IO]] =
-    theLabel.fold(Label[IO]("")) { l => Label[IO](l) }
+    theLabel.fold(label(text := "")) { l => label(text := l) }
 
   def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
     for {
@@ -61,7 +57,7 @@ given Algebra: gooey.Algebra
       snd <- s
       (c1, s1) = fst
       (c2, s2) = snd
-      c <- flow(c1, c2)
+      c <- box(c1, c2)
     } yield (c, (s1, s2).tupled)
   }
 
@@ -71,8 +67,8 @@ given Algebra: gooey.Algebra
         makeComponent(
           makeLabel(label),
           net.bulbyvr.swing.io.all.checkbox.withSelf { self =>
-            onValueChange --> {
-              _.foreach(_ => self.enabled.get.flatMap(output.set))
+            onBtnClick --> {
+              _.evalMap(_ => self.selected.get).foreach(output.set)
             }
           }
         )
