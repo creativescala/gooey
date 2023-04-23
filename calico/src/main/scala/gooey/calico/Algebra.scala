@@ -33,13 +33,8 @@ import gooey.component.Textbox
 import gooey.component.style.*
 
 type Algebra =
-  gooey.Algebra
-    with And.Algebra
-    with Checkbox.Algebra
-    with Map.Algebra
-    with Pure.Algebra
-    with Slider.Algebra
-    with Textbox.Algebra
+  gooey.Algebra & And.Algebra & Checkbox.Algebra & Map.Algebra & Pure.Algebra &
+    Slider.Algebra & Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra

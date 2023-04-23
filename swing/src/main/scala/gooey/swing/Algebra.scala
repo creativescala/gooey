@@ -31,6 +31,10 @@ import gooey.component.style.*
 import net.bulbyvr.swing.io.all.{_, given}
 import net.bulbyvr.swing.io.wrapper.*
 
+type Algebra =
+  gooey.Algebra & And.Algebra & Checkbox.Algebra & Map.Algebra & Pure.Algebra &
+    Textbox.Algebra
+
 given Algebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
