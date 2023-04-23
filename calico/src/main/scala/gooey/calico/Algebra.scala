@@ -28,14 +28,25 @@ import gooey.component.And
 import gooey.component.Checkbox
 import gooey.component.Map
 import gooey.component.Pure
+import gooey.component.Slider
 import gooey.component.Textbox
 import gooey.component.style.*
+
+type Algebra =
+  gooey.Algebra
+    with And.Algebra
+    with Checkbox.Algebra
+    with Map.Algebra
+    with Pure.Algebra
+    with Slider.Algebra
+    with Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
   with Map.Algebra
   with Pure.Algebra
+  with Slider.Algebra
   with Textbox.Algebra
   with {
 
@@ -91,6 +102,32 @@ given Algebra: gooey.Algebra
 
   def pure[A](value: A): UI[A] =
     Resource.eval(IO(Component(Chain.empty, Signal.constant[IO, A](value))))
+
+  def slider(
+      label: Option[String],
+      min: Int,
+      max: Int,
+      default: Int
+  ): UI[Int] = {
+    SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val element =
+        makeComponent(
+          makeLabel(label),
+          input.withSelf { self =>
+            (
+              value := default.toString,
+              `type` := "range",
+              minAttr := min.toString,
+              maxAttr := max.toString,
+              onChange --> (_.foreach(_ =>
+                self.value.get.map(_.toInt).flatMap(output.set)
+              ))
+            )
+          }
+        )
+      element.map(e => Component(e, output))
+    }
+  }
 
   def textbox(
       label: Option[String],
