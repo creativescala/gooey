@@ -29,12 +29,13 @@ import gooey.component.Checkbox
 import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Slider
+import gooey.component.Text
 import gooey.component.Textbox
 import gooey.component.style.*
 
 type Algebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Map.Algebra & Pure.Algebra &
-    Slider.Algebra & Textbox.Algebra
+    Slider.Algebra & Text.Algebra & Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
@@ -42,6 +43,7 @@ given Algebra: gooey.Algebra
   with Map.Algebra
   with Pure.Algebra
   with Slider.Algebra
+  with Text.Algebra
   with Textbox.Algebra
   with {
 
@@ -123,6 +125,9 @@ given Algebra: gooey.Algebra
       element.map(e => Component(e, output))
     }
   }
+
+  def text(content: String): UI[Unit] =
+    p(content).map(elt => Component(elt, Signal.constant[IO, Unit](())))
 
   def textbox(
       label: Option[String],

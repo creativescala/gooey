@@ -36,22 +36,27 @@ import scala.scalajs.js.annotation.*
 object BasicCalico {
   @JSExport
   def mount(id: String): Unit = {
-    (
-      Checkbox.empty
-        .withLabel("Is this awesome?")
-        .as[Algebra],
-      Slider(1, 10)
-        .withLabel(
-          "On a scale of 1 to 10, rate the amount of awesomeness"
-        )
-        .as[Algebra],
-      Textbox.empty
-        .withLabel(
-          "Describe, in your own words, the amount of awesomeness"
-        )
-        .withStyle(TextboxStyle.SingleLine)
-        .as[Algebra]
-    ).tupled.create
+    val component = Text(
+      "This example demonstrates the components implemented by the Calico backend."
+    ).as[Algebra] *>
+      (
+        Checkbox.empty
+          .withLabel("Is this awesome?")
+          .as[Algebra],
+        Slider(1, 10)
+          .withLabel(
+            "On a scale of 1 to 10, rate the amount of awesomeness"
+          )
+          .as[Algebra],
+        Textbox.empty
+          .withLabel(
+            "Describe, in your own words, the amount of awesomeness"
+          )
+          .withStyle(TextboxStyle.SingleLine)
+          .as[Algebra]
+      ).tupled
+
+    component.create
       .flatMap { c => c.build }
       .flatMap { case (elt, signal) =>
         div(
