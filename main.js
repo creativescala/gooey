@@ -38186,19 +38186,14 @@ $c_Lgooey_calico_Component.prototype.product__Lgooey_calico_Component__Lgooey_ca
   var this$1 = $n(this.Lgooey_calico_Component__f_elements);
   var c = $n(that).Lgooey_calico_Component__f_elements;
   var elements = $m_Lcats_data_Chain$().concat__Lcats_data_Chain__Lcats_data_Chain__Lcats_data_Chain(this$1, c);
-  var target = this.Lgooey_calico_Component__f_signal;
+  var _1 = this.Lgooey_calico_Component__f_signal;
+  var _2 = $n(that).Lgooey_calico_Component__f_signal;
+  var t2 = new $c_T2(_1, _2);
+  var $$x2 = new $c_Lcats_syntax_Tuple2SemigroupalOps(t2);
   var evidence$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-  var tc = new $c_Lcalico_frp_frp$package$$anon$1(evidence$1);
-  var this$8 = new $c_Lcats_FlatMap$ToFlatMapOps$$anon$2(target, tc);
-  var f$2 = new $c_sjsr_AnonFunction1(((f) => {
-    var target$1 = $n(that).Lgooey_calico_Component__f_signal;
-    var evidence$1$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-    var tc$1 = new $c_Lcalico_frp_frp$package$$anon$1(evidence$1$1);
-    var this$7 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(target$1, tc$1);
-    var f$1 = new $c_sjsr_AnonFunction1(((s) => new $c_T2(f, s)));
-    return $as_Lfs2_concurrent_Signal($n(this$7.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$7.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$1))
-  }));
-  var signal = $as_Lfs2_concurrent_Signal($n(this$8.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_typeClassInstance).flatMap__O__F1__O(this$8.Lcats_FlatMap$ToFlatMapOps$$anon$2__f_self, f$2));
+  var $$x1 = new $c_Lcalico_frp_frp$package$$anon$1(evidence$1);
+  var evidence$1$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
+  var signal = $as_Lfs2_concurrent_Signal($$x2.tupled__Lcats_Invariant__Lcats_Semigroupal__O($$x1, new $c_Lcalico_frp_frp$package$$anon$1(evidence$1$1)));
   return new $c_Lgooey_calico_Component(elements, signal)
 });
 $c_Lgooey_calico_Component.prototype.build__Lcats_effect_kernel_Resource = (function() {
