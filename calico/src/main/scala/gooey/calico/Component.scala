@@ -34,7 +34,7 @@ final case class Component[A](
   def product[B](that: Component[B]): Component[(A, B)] =
     Component(
       this.elements ++ that.elements,
-      this.signal.flatMap(f => that.signal.map(s => (f, s)))
+      (this.signal, that.signal).tupled
     )
 
   def build: Resource[IO, (HtmlElement[IO], Signal[IO, A])] =
