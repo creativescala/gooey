@@ -18,7 +18,7 @@ package gooey.component
 
 import gooey.Algebra
 
-/** Text a component for displaying text. */
+/** Text is a component for displaying text. */
 final case class Text(content: String) extends Component[Text.Algebra, Unit] {
 
   def withContent(content: String): Text =

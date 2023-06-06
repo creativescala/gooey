@@ -48,6 +48,9 @@ object BasicCalico {
             "On a scale of 1 to 10, rate the amount of awesomeness"
           )
           .as[Algebra],
+        Dropdown(List(("Superb", 1), ("Stupendous", 3), ("Awesome", 5)))
+          .withLabel("Chose the adjective that best describes your experience")
+          .as[Algebra],
         Textbox.empty
           .withLabel(
             "Describe, in your own words, the amount of awesomeness"
@@ -63,15 +66,19 @@ object BasicCalico {
           elt,
           p(
             "Awesomeness ",
-            signal.map((a, _, _) =>
+            signal.map((a, _, _, _) =>
               if a then "is over 9000" else "needs improving"
             )
           ),
           p(
             "Awesomeness rating is ",
-            signal.map((_, r, _) => r.toString)
+            signal.map((_, r, _, _) => r.toString)
           ),
-          p("Reasons given are ", signal.map((_, _, r) => r))
+          p(
+            "The subjective adjective rating is ",
+            signal.map((_, _, r, _) => r.fold("unrated")(r => r.toString))
+          ),
+          p("Reasons given are ", signal.map((_, _, _, r) => r))
         )
       }
       .renderIntoId(id)

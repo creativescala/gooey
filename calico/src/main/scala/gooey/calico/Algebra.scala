@@ -26,6 +26,7 @@ import fs2.concurrent.*
 import fs2.dom.*
 import gooey.component.And
 import gooey.component.Checkbox
+import gooey.component.Dropdown
 import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Slider
@@ -34,12 +35,13 @@ import gooey.component.Textbox
 import gooey.component.style.*
 
 type Algebra =
-  gooey.Algebra & And.Algebra & Checkbox.Algebra & Map.Algebra & Pure.Algebra &
-    Slider.Algebra & Text.Algebra & Textbox.Algebra
+  gooey.Algebra & And.Algebra & Checkbox.Algebra & Dropdown.Algebra &
+    Map.Algebra & Pure.Algebra & Slider.Algebra & Text.Algebra & Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
+  with Dropdown.Algebra
   with Map.Algebra
   with Pure.Algebra
   with Slider.Algebra
@@ -86,6 +88,33 @@ given Algebra: gooey.Algebra
               checked := default,
               onChange --> (_.foreach { _ =>
                 output.getAndUpdate(v => !v).void
+              })
+            )
+          }
+        )
+      element.map(e => Component(e, output))
+    }
+  }
+
+  def dropdown[A](
+      label: Option[String],
+      choices: Iterable[(String, A)]
+  ): UI[Option[A]] = {
+    SignallingRef[IO].of(none[A]).toResource.flatMap { output =>
+      val element =
+        makeComponent(
+          makeLabel(label),
+          select.withSelf { self =>
+            (
+              cls := elementClass,
+              choices.map((name, a) => option(name)).toList,
+              onChange --> (_.foreach { _ =>
+                self.value.get
+                  .flatMap(choice =>
+                    choices
+                      .find((c, a) => c == choice)
+                      .fold(output.set(none[A]))((_, a) => output.set(a.some))
+                  )
               })
             )
           }
