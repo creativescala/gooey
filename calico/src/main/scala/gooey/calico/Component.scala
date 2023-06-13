@@ -37,6 +37,9 @@ final case class Component[A](
       (this.signal, that.signal).tupled
     )
 
+  def buildElement: Resource[IO, HtmlElement[IO]] =
+    build.map((e, _) => e)
+
   def build: Resource[IO, (HtmlElement[IO], Signal[IO, A])] =
     div(elements.toList).map(elt => (elt, signal))
 }

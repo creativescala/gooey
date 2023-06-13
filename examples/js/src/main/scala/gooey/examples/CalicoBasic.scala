@@ -32,8 +32,8 @@ import gooey.syntax.all.*
 
 import scala.scalajs.js.annotation.*
 
-@JSExportTopLevel("BasicCalico")
-object BasicCalico {
+@JSExportTopLevel("CalicoBasic")
+object CalicoBasic {
   @JSExport
   def mount(id: String): Unit = {
     val component = Text(

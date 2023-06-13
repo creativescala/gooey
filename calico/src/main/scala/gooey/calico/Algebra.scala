@@ -27,6 +27,7 @@ import fs2.dom.*
 import gooey.component.And
 import gooey.component.Checkbox
 import gooey.component.Dropdown
+import gooey.component.Form
 import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Slider
@@ -36,12 +37,14 @@ import gooey.component.style.*
 
 type Algebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Dropdown.Algebra &
-    Map.Algebra & Pure.Algebra & Slider.Algebra & Text.Algebra & Textbox.Algebra
+    Form.Algebra & Map.Algebra & Pure.Algebra & Slider.Algebra & Text.Algebra &
+    Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
   with Dropdown.Algebra
+  with Form.Algebra
   with Map.Algebra
   with Pure.Algebra
   with Slider.Algebra
@@ -120,6 +123,30 @@ given Algebra: gooey.Algebra
           }
         )
       element.map(e => Component(e, output))
+    }
+  }
+
+  def form[A](
+      title: String,
+      component: UI[A],
+      submit: String,
+      onSubmit: A => Unit
+  ): UI[A] = {
+    component.flatMap { c =>
+      val elts = c.elements
+      val signal = c.signal
+
+      calico.html.io
+        .form(
+          h2(title),
+          elts.toList,
+          button(
+            `type` := "button",
+            onClick --> (_.foreach { _ => signal.get.map(onSubmit) }),
+            submit
+          )
+        )
+        .map(elements => Component(elements, signal))
     }
   }
 
