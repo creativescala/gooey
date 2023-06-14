@@ -194,9 +194,12 @@ given Algebra: gooey.Algebra
   def textbox(
       label: Option[String],
       default: String,
-      style: TextboxStyle
+      style: TextboxStyle,
+      observers: Chain[WritableVar[String]]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val signals =
+        observers.traverse(v => env.addSource(v.id, output)).toResource
       val element =
         makeComponent(
           makeLabel(label),
@@ -223,7 +226,7 @@ given Algebra: gooey.Algebra
               }
           }
         )
-      element.map(e => Component(e, output))
+      signals *> element.map(e => Component(e, output))
     }
   }
 

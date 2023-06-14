@@ -91,7 +91,8 @@ given Algebra: gooey.Algebra
   def textbox(
       label: Option[String],
       default: String,
-      style: TextboxStyle
+      style: TextboxStyle,
+      observers: Chain[WritableVar[String]]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val component =

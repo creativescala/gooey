@@ -36,13 +36,15 @@ import scala.scalajs.js.annotation.*
 object CalicoBasic {
   @JSExport
   def mount(id: String): Unit = {
-    val awesomeness = Var.writable[String]("")
+    val awesomeness = Var.writable[Boolean](false)
+    val reasons = Var.writable[String]("")
     val component = Text(
       "This example demonstrates the components implemented by the Calico backend."
     ).as[Algebra] *>
       (
         Checkbox.empty
           .withLabel("Is this awesome?")
+          .withObserver(awesomeness)
           .as[Algebra],
         Slider(1, 10)
           .withLabel(
@@ -54,13 +56,20 @@ object CalicoBasic {
           .as[Algebra],
         Textbox.empty
           .withLabel(
-            "Describe, in your own words, the amount of awesomeness"
+            "Describe, in your own words, the reasons behind your rating"
           )
-          .withObserver(awesomeness)
+          .withObserver(reasons)
           .withStyle(TextboxStyle.SingleLine)
           .as[Algebra],
-        Text("hey!").and(Text(awesomeness))
       ).tupled
+      <* Text(
+        awesomeness.map(a =>
+          if a then "Awesomeness is over 9000!"
+          else "Awesomeness needs improvement"
+        )
+      ).and(
+        Text(reasons.map(s => s"Reasons given are: $s"))
+      )
 
     component.create
       .flatMap { c => c.build }
@@ -68,20 +77,13 @@ object CalicoBasic {
         div(
           elt,
           p(
-            "Awesomeness ",
-            signal.map((a, _, _, _, _) =>
-              if a then "is over 9000" else "needs improving"
-            )
-          ),
-          p(
             "Awesomeness rating is ",
-            signal.map((_, r, _, _, _) => r.toString)
+            signal.map((_, r, _, _) => r.toString)
           ),
           p(
             "The subjective adjective rating is ",
-            signal.map((_, _, r, _, _) => r.fold("unrated")(r => r.toString))
-          ),
-          p("Reasons given are ", signal.map((_, _, _, r, _) => r))
+            signal.map((_, _, r, _) => r.fold("unrated")(r => r.toString))
+          )
         )
       }
       .renderIntoId(id)

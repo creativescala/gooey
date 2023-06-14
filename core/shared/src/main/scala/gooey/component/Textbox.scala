@@ -47,14 +47,15 @@ final case class Textbox(
   private[gooey] def build(algebra: Textbox.Algebra)(
       env: algebra.Env
   ): algebra.UI[String] =
-    algebra.textbox(label, default, style)(env)
+    algebra.textbox(label, default, style, observers)(env)
 }
 object Textbox {
   trait Algebra extends gooey.Algebra {
     def textbox(
         label: Option[String],
         default: String,
-        style: TextboxStyle
+        style: TextboxStyle,
+        observers: Chain[WritableVar[String]]
     )(env: Env): UI[String]
   }
 
