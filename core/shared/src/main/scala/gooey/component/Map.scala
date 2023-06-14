@@ -16,16 +16,21 @@
 
 package gooey.component
 
+import cats.data.Chain
+import gooey.WritableVar
+
 /** Component that produces a value but doesn't produce an visual output. */
 final case class Map[Alg <: gooey.Algebra, A, B](
     source: Component[Alg, A],
     f: A => B
 ) extends Component[Alg & Map.Algebra, B] {
-  def create(using algebra: Alg & Map.Algebra): algebra.UI[B] =
-    algebra.map(source.create, f)
+  private[gooey] def build(algebra: Alg & Map.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[B] =
+    algebra.map(source.build(algebra)(env), f)(env)
 }
 object Map {
   trait Algebra extends gooey.Algebra {
-    def map[A, B](source: UI[A], f: A => B): UI[B]
+    def map[A, B](source: UI[A], f: A => B)(env: Env): UI[B]
   }
 }

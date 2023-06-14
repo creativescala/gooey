@@ -17,18 +17,28 @@
 package gooey.component
 
 import gooey.Algebra
+import gooey.Var
 
 /** Text is a component for displaying text. */
-final case class Text(content: String) extends Component[Text.Algebra, Unit] {
+final case class Text(content: Var[String])
+    extends Component[Text.Algebra, Unit] {
 
   def withContent(content: String): Text =
+    this.copy(content = Var.constant(content))
+
+  def withContent(content: Var[String]): Text =
     this.copy(content = content)
 
-  def create(using algebra: Text.Algebra): algebra.UI[Unit] =
-    algebra.text(content)
+  private[gooey] def build(algebra: Text.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[Unit] =
+    algebra.text(content)(env)
 }
 object Text {
   trait Algebra extends gooey.Algebra {
-    def text(content: String): UI[Unit]
+    def text(content: Var[String])(env: Env): UI[Unit]
   }
+
+  def apply(content: String): Text =
+    Text(Var.constant(content))
 }

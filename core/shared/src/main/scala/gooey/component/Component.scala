@@ -36,7 +36,12 @@ trait Component[-Alg <: Algebra, A] {
   /** Given implementations of the algebras required by this `Component`,
     * produce a backend specific user interface representation.
     */
-  def create(using algebra: Alg): algebra.UI[A]
+  final def create(using algebra: Alg): algebra.UI[A] =
+    build(algebra)(algebra.initialize())
+
+  /** Build the UI for the specific subtype given the algebra and an environment
+    */
+  private[gooey] def build(algebra: Alg)(env: algebra.Env): algebra.UI[A]
 }
 object Component {
   given componentApplicative[Alg <: And.Algebra & Map.Algebra & Pure.Algebra]

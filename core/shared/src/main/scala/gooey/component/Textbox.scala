@@ -16,13 +16,16 @@
 
 package gooey.component
 
+import cats.data.Chain
 import gooey.Algebra
+import gooey.WritableVar
 import gooey.component.style.TextboxStyle
 
 final case class Textbox(
     label: Option[String],
     default: String,
-    style: TextboxStyle
+    style: TextboxStyle,
+    observers: Chain[WritableVar[String]]
 ) extends Component[Textbox.Algebra, String],
       Labelable[Textbox],
       Styleable[Textbox, TextboxStyle] {
@@ -32,14 +35,19 @@ final case class Textbox(
   def withoutLabel: Textbox =
     this.copy(label = None)
 
+  def withObserver(writable: WritableVar[String]): Textbox =
+    this.copy(observers = writable +: observers)
+
   def withStyle(style: TextboxStyle): Textbox =
     this.copy(style = style)
 
   def withDefault(default: String): Textbox =
     this.copy(default = default)
 
-  def create(using algebra: Textbox.Algebra): algebra.UI[String] =
-    algebra.textbox(label, default, style)
+  private[gooey] def build(algebra: Textbox.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[String] =
+    algebra.textbox(label, default, style)(env)
 }
 object Textbox {
   trait Algebra extends gooey.Algebra {
@@ -47,8 +55,8 @@ object Textbox {
         label: Option[String],
         default: String,
         style: TextboxStyle
-    ): UI[String]
+    )(env: Env): UI[String]
   }
 
-  val empty: Textbox = Textbox(None, "", TextboxStyle.SingleLine)
+  val empty: Textbox = Textbox(None, "", TextboxStyle.SingleLine, Chain.empty)
 }

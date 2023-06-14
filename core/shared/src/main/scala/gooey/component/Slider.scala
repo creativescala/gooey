@@ -16,8 +16,17 @@
 
 package gooey.component
 
-final case class Slider(label: Option[String], min: Int, max: Int, default: Int)
-    extends Component[Slider.Algebra, Int],
+import cats.data.Chain
+import gooey.Algebra
+import gooey.WritableVar
+
+final case class Slider(
+    label: Option[String],
+    min: Int,
+    max: Int,
+    default: Int,
+    observers: Chain[WritableVar[Int]]
+) extends Component[Slider.Algebra, Int],
       Labelable[Slider] {
   def withLabel(label: String): Slider =
     this.copy(label = Some(label))
@@ -40,8 +49,13 @@ final case class Slider(label: Option[String], min: Int, max: Int, default: Int)
     this.copy(max = max)
   }
 
-  def create(using algebra: Slider.Algebra): algebra.UI[Int] =
-    algebra.slider(label, min, max, default)
+  def withObserver(writable: WritableVar[Int]): Slider =
+    this.copy(observers = writable +: observers)
+
+  private[gooey] def build(algebra: Slider.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[Int] =
+    algebra.slider(label, min, max, default)(env)
 }
 object Slider {
   trait Algebra extends gooey.Algebra {
@@ -50,7 +64,7 @@ object Slider {
         min: Int,
         max: Int,
         default: Int
-    ): UI[Int]
+    )(env: Env): UI[Int]
   }
 
   def validate(min: Int, max: Int, default: Int): Unit = {
@@ -67,7 +81,7 @@ object Slider {
   /** Create a slider with a minimum value of 0, a maximum of 100, and a default
     * value of 50.
     */
-  val default: Slider = Slider(None, 0, 100, 50)
+  val default: Slider = Slider(None, 0, 100, 50, Chain.empty)
 
   /** Create a slider with the given minimum and maximum value, and a default
     * value halfway between the two.
@@ -77,6 +91,6 @@ object Slider {
 
   def apply(min: Int, max: Int, value: Int): Slider = {
     validate(min, max, value)
-    Slider(None, min, max, value)
+    Slider(None, min, max, value, Chain.empty)
   }
 }

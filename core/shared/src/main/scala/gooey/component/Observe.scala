@@ -14,22 +14,25 @@
  * limitations under the License.
  */
 
-package gooey.syntax
+package gooey.component
 
-import gooey.Algebra
 import gooey.WritableVar
-import gooey.component.*
 
-object all {
-  extension [Alg <: Algebra, A](c: Component[Alg, A]) {
-    def and[Alg2 <: Algebra, B](
-        second: Component[Alg2, B]
-    ): Component[Alg & Alg2 & And.Algebra, (A, B)] =
-      And(c, second)
+/** Add an observer to the source component, which pushes the value produced by
+  * the source to the given WritableVar.
+  */
+final case class Observe[Alg <: gooey.Algebra, A](
+    source: Component[Alg, A],
+    observer: WritableVar[A]
+) extends Component[Alg & Observe.Algebra, A] {
 
-    def map[B](f: A => B): Component[Alg & Map.Algebra, B] = Map(c, f)
-
-    def observe(observer: WritableVar[A]): Component[Alg & Observe.Algebra, A] =
-      Observe(c, observer)
+  private[gooey] def build(algebra: Alg & Observe.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[A] =
+    algebra.observe(source.build(algebra)(env), observer)(env)
+}
+object Observe {
+  trait Algebra extends gooey.Algebra {
+    def observe[A](source: UI[A], observer: WritableVar[A])(env: Env): UI[A]
   }
 }

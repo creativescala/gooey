@@ -16,6 +16,9 @@
 
 package gooey.component
 
+import cats.data.Chain
+import gooey.WritableVar
+
 /** A dropdown list for selecting a single element from a collection. Each
   * element is a pair of a String and a value of type A. The String is the label
   * for the element, and the value of type A is the value that is returned if
@@ -23,7 +26,8 @@ package gooey.component
   */
 final case class Dropdown[A](
     label: Option[String],
-    choices: Iterable[(String, A)]
+    choices: Iterable[(String, A)],
+    observers: Chain[WritableVar[A]]
 ) extends Component[Dropdown.Algebra, Option[A]],
       Labelable[Dropdown[A]] {
 
@@ -33,21 +37,22 @@ final case class Dropdown[A](
   def withoutLabel: Dropdown[A] =
     this.copy(label = None)
 
-  def withChoices[B](choices: Iterable[(String, B)]): Dropdown[B] =
-    this.copy(choices = choices)
+  def withObserver(writable: WritableVar[A]): Dropdown[A] =
+    this.copy(observers = writable +: observers)
 
-  def create(using algebra: Dropdown.Algebra): algebra.UI[Option[A]] =
-    algebra.dropdown(label, choices)
+  private[gooey] def build(algebra: Dropdown.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[Option[A]] =
+    algebra.dropdown(label, choices)(env)
 }
 object Dropdown {
-
-  def apply[A](choices: Iterable[(String, A)]): Dropdown[A] =
-    Dropdown(None, choices)
-
   trait Algebra extends gooey.Algebra {
     def dropdown[A](
         label: Option[String],
         choices: Iterable[(String, A)]
-    ): UI[Option[A]]
+    )(env: Env): UI[Option[A]]
   }
+
+  def apply[A](choices: Iterable[(String, A)]): Dropdown[A] =
+    Dropdown(None, choices, Chain.empty)
 }

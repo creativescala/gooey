@@ -22,6 +22,7 @@ import cats.effect.Resource
 import cats.effect.syntax.all.*
 import cats.syntax.all.*
 import fs2.concurrent.*
+import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
 import gooey.component.Map
@@ -43,19 +44,13 @@ given Algebra: gooey.Algebra
   with Textbox.Algebra
   with {
 
+  type Env = Unit
+
   type UI[A] = Resource[IO, (Component[IO], Signal[IO, A])]
 
-  def makeComponent[A](
-      label: Resource[IO, Component[IO]],
-      element: Resource[IO, Component[IO]]
-  ): Resource[IO, Component[IO]] = {
-    box(label, element)
-  }
+  def initialize(): Env = ()
 
-  def makeLabel(theLabel: Option[String]): Resource[IO, Component[IO]] =
-    theLabel.fold(label(text := "")) { l => label(text := l) }
-
-  def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
+  def and[A, B](f: UI[A], s: UI[B])(env: Env): UI[(A, B)] = {
     for {
       fst <- f
       snd <- s
@@ -65,7 +60,13 @@ given Algebra: gooey.Algebra
     } yield (c, (s1, s2).tupled)
   }
 
-  def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
+  def checkbox(
+      label: Option[String],
+      default: Boolean,
+      observers: Chain[WritableVar[Boolean]]
+  )(
+      env: Env
+  ): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val component =
         makeComponent(
@@ -80,10 +81,10 @@ given Algebra: gooey.Algebra
     }
   }
 
-  def map[A, B](source: UI[A], f: A => B): UI[B] =
+  def map[A, B](source: UI[A], f: A => B)(env: Env): UI[B] =
     source.map { case (c, s) => (c, s.map(f)) }
 
-  def pure[A](value: A): UI[A] = {
+  def pure[A](value: A)(env: Env): UI[A] = {
     ???
   }
 
@@ -91,7 +92,7 @@ given Algebra: gooey.Algebra
       label: Option[String],
       default: String,
       style: TextboxStyle
-  ): UI[String] = {
+  )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val component =
         makeComponent(
@@ -111,5 +112,17 @@ given Algebra: gooey.Algebra
       component.map(c => (c, output))
     }
   }
+
+  // Utilities -------------------------------------------------------
+
+  def makeComponent[A](
+      label: Resource[IO, Component[IO]],
+      element: Resource[IO, Component[IO]]
+  ): Resource[IO, Component[IO]] = {
+    box(label, element)
+  }
+
+  def makeLabel(theLabel: Option[String]): Resource[IO, Component[IO]] =
+    theLabel.fold(label(text := "")) { l => label(text := l) }
 
 }

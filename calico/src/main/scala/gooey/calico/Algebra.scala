@@ -24,11 +24,14 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
+import gooey.Var
+import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
 import gooey.component.Dropdown
 import gooey.component.Form
 import gooey.component.Map
+import gooey.component.Observe
 import gooey.component.Pure
 import gooey.component.Slider
 import gooey.component.Text
@@ -37,8 +40,8 @@ import gooey.component.style.*
 
 type Algebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Dropdown.Algebra &
-    Form.Algebra & Map.Algebra & Pure.Algebra & Slider.Algebra & Text.Algebra &
-    Textbox.Algebra
+    Form.Algebra & Map.Algebra & Observe.Algebra & Pure.Algebra &
+    Slider.Algebra & Text.Algebra & Textbox.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
@@ -46,32 +49,20 @@ given Algebra: gooey.Algebra
   with Dropdown.Algebra
   with Form.Algebra
   with Map.Algebra
+  with Observe.Algebra
   with Pure.Algebra
   with Slider.Algebra
   with Text.Algebra
   with Textbox.Algebra
   with {
 
+  type Env = Environment
+
   type UI[A] = gooey.calico.UI[A]
 
-  val checkboxClass =
-    "border rounded text-gray-700 focus:outline-none focus:shadow-outline"
+  def initialize(): Env = Environment.empty
 
-  val elementClass =
-    "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-
-  def makeComponent(
-      label: Resource[IO, HtmlElement[IO]],
-      element: Resource[IO, HtmlElement[IO]]
-  ): Resource[IO, HtmlElement[IO]] =
-    div(cls := "mb-4", label, element)
-
-  def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
-    theLabel.fold(span(())) { l =>
-      label(cls := "block text-gray-700 text-sm font-bold font-sans mb-2", l)
-    }
-
-  def and[A, B](f: UI[A], s: UI[B]): UI[(A, B)] = {
+  def and[A, B](f: UI[A], s: UI[B])(env: Env): UI[(A, B)] = {
     import calico.frp.given
     for {
       fst <- f
@@ -79,8 +70,16 @@ given Algebra: gooey.Algebra
     } yield fst.product(snd)
   }
 
-  def checkbox(label: Option[String], default: Boolean): UI[Boolean] = {
+  def checkbox(
+      label: Option[String],
+      default: Boolean,
+      observers: Chain[WritableVar[Boolean]]
+  )(
+      env: Env
+  ): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val signals =
+        observers.traverse(v => env.addSource(v.id, output)).toResource
       val element =
         makeComponent(
           makeLabel(label),
@@ -95,14 +94,14 @@ given Algebra: gooey.Algebra
             )
           }
         )
-      element.map(e => Component(e, output))
+      signals *> element.map(e => Component(e, output))
     }
   }
 
   def dropdown[A](
       label: Option[String],
       choices: Iterable[(String, A)]
-  ): UI[Option[A]] = {
+  )(env: Env): UI[Option[A]] = {
     SignallingRef[IO].of(none[A]).toResource.flatMap { output =>
       val element =
         makeComponent(
@@ -131,7 +130,7 @@ given Algebra: gooey.Algebra
       component: UI[A],
       submit: String,
       onSubmit: A => Unit
-  ): UI[A] = {
+  )(env: Env): UI[A] = {
     component.flatMap { c =>
       val elts = c.elements
       val signal = c.signal
@@ -150,10 +149,15 @@ given Algebra: gooey.Algebra
     }
   }
 
-  def map[A, B](source: UI[A], f: A => B): UI[B] =
+  def map[A, B](source: UI[A], f: A => B)(env: Env): UI[B] =
     source.map(component => component.map(f))
 
-  def pure[A](value: A): UI[A] =
+  def observe[A](source: UI[A], observer: WritableVar[A])(env: Env): UI[A] =
+    IO.println("observe").toResource *> source.evalMap(component =>
+      env.addSource(observer.id, component.signal).as(component)
+    )
+
+  def pure[A](value: A)(env: Env): UI[A] =
     Resource.eval(IO(Component(Chain.empty, Signal.constant[IO, A](value))))
 
   def slider(
@@ -161,7 +165,7 @@ given Algebra: gooey.Algebra
       min: Int,
       max: Int,
       default: Int
-  ): UI[Int] = {
+  )(env: Env): UI[Int] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val element =
         makeComponent(
@@ -182,14 +186,16 @@ given Algebra: gooey.Algebra
     }
   }
 
-  def text(content: String): UI[Unit] =
-    p(content).map(elt => Component(elt, Signal.constant[IO, Unit](())))
+  def text(content: Var[String])(env: Environment): UI[Unit] =
+    env.getOrCreate(content).toResource.flatMap { signal =>
+      p(signal).map(elt => Component(elt, Signal.constant[IO, Unit](())))
+    }
 
   def textbox(
       label: Option[String],
       default: String,
       style: TextboxStyle
-  ): UI[String] = {
+  )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val element =
         makeComponent(
@@ -221,4 +227,22 @@ given Algebra: gooey.Algebra
     }
   }
 
+  // Utilities -------------------------------------------------------
+
+  val checkboxClass =
+    "border rounded text-gray-700 focus:outline-none focus:shadow-outline"
+
+  val elementClass =
+    "appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+
+  def makeComponent(
+      label: Resource[IO, HtmlElement[IO]],
+      element: Resource[IO, HtmlElement[IO]]
+  ): Resource[IO, HtmlElement[IO]] =
+    div(cls := "mb-4", label, element)
+
+  def makeLabel(theLabel: Option[String]): Resource[IO, HtmlElement[IO]] =
+    theLabel.fold(span(())) { l =>
+      label(cls := "block text-gray-700 text-sm font-bold font-sans mb-2", l)
+    }
 }

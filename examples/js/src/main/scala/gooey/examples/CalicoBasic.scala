@@ -23,6 +23,7 @@ import calico.unsafe.given
 import cats.effect.*
 import cats.syntax.all.*
 import fs2.dom.*
+import gooey.Var
 import gooey.calico.syntax.all.*
 import gooey.calico.{_, given}
 import gooey.component.*
@@ -35,6 +36,7 @@ import scala.scalajs.js.annotation.*
 object CalicoBasic {
   @JSExport
   def mount(id: String): Unit = {
+    val awesomeness = Var.writable[String]("")
     val component = Text(
       "This example demonstrates the components implemented by the Calico backend."
     ).as[Algebra] *>
@@ -54,8 +56,10 @@ object CalicoBasic {
           .withLabel(
             "Describe, in your own words, the amount of awesomeness"
           )
+          .withObserver(awesomeness)
           .withStyle(TextboxStyle.SingleLine)
-          .as[Algebra]
+          .as[Algebra],
+        Text("hey!").and(Text(awesomeness))
       ).tupled
 
     component.create
@@ -65,19 +69,19 @@ object CalicoBasic {
           elt,
           p(
             "Awesomeness ",
-            signal.map((a, _, _, _) =>
+            signal.map((a, _, _, _, _) =>
               if a then "is over 9000" else "needs improving"
             )
           ),
           p(
             "Awesomeness rating is ",
-            signal.map((_, r, _, _) => r.toString)
+            signal.map((_, r, _, _, _) => r.toString)
           ),
           p(
             "The subjective adjective rating is ",
-            signal.map((_, _, r, _) => r.fold("unrated")(r => r.toString))
+            signal.map((_, _, r, _, _) => r.fold("unrated")(r => r.toString))
           ),
-          p("Reasons given are ", signal.map((_, _, _, r) => r))
+          p("Reasons given are ", signal.map((_, _, _, r, _) => r))
         )
       }
       .renderIntoId(id)

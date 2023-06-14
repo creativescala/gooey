@@ -23,11 +23,13 @@ final case class Above[Alg1 <: gooey.Algebra, Alg2 <: gooey.Algebra, A, B](
     top: Component[Alg1, A],
     bottom: Component[Alg2, B]
 ) extends Component[Alg1 & Alg2 & Above.Algebra, (A, B)] {
-  def create(using algebra: Alg1 & Alg2 & Above.Algebra): algebra.UI[(A, B)] =
-    algebra.above(top.create, bottom.create)
+  private[gooey] def build(algebra: Alg1 & Alg2 & Above.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[(A, B)] =
+    algebra.above(top.build(algebra)(env), bottom.build(algebra)(env))(env)
 }
 object Above {
   trait Algebra extends gooey.Algebra {
-    def above[A, B](t: UI[A], b: UI[B]): UI[(A, B)]
+    def above[A, B](t: UI[A], b: UI[B])(env: Env): UI[(A, B)]
   }
 }

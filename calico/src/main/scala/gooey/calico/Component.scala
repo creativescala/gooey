@@ -23,6 +23,9 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
+import gooey.Var
+
+import scala.collection.mutable
 
 final case class Component[A](
     elements: Chain[HtmlElement[IO]],
@@ -44,6 +47,9 @@ final case class Component[A](
     div(elements.toList).map(elt => (elt, signal))
 }
 object Component {
-  def apply[A](element: HtmlElement[IO], signal: Signal[IO, A]): Component[A] =
+  def apply[A](
+      element: HtmlElement[IO],
+      signal: Signal[IO, A]
+  ): Component[A] =
     Component(Chain(element), signal)
 }

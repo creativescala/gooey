@@ -51,8 +51,13 @@ final case class Form[Alg <: Algebra, A](
   def withTitle(title: String): Form[Alg, A] =
     this.copy(title = title)
 
-  def create(using algebra: Alg & Form.Algebra): algebra.UI[A] =
-    algebra.form(title, component.create, submit, onSubmit)
+  final def create(using algebra: Alg & Form.Algebra): algebra.UI[A] =
+    build(algebra)(algebra.initialize())
+
+  private[gooey] def build(algebra: Alg & Form.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[A] =
+    algebra.form(title, component.build(algebra)(env), submit, onSubmit)(env)
 }
 object Form {
   trait Algebra extends gooey.Algebra {
@@ -61,7 +66,7 @@ object Form {
         component: UI[A],
         submit: String,
         onSubmit: A => Unit
-    ): UI[A]
+    )(env: Env): UI[A]
   }
 
   def apply[Alg <: Algebra, A](

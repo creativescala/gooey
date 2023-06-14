@@ -16,8 +16,14 @@
 
 package gooey.component
 
-final case class Checkbox(label: Option[String], default: Boolean)
-    extends Component[Checkbox.Algebra, Boolean],
+import cats.data.Chain
+import gooey.WritableVar
+
+final case class Checkbox(
+    label: Option[String],
+    default: Boolean,
+    observers: Chain[WritableVar[Boolean]]
+) extends Component[Checkbox.Algebra, Boolean],
       Labelable[Checkbox] {
   def withLabel(label: String): Checkbox =
     this.copy(label = Some(label))
@@ -28,13 +34,22 @@ final case class Checkbox(label: Option[String], default: Boolean)
   def withDefault(default: Boolean): Checkbox =
     this.copy(default = default)
 
-  def create(using algebra: Checkbox.Algebra): algebra.UI[Boolean] =
-    algebra.checkbox(label, default)
+  def withObserver(writable: WritableVar[Boolean]): Checkbox =
+    this.copy(observers = writable +: observers)
+
+  private[gooey] def build(algebra: Checkbox.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[Boolean] =
+    algebra.checkbox(label, default, observers)(env)
 }
 object Checkbox {
   trait Algebra extends gooey.Algebra {
-    def checkbox(label: Option[String], default: Boolean): UI[Boolean]
+    def checkbox(
+        label: Option[String],
+        default: Boolean,
+        observers: Chain[WritableVar[Boolean]]
+    )(env: Env): UI[Boolean]
   }
 
-  val empty: Checkbox = Checkbox(None, false)
+  val empty: Checkbox = Checkbox(None, false, Chain.empty)
 }

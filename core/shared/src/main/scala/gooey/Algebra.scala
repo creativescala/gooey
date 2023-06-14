@@ -21,6 +21,16 @@ package gooey
   */
 trait Algebra {
 
-  /** The type of the UI that an implementation of this algebra produces */
+  /** The type of any global shared state that this algebra needs to work with
+    * to produce a UI.
+    */
+  type Env
+
+  /** The type of the UI that an implementation of this algebra produces. */
   type UI[A]
+
+  /** Produce any global shared state that this algebra needs to work with to
+    * produce a UI.
+    */
+  def initialize(): Env
 }

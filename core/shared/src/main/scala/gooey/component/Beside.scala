@@ -23,11 +23,13 @@ final case class Beside[Alg1 <: gooey.Algebra, Alg2 <: gooey.Algebra, A, B](
     left: Component[Alg1, A],
     right: Component[Alg2, B]
 ) extends Component[Alg1 & Alg2 & Beside.Algebra, (A, B)] {
-  def create(using algebra: Alg1 & Alg2 & Beside.Algebra): algebra.UI[(A, B)] =
-    algebra.beside(left.create, right.create)
+  private[gooey] def build(algebra: Alg1 & Alg2 & Beside.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[(A, B)] =
+    algebra.beside(left.build(algebra)(env), right.build(algebra)(env))(env)
 }
 object Beside {
   trait Algebra extends gooey.Algebra {
-    def beside[A, B](left: UI[A], right: UI[B]): UI[(A, B)]
+    def beside[A, B](left: UI[A], right: UI[B])(env: Env): UI[(A, B)]
   }
 }
