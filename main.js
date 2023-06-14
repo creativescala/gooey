@@ -2195,68 +2195,59 @@ function $f_Lcats_SemigroupalArityFunctions__tuple3__O__O__O__Lcats_Semigroupal_
   }));
   return $f_Lcats_SemigroupalArityFunctions__imap3__O__O__O__F3__F1__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f, g, semigroupal, invariant)
 }
-function $f_Lcats_SemigroupalArityFunctions__imap5__O__O__O__O__O__F5__F1__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, f4, f, g, semigroupal, invariant) {
-  return $n(invariant).imap__O__F1__F1__O($n(semigroupal).product__O__O__O(f0, $n(semigroupal).product__O__O__O(f1, $n(semigroupal).product__O__O__O(f2, $n(semigroupal).product__O__O__O(f3, f4)))), new $c_sjsr_AnonFunction1(((x$1) => {
+function $f_Lcats_SemigroupalArityFunctions__imap4__O__O__O__O__F4__F1__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, f, g, semigroupal, invariant) {
+  return $n(invariant).imap__O__F1__F1__O($n(semigroupal).product__O__O__O(f0, $n(semigroupal).product__O__O__O(f1, $n(semigroupal).product__O__O__O(f2, f3))), new $c_sjsr_AnonFunction1(((x$1) => {
     var x$1$1 = $as_T2(x$1);
     if ((x$1$1 !== null)) {
-      var x87 = $as_T2($n(x$1$1).T2__f__2);
+      var x53 = $as_T2($n(x$1$1).T2__f__2);
       var a0 = $n(x$1$1).T2__f__1;
-      if ((x87 !== null)) {
-        var x89 = $as_T2($n(x87).T2__f__2);
-        var a1 = $n(x87).T2__f__1;
-        if ((x89 !== null)) {
-          var x91 = $as_T2($n(x89).T2__f__2);
-          var a2 = $n(x89).T2__f__1;
-          if ((x91 !== null)) {
-            var a3 = $n(x91).T2__f__1;
-            var a4 = $n(x91).T2__f__2;
-            return $n(f).apply__O__O__O__O__O__O(a0, a1, a2, a3, a4)
-          }
+      if ((x53 !== null)) {
+        var x55 = $as_T2($n(x53).T2__f__2);
+        var a1 = $n(x53).T2__f__1;
+        if ((x55 !== null)) {
+          var a2 = $n(x55).T2__f__1;
+          var a3 = $n(x55).T2__f__2;
+          return $n(f).apply__O__O__O__O__O(a0, a1, a2, a3)
         }
       }
     };
     throw new $c_s_MatchError(x$1$1)
   })), new $c_sjsr_AnonFunction1(((z) => {
-    matchResult19: {
-      var \u03b48$___1;
-      var \u03b48$___2;
-      var \u03b48$___3;
-      var \u03b48$___4;
-      var \u03b48$___5;
-      var x94 = $as_T5($n(g).apply__O__O(z));
-      if ((x94 !== null)) {
-        var a0$1 = $n(x94).T5__f__1;
-        var a1$1 = $n(x94).T5__f__2;
-        var a2$1 = $n(x94).T5__f__3;
-        var a3$1 = $n(x94).T5__f__4;
-        var a4$1 = $n(x94).T5__f__5;
-        var \u03b48$___1 = a0$1;
-        var \u03b48$___2 = a1$1;
-        var \u03b48$___3 = a2$1;
-        var \u03b48$___4 = a3$1;
-        var \u03b48$___5 = a4$1;
-        break matchResult19
+    matchResult14: {
+      var \u03b46$___1;
+      var \u03b46$___2;
+      var \u03b46$___3;
+      var \u03b46$___4;
+      var x58 = $as_T4($n(g).apply__O__O(z));
+      if ((x58 !== null)) {
+        var a0$1 = $n(x58).T4__f__1;
+        var a1$1 = $n(x58).T4__f__2;
+        var a2$1 = $n(x58).T4__f__3;
+        var a3$1 = $n(x58).T4__f__4;
+        var \u03b46$___1 = a0$1;
+        var \u03b46$___2 = a1$1;
+        var \u03b46$___3 = a2$1;
+        var \u03b46$___4 = a3$1;
+        break matchResult14
       };
-      throw new $c_s_MatchError(x94)
+      throw new $c_s_MatchError(x58)
     };
-    var a0$2 = \u03b48$___1;
-    var a1$2 = \u03b48$___2;
-    var a2$2 = \u03b48$___3;
-    var a3$2 = \u03b48$___4;
-    var a4$2 = \u03b48$___5;
-    var _2 = new $c_T2(a3$2, a4$2);
-    var _2$1 = new $c_T2(a2$2, _2);
-    var _2$2 = new $c_T2(a1$2, _2$1);
-    return new $c_T2(a0$2, _2$2)
+    var a0$2 = \u03b46$___1;
+    var a1$2 = \u03b46$___2;
+    var a2$2 = \u03b46$___3;
+    var a3$2 = \u03b46$___4;
+    var _2 = new $c_T2(a2$2, a3$2);
+    var _2$1 = new $c_T2(a1$2, _2);
+    return new $c_T2(a0$2, _2$1)
   })))
 }
-function $f_Lcats_SemigroupalArityFunctions__tuple5__O__O__O__O__O__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, f4, semigroupal, invariant) {
-  var f = new $c_sjsr_AnonFunction5(((_$32, _$33, _$34, _$35, _$36) => new $c_T5(_$32, _$33, _$34, _$35, _$36)));
+function $f_Lcats_SemigroupalArityFunctions__tuple4__O__O__O__O__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, semigroupal, invariant) {
+  var f = new $c_sjsr_AnonFunction4(((_$22, _$23, _$24, _$25) => new $c_T4(_$22, _$23, _$24, _$25)));
   var g = new $c_sjsr_AnonFunction1(((x) => {
-    var x$1 = $as_T5(x);
+    var x$1 = $as_T4(x);
     return x$1
   }));
-  return $f_Lcats_SemigroupalArityFunctions__imap5__O__O__O__O__O__F5__F1__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, f4, f, g, semigroupal, invariant)
+  return $f_Lcats_SemigroupalArityFunctions__imap4__O__O__O__O__F4__F1__Lcats_Semigroupal__Lcats_Invariant__O($thiz, f0, f1, f2, f3, f, g, semigroupal, invariant)
 }
 function $f_Lcats_data_ChainCompanionCompat__fromSeq__sci_Seq__Lcats_data_Chain($thiz, s) {
   if ($n(s).isEmpty__Z()) {
@@ -7579,6 +7570,10 @@ function $m_Lfs2_internal_ScopedResource$() {
   };
   return $n_Lfs2_internal_ScopedResource$
 }
+function $f_Lgooey_Var__map__F1__Lgooey_Var($thiz, f) {
+  var view = new $c_Lgooey_Var$View($thiz, f);
+  return view
+}
 /** @constructor */
 function $c_Lgooey_Var$Id$() {
   this.Lgooey_Var$Id$__f_nextId = null;
@@ -7679,123 +7674,106 @@ function $h_Lgooey_examples_CalicoBasic$() {
 }
 $h_Lgooey_examples_CalicoBasic$.prototype = $c_Lgooey_examples_CalicoBasic$.prototype;
 $c_Lgooey_examples_CalicoBasic$.prototype.mount__T__V = (function(id) {
-  var awesomeness = new $c_Lgooey_WritableVar("");
-  var this$3 = $n($m_Lgooey_component_Text$().apply__T__Lgooey_component_Text("This example demonstrates the components implemented by the Calico backend."));
+  var awesomeness = new $c_Lgooey_WritableVar(false);
+  var reasons = new $c_Lgooey_WritableVar("");
+  var this$5 = $n($m_Lgooey_component_Text$().apply__T__Lgooey_component_Text("This example demonstrates the components implemented by the Calico backend."));
   var F = new $c_Lgooey_component_Component$componentApplicative();
-  var this$25 = new $c_Lcats_syntax_ApplySyntax$$anon$1(this$3, F);
-  var this$6 = $n($n($m_Lgooey_component_Checkbox$().Lgooey_component_Checkbox$__f_empty).withLabel__T__Lgooey_component_Checkbox("Is this awesome?"));
-  var this$7 = $n($n($m_Lgooey_component_Slider$().apply__I__I__Lgooey_component_Slider(1, 10)).withLabel__T__Lgooey_component_Slider("On a scale of 1 to 10, rate the amount of awesomeness"));
+  var this$24 = new $c_Lcats_syntax_ApplySyntax$$anon$1(this$5, F);
+  var this$8 = $n($n($n($m_Lgooey_component_Checkbox$().Lgooey_component_Checkbox$__f_empty).withLabel__T__Lgooey_component_Checkbox("Is this awesome?")).withObserver__Lgooey_WritableVar__Lgooey_component_Checkbox(awesomeness));
+  var this$9 = $n($n($m_Lgooey_component_Slider$().apply__I__I__Lgooey_component_Slider(1, 10)).withLabel__T__Lgooey_component_Slider("On a scale of 1 to 10, rate the amount of awesomeness"));
   $n($m_s_package$().s_package$__f_List);
   var elems = $m_sr_ScalaRunTime$().wrapRefArray__AO__sci_ArraySeq(new ($d_T2.getArrayOf().constr)([new $c_T2("Superb", 1), new $c_T2("Stupendous", 3), new $c_T2("Awesome", 5)]));
   var choices = $m_sci_Nil$().prependedAll__sc_IterableOnce__sci_List(elems);
   var label = $m_s_None$();
-  var this$13 = $m_Lcats_data_Chain$();
-  var observers = this$13.Lcats_data_Chain$__f_nil;
-  var this$15 = $n(new $c_Lgooey_component_Dropdown(label, choices, observers).withLabel__T__Lgooey_component_Dropdown("Chose the adjective that best describes your experience"));
-  var this$16 = $n($n($n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Describe, in your own words, the amount of awesomeness")).withObserver__Lgooey_WritableVar__Lgooey_component_Textbox(awesomeness));
+  var this$15 = $m_Lcats_data_Chain$();
+  var observers = this$15.Lcats_data_Chain$__f_nil;
+  var this$17 = $n(new $c_Lgooey_component_Dropdown(label, choices, observers).withLabel__T__Lgooey_component_Dropdown("Chose the adjective that best describes your experience"));
+  var this$18 = $n($n($n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Describe, in your own words, the reasons behind your rating")).withObserver__Lgooey_WritableVar__Lgooey_component_Textbox(reasons));
   var style = $s_Lgooey_component_style_TextboxStyle$__SingleLine__Lgooey_component_style_TextboxStyle();
-  var label$1 = this$16.Lgooey_component_Textbox__f_label;
-  var default$1 = this$16.Lgooey_component_Textbox__f_default;
-  var observers$1 = this$16.Lgooey_component_Textbox__f_observers;
-  var this$17 = new $c_Lgooey_component_Textbox(label$1, default$1, style, observers$1);
-  var c = $m_Lgooey_component_Text$().apply__T__Lgooey_component_Text("hey!");
-  var second = new $c_Lgooey_component_Text(awesomeness);
-  var _5 = new $c_Lgooey_component_And(c, second);
-  var t5 = new $c_T5(this$6, this$7, this$15, this$17, _5);
-  var fb = new $c_Lcats_syntax_Tuple5SemigroupalOps(t5).tupled__Lcats_Invariant__Lcats_Semigroupal__O(new $c_Lgooey_component_Component$componentApplicative(), new $c_Lgooey_component_Component$componentApplicative());
-  var this$26 = $n(this$25.Lcats_syntax_ApplySyntax$$anon$1__f_typeClassInstance);
-  var fa = this$25.Lcats_syntax_ApplySyntax$$anon$1__f_self;
-  var component = $as_Lgooey_component_Component(this$26.productR__O__O__O(fa, fb));
-  var $$x24 = $m_Lgooey_calico_syntax_all$();
-  var this$27 = $n(component);
+  var label$1 = this$18.Lgooey_component_Textbox__f_label;
+  var default$1 = this$18.Lgooey_component_Textbox__f_default;
+  var observers$1 = this$18.Lgooey_component_Textbox__f_observers;
+  var this$19 = new $c_Lgooey_component_Textbox(label$1, default$1, style, observers$1);
+  var t4 = new $c_T4(this$8, this$9, this$17, this$19);
+  var fb = new $c_Lcats_syntax_Tuple4SemigroupalOps(t4).tupled__Lcats_Invariant__Lcats_Semigroupal__O(new $c_Lgooey_component_Component$componentApplicative(), new $c_Lgooey_component_Component$componentApplicative());
+  var this$25 = $n(this$24.Lcats_syntax_ApplySyntax$$anon$1__f_typeClassInstance);
+  var fa = this$24.Lcats_syntax_ApplySyntax$$anon$1__f_self;
+  var fa$1 = this$25.productR__O__O__O(fa, fb);
+  var F$1 = new $c_Lgooey_component_Component$componentApplicative();
+  var this$33 = new $c_Lcats_syntax_ApplySyntax$$anon$1(fa$1, F$1);
+  var f = new $c_sjsr_AnonFunction1(((a) => {
+    var a$1 = $uZ(a);
+    return (a$1 ? "Awesomeness is over 9000!" : "Awesomeness needs improvement")
+  }));
+  var content = $f_Lgooey_Var__map__F1__Lgooey_Var(awesomeness, f);
+  var c = new $c_Lgooey_component_Text(content);
+  var f$1 = new $c_sjsr_AnonFunction1(((s) => {
+    var s$1 = $as_T(s);
+    return ("Reasons given are: " + s$1)
+  }));
+  var content$1 = $f_Lgooey_Var__map__F1__Lgooey_Var(reasons, f$1);
+  var second = new $c_Lgooey_component_Text(content$1);
+  var fb$1 = new $c_Lgooey_component_And(c, second);
+  var this$34 = $n(this$33.Lcats_syntax_ApplySyntax$$anon$1__f_typeClassInstance);
+  var fa$2 = this$33.Lcats_syntax_ApplySyntax$$anon$1__f_self;
+  var component = $as_Lgooey_component_Component(this$34.productL__O__O__O(fa$2, fb$1));
+  var $$x14 = $m_Lgooey_calico_syntax_all$();
+  var this$35 = $n(component);
   var algebra = $m_Lgooey_calico_Algebra$package$Algebra$();
   var env = $as_scm_Map($m_scm_Map$().empty__O());
-  var this$31 = $n($as_Lcats_effect_kernel_Resource(this$27.build__Lgooey_Algebra__O__O(algebra, new $c_Lgooey_calico_Environment(env))));
-  var f = new $c_sjsr_AnonFunction1(((c$1) => {
+  var this$38 = $n($as_Lcats_effect_kernel_Resource(this$35.build__Lgooey_Algebra__O__O(algebra, new $c_Lgooey_calico_Environment(env))));
+  var f$2 = new $c_sjsr_AnonFunction1(((c$1) => {
     var c$2 = $as_Lgooey_calico_Component(c$1);
     return $n(c$2).build__Lcats_effect_kernel_Resource()
   }));
-  var this$68 = new $c_Lcats_effect_kernel_Resource$Bind(this$31, f);
+  var this$61 = new $c_Lcats_effect_kernel_Resource$Bind(this$38, f$2);
   var f$5 = new $c_sjsr_AnonFunction1(((x$1) => {
     var x$1$1 = $as_T2(x$1);
     if ((x$1$1 !== null)) {
       var elt = $n(x$1$1).T2__f__1;
       var signal = $as_Lfs2_concurrent_Signal($n(x$1$1).T2__f__2);
-      var $$x23 = $n($m_Lcalico_html_io$().div__Lcalico_html_HtmlTag());
-      var $$x9 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
-      var this$33 = $m_Lfs2_concurrent_Signal$();
+      var $$x13 = $n($m_Lcalico_html_io$().div__Lcalico_html_HtmlTag());
+      var $$x7 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
+      var this$40 = $m_Lfs2_concurrent_Signal$();
       var evidence$4 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-      var tc = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4, this$33);
-      var this$35 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc);
-      var f$1 = new $c_sjsr_AnonFunction1(((x$1$2) => {
-        var x$1$3 = $as_T5(x$1$2);
-        var a = $uZ($n(x$1$3).T5__f__1);
-        $uI($n(x$1$3).T5__f__2);
-        $as_s_Option($n(x$1$3).T5__f__3);
-        $as_T($n(x$1$3).T5__f__4);
-        $as_T2($n(x$1$3).T5__f__5);
-        return (a ? "is over 9000" : "needs improving")
+      var tc = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4, this$40);
+      var this$43 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc);
+      var f$3 = new $c_sjsr_AnonFunction1(((x$1$2) => {
+        var x$1$3 = $as_T4(x$1$2);
+        $uZ($n(x$1$3).T4__f__1);
+        var r = $uI($n(x$1$3).T4__f__2);
+        $as_s_Option($n(x$1$3).T4__f__3);
+        $as_T($n(x$1$3).T4__f__4);
+        return ("" + r)
       }));
-      var _2 = $n(this$35.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$35.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$1);
-      var $$x8 = new $c_T2("Awesomeness ", _2);
+      var _2 = $n(this$43.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$43.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$3);
+      var $$x6 = new $c_T2("Awesomeness rating is ", _2);
       $m_Lcalico_html_Modifier$();
       var gen$proxy1 = new $c_sr_TupleMirror(2);
       var is = new $c_sjsr_AnonFunction0((() => {
         var dimensions = new $ac_I(new Int32Array([2]));
         var arr$proxy1 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions), 1);
-        var $$x6 = $n(arr$proxy1);
+        var $$x4 = $n(arr$proxy1);
         var Modifiers_this = $m_Lcalico_html_io$();
-        $$x6.set(0, Modifiers_this.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
-        var $$x7 = $n(arr$proxy1);
+        $$x4.set(0, Modifiers_this.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
+        var $$x5 = $n(arr$proxy1);
         var Modifiers_this$2 = $m_Lcalico_html_io$();
-        $$x7.set(1, Modifiers_this$2.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
+        $$x5.set(1, Modifiers_this$2.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
         return arr$proxy1
       }));
       var inst = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy1, is);
-      var _2$4 = $n($$x9).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x8, new $c_Lcalico_html_Modifier$$anon$5(inst));
-      var $$x13 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
-      var this$40 = $m_Lfs2_concurrent_Signal$();
-      var evidence$4$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-      var tc$1 = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4$1, this$40);
-      var this$43 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc$1);
-      var f$2 = new $c_sjsr_AnonFunction1(((x$1$3$1) => {
-        var x$1$4 = $as_T5(x$1$3$1);
-        $uZ($n(x$1$4).T5__f__1);
-        var r = $uI($n(x$1$4).T5__f__2);
-        $as_s_Option($n(x$1$4).T5__f__3);
-        $as_T($n(x$1$4).T5__f__4);
-        $as_T2($n(x$1$4).T5__f__5);
-        return ("" + r)
-      }));
-      var _2$1 = $n(this$43.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$43.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$2);
-      var $$x12 = new $c_T2("Awesomeness rating is ", _2$1);
-      $m_Lcalico_html_Modifier$();
-      var gen$proxy2 = new $c_sr_TupleMirror(2);
-      var is$1 = new $c_sjsr_AnonFunction0((() => {
-        var dimensions$1 = new $ac_I(new Int32Array([2]));
-        var arr$proxy2 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions$1), 1);
-        var $$x10 = $n(arr$proxy2);
-        var Modifiers_this$1 = $m_Lcalico_html_io$();
-        $$x10.set(0, Modifiers_this$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
-        var $$x11 = $n(arr$proxy2);
-        var Modifiers_this$2$1 = $m_Lcalico_html_io$();
-        $$x11.set(1, Modifiers_this$2$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
-        return arr$proxy2
-      }));
-      var inst$1 = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy2, is$1);
-      var _3 = $n($$x13).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x12, new $c_Lcalico_html_Modifier$$anon$5(inst$1));
-      var $$x17 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
+      var _2$2 = $n($$x7).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x6, new $c_Lcalico_html_Modifier$$anon$5(inst));
+      var $$x11 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
       var this$48 = $m_Lfs2_concurrent_Signal$();
-      var evidence$4$2 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-      var tc$2 = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4$2, this$48);
-      var this$52 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc$2);
-      var f$3 = new $c_sjsr_AnonFunction1(((x$1$4$1) => {
-        var x$1$5 = $as_T5(x$1$4$1);
-        $uZ($n(x$1$5).T5__f__1);
-        $uI($n(x$1$5).T5__f__2);
-        var r$1 = $as_s_Option($n(x$1$5).T5__f__3);
-        $as_T($n(x$1$5).T5__f__4);
-        $as_T2($n(x$1$5).T5__f__5);
+      var evidence$4$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
+      var tc$1 = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4$1, this$48);
+      var this$52 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc$1);
+      var f$4 = new $c_sjsr_AnonFunction1(((x$1$3$1) => {
+        var x$1$4 = $as_T4(x$1$3$1);
+        $uZ($n(x$1$4).T4__f__1);
+        $uI($n(x$1$4).T4__f__2);
+        var r$1 = $as_s_Option($n(x$1$4).T4__f__3);
+        $as_T($n(x$1$4).T4__f__4);
         var this$50 = $n(r$1);
         if (this$50.isEmpty__Z()) {
           return "unrated"
@@ -7805,83 +7783,46 @@ $c_Lgooey_examples_CalicoBasic$.prototype.mount__T__V = (function(id) {
           return ("" + r$2)
         }
       }));
-      var _2$2 = $n(this$52.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$52.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$3);
-      var $$x16 = new $c_T2("The subjective adjective rating is ", _2$2);
+      var _2$1 = $n(this$52.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$52.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$4);
+      var $$x10 = new $c_T2("The subjective adjective rating is ", _2$1);
       $m_Lcalico_html_Modifier$();
-      var gen$proxy3 = new $c_sr_TupleMirror(2);
+      var gen$proxy2 = new $c_sr_TupleMirror(2);
+      var is$1 = new $c_sjsr_AnonFunction0((() => {
+        var dimensions$1 = new $ac_I(new Int32Array([2]));
+        var arr$proxy2 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions$1), 1);
+        var $$x8 = $n(arr$proxy2);
+        var Modifiers_this$1 = $m_Lcalico_html_io$();
+        $$x8.set(0, Modifiers_this$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
+        var $$x9 = $n(arr$proxy2);
+        var Modifiers_this$2$1 = $m_Lcalico_html_io$();
+        $$x9.set(1, Modifiers_this$2$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
+        return arr$proxy2
+      }));
+      var inst$1 = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy2, is$1);
+      var _3 = $n($$x11).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x10, new $c_Lcalico_html_Modifier$$anon$5(inst$1));
+      var $$x12 = new $c_T3(elt, _2$2, _3);
+      $m_Lcalico_html_Modifier$();
+      var gen$proxy3 = new $c_sr_TupleMirror(3);
       var is$2 = new $c_sjsr_AnonFunction0((() => {
-        var dimensions$2 = new $ac_I(new Int32Array([2]));
+        var dimensions$2 = new $ac_I(new Int32Array([3]));
         var arr$proxy3 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions$2), 1);
-        var $$x14 = $n(arr$proxy3);
+        var $$x1 = $n(arr$proxy3);
         var Modifiers_this$3 = $m_Lcalico_html_io$();
-        $$x14.set(0, Modifiers_this$3.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
-        var $$x15 = $n(arr$proxy3);
+        $$x1.set(0, Modifiers_this$3.Lcalico_html_Html__f_calico$html$Modifiers$$_forNode);
+        var $$x2 = $n(arr$proxy3);
         var Modifiers_this$2$2 = $m_Lcalico_html_io$();
-        $$x15.set(1, Modifiers_this$2$2.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
+        $$x2.set(1, Modifiers_this$2$2.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
+        var $$x3 = $n(arr$proxy3);
+        var Modifiers_this$3$1 = $m_Lcalico_html_io$();
+        $$x3.set(2, Modifiers_this$3$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
         return arr$proxy3
       }));
       var inst$2 = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy3, is$2);
-      var _4 = $n($$x17).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x16, new $c_Lcalico_html_Modifier$$anon$5(inst$2));
-      var $$x21 = $n($m_Lcalico_html_io$().p__Lcalico_html_HtmlTag());
-      var this$57 = $m_Lfs2_concurrent_Signal$();
-      var evidence$4$3 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
-      var tc$3 = new $c_Lfs2_concurrent_SignalInstances$$anon$9(evidence$4$3, this$57);
-      var this$59 = new $c_Lcats_Functor$ToFunctorOps$$anon$4(signal, tc$3);
-      var f$4 = new $c_sjsr_AnonFunction1(((x$1$5$1) => {
-        var x$1$6 = $as_T5(x$1$5$1);
-        $uZ($n(x$1$6).T5__f__1);
-        $uI($n(x$1$6).T5__f__2);
-        $as_s_Option($n(x$1$6).T5__f__3);
-        var r$3 = $as_T($n(x$1$6).T5__f__4);
-        $as_T2($n(x$1$6).T5__f__5);
-        return r$3
-      }));
-      var _2$3 = $n(this$59.Lcats_Functor$ToFunctorOps$$anon$4__f_typeClassInstance).map__O__F1__O(this$59.Lcats_Functor$ToFunctorOps$$anon$4__f_self, f$4);
-      var $$x20 = new $c_T2("Reasons given are ", _2$3);
-      $m_Lcalico_html_Modifier$();
-      var gen$proxy4 = new $c_sr_TupleMirror(2);
-      var is$3 = new $c_sjsr_AnonFunction0((() => {
-        var dimensions$3 = new $ac_I(new Int32Array([2]));
-        var arr$proxy4 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions$3), 1);
-        var $$x18 = $n(arr$proxy4);
-        var Modifiers_this$4 = $m_Lcalico_html_io$();
-        $$x18.set(0, Modifiers_this$4.Lcalico_html_Html__f_calico$html$Modifiers$$_forString);
-        var $$x19 = $n(arr$proxy4);
-        var Modifiers_this$2$3 = $m_Lcalico_html_io$();
-        $$x19.set(1, Modifiers_this$2$3.Lcalico_html_Html__f_calico$html$Modifiers$$_forStringSignal);
-        return arr$proxy4
-      }));
-      var inst$3 = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy4, is$3);
-      var _5$1 = $n($$x21).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x20, new $c_Lcalico_html_Modifier$$anon$5(inst$3));
-      var $$x22 = new $c_T5(elt, _2$4, _3, _4, _5$1);
-      $m_Lcalico_html_Modifier$();
-      var gen$proxy5 = new $c_sr_TupleMirror(5);
-      var is$4 = new $c_sjsr_AnonFunction0((() => {
-        var dimensions$4 = new $ac_I(new Int32Array([5]));
-        var arr$proxy5 = $asArrayOf_O($m_jl_reflect_Array$().newInstance__jl_Class__AI__O($d_O.getClassOf(), dimensions$4), 1);
-        var $$x1 = $n(arr$proxy5);
-        var Modifiers_this$5 = $m_Lcalico_html_io$();
-        $$x1.set(0, Modifiers_this$5.Lcalico_html_Html__f_calico$html$Modifiers$$_forNode);
-        var $$x2 = $n(arr$proxy5);
-        var Modifiers_this$2$4 = $m_Lcalico_html_io$();
-        $$x2.set(1, Modifiers_this$2$4.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
-        var $$x3 = $n(arr$proxy5);
-        var Modifiers_this$3$1 = $m_Lcalico_html_io$();
-        $$x3.set(2, Modifiers_this$3$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
-        var $$x4 = $n(arr$proxy5);
-        var Modifiers_this$4$1 = $m_Lcalico_html_io$();
-        $$x4.set(3, Modifiers_this$4$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
-        var $$x5 = $n(arr$proxy5);
-        var Modifiers_this$5$1 = $m_Lcalico_html_io$();
-        $$x5.set(4, Modifiers_this$5$1.Lcalico_html_Html__f_calico$html$Modifiers$$_forNodeResource);
-        return arr$proxy5
-      }));
-      var inst$4 = new $c_Lshapeless3_deriving_internals_ErasedProductInstancesN(gen$proxy5, is$4);
-      return $n($$x23).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x22, new $c_Lcalico_html_Modifier$$anon$5(inst$4))
+      return $n($$x13).apply__O__Lcalico_html_Modifier__Lcats_effect_kernel_Resource($$x12, new $c_Lcalico_html_Modifier$$anon$5(inst$2))
     };
     throw new $c_s_MatchError(x$1$1)
   }));
-  $n($n($$x24).renderIntoId__Lcats_effect_kernel_Resource__T__Lcats_effect_kernel_Async__Lcats_effect_IO(new $c_Lcats_effect_kernel_Resource$Bind(this$68, f$5), id, $m_Lcalico_html_io$().given_Dom_F__Lcats_effect_kernel_Async())).unsafeRunAndForget__Lcats_effect_unsafe_IORuntime__V($m_Lcalico_unsafe_runtime$package$().given_IORuntime__Lcats_effect_unsafe_IORuntime())
+  $n($n($$x14).renderIntoId__Lcats_effect_kernel_Resource__T__Lcats_effect_kernel_Async__Lcats_effect_IO(new $c_Lcats_effect_kernel_Resource$Bind(this$61, f$5), id, $m_Lcalico_html_io$().given_Dom_F__Lcats_effect_kernel_Async())).unsafeRunAndForget__Lcats_effect_unsafe_IORuntime__V($m_Lcalico_unsafe_runtime$package$().given_IORuntime__Lcats_effect_unsafe_IORuntime())
 });
 $c_Lgooey_examples_CalicoBasic$.prototype.mount = (function(arg) {
   var prep0 = $as_T(arg);
@@ -22436,34 +22377,33 @@ var $d_Lcats_syntax_Tuple3SemigroupalOps = new $TypeData().initClass({
 });
 $c_Lcats_syntax_Tuple3SemigroupalOps.prototype.$classData = $d_Lcats_syntax_Tuple3SemigroupalOps;
 /** @constructor */
-function $c_Lcats_syntax_Tuple5SemigroupalOps(t5) {
-  this.Lcats_syntax_Tuple5SemigroupalOps__f_t5 = null;
-  this.Lcats_syntax_Tuple5SemigroupalOps__f_t5 = t5
+function $c_Lcats_syntax_Tuple4SemigroupalOps(t4) {
+  this.Lcats_syntax_Tuple4SemigroupalOps__f_t4 = null;
+  this.Lcats_syntax_Tuple4SemigroupalOps__f_t4 = t4
 }
-$c_Lcats_syntax_Tuple5SemigroupalOps.prototype = new $h_O();
-$c_Lcats_syntax_Tuple5SemigroupalOps.prototype.constructor = $c_Lcats_syntax_Tuple5SemigroupalOps;
+$c_Lcats_syntax_Tuple4SemigroupalOps.prototype = new $h_O();
+$c_Lcats_syntax_Tuple4SemigroupalOps.prototype.constructor = $c_Lcats_syntax_Tuple4SemigroupalOps;
 /** @constructor */
-function $h_Lcats_syntax_Tuple5SemigroupalOps() {
+function $h_Lcats_syntax_Tuple4SemigroupalOps() {
   /*<skip>*/
 }
-$h_Lcats_syntax_Tuple5SemigroupalOps.prototype = $c_Lcats_syntax_Tuple5SemigroupalOps.prototype;
-$c_Lcats_syntax_Tuple5SemigroupalOps.prototype.tupled__Lcats_Invariant__Lcats_Semigroupal__O = (function(invariant, semigroupal) {
+$h_Lcats_syntax_Tuple4SemigroupalOps.prototype = $c_Lcats_syntax_Tuple4SemigroupalOps.prototype;
+$c_Lcats_syntax_Tuple4SemigroupalOps.prototype.tupled__Lcats_Invariant__Lcats_Semigroupal__O = (function(invariant, semigroupal) {
   var this$1 = $m_Lcats_Semigroupal$();
-  var f0 = $n(this.Lcats_syntax_Tuple5SemigroupalOps__f_t5).T5__f__1;
-  var f1 = $n(this.Lcats_syntax_Tuple5SemigroupalOps__f_t5).T5__f__2;
-  var f2 = $n(this.Lcats_syntax_Tuple5SemigroupalOps__f_t5).T5__f__3;
-  var f3 = $n(this.Lcats_syntax_Tuple5SemigroupalOps__f_t5).T5__f__4;
-  var f4 = $n(this.Lcats_syntax_Tuple5SemigroupalOps__f_t5).T5__f__5;
-  return $f_Lcats_SemigroupalArityFunctions__tuple5__O__O__O__O__O__Lcats_Semigroupal__Lcats_Invariant__O(this$1, f0, f1, f2, f3, f4, semigroupal, invariant)
+  var f0 = $n(this.Lcats_syntax_Tuple4SemigroupalOps__f_t4).T4__f__1;
+  var f1 = $n(this.Lcats_syntax_Tuple4SemigroupalOps__f_t4).T4__f__2;
+  var f2 = $n(this.Lcats_syntax_Tuple4SemigroupalOps__f_t4).T4__f__3;
+  var f3 = $n(this.Lcats_syntax_Tuple4SemigroupalOps__f_t4).T4__f__4;
+  return $f_Lcats_SemigroupalArityFunctions__tuple4__O__O__O__O__Lcats_Semigroupal__Lcats_Invariant__O(this$1, f0, f1, f2, f3, semigroupal, invariant)
 });
-var $d_Lcats_syntax_Tuple5SemigroupalOps = new $TypeData().initClass({
-  Lcats_syntax_Tuple5SemigroupalOps: 0
-}, false, "cats.syntax.Tuple5SemigroupalOps", {
-  Lcats_syntax_Tuple5SemigroupalOps: 1,
+var $d_Lcats_syntax_Tuple4SemigroupalOps = new $TypeData().initClass({
+  Lcats_syntax_Tuple4SemigroupalOps: 0
+}, false, "cats.syntax.Tuple4SemigroupalOps", {
+  Lcats_syntax_Tuple4SemigroupalOps: 1,
   O: 1,
   Ljava_io_Serializable: 1
 });
-$c_Lcats_syntax_Tuple5SemigroupalOps.prototype.$classData = $d_Lcats_syntax_Tuple5SemigroupalOps;
+$c_Lcats_syntax_Tuple4SemigroupalOps.prototype.$classData = $d_Lcats_syntax_Tuple4SemigroupalOps;
 /** @constructor */
 function $c_Lfs2_Compiler$$anon$5() {
   $m_Lcats_Invariant$();
@@ -28236,18 +28176,18 @@ $c_sr_AbstractFunction3.prototype.toString__T = (function() {
   return "<function3>"
 });
 /** @constructor */
-function $c_sr_AbstractFunction5() {
+function $c_sr_AbstractFunction4() {
   /*<skip>*/
 }
-$c_sr_AbstractFunction5.prototype = new $h_O();
-$c_sr_AbstractFunction5.prototype.constructor = $c_sr_AbstractFunction5;
+$c_sr_AbstractFunction4.prototype = new $h_O();
+$c_sr_AbstractFunction4.prototype.constructor = $c_sr_AbstractFunction4;
 /** @constructor */
-function $h_sr_AbstractFunction5() {
+function $h_sr_AbstractFunction4() {
   /*<skip>*/
 }
-$h_sr_AbstractFunction5.prototype = $c_sr_AbstractFunction5.prototype;
-$c_sr_AbstractFunction5.prototype.toString__T = (function() {
-  return "<function5>"
+$h_sr_AbstractFunction4.prototype = $c_sr_AbstractFunction4.prototype;
+$c_sr_AbstractFunction4.prototype.toString__T = (function() {
+  return "<function4>"
 });
 /** @constructor */
 function $c_sr_BooleanRef(elem) {
@@ -33904,29 +33844,29 @@ var $d_sjsr_AnonFunction3 = new $TypeData().initClass({
 });
 $c_sjsr_AnonFunction3.prototype.$classData = $d_sjsr_AnonFunction3;
 /** @constructor */
-function $c_sjsr_AnonFunction5(f) {
-  this.sjsr_AnonFunction5__f_f = null;
-  this.sjsr_AnonFunction5__f_f = f
+function $c_sjsr_AnonFunction4(f) {
+  this.sjsr_AnonFunction4__f_f = null;
+  this.sjsr_AnonFunction4__f_f = f
 }
-$c_sjsr_AnonFunction5.prototype = new $h_sr_AbstractFunction5();
-$c_sjsr_AnonFunction5.prototype.constructor = $c_sjsr_AnonFunction5;
+$c_sjsr_AnonFunction4.prototype = new $h_sr_AbstractFunction4();
+$c_sjsr_AnonFunction4.prototype.constructor = $c_sjsr_AnonFunction4;
 /** @constructor */
-function $h_sjsr_AnonFunction5() {
+function $h_sjsr_AnonFunction4() {
   /*<skip>*/
 }
-$h_sjsr_AnonFunction5.prototype = $c_sjsr_AnonFunction5.prototype;
-$c_sjsr_AnonFunction5.prototype.apply__O__O__O__O__O__O = (function(arg1, arg2, arg3, arg4, arg5) {
-  return (0, this.sjsr_AnonFunction5__f_f)(arg1, arg2, arg3, arg4, arg5)
+$h_sjsr_AnonFunction4.prototype = $c_sjsr_AnonFunction4.prototype;
+$c_sjsr_AnonFunction4.prototype.apply__O__O__O__O__O = (function(arg1, arg2, arg3, arg4) {
+  return (0, this.sjsr_AnonFunction4__f_f)(arg1, arg2, arg3, arg4)
 });
-var $d_sjsr_AnonFunction5 = new $TypeData().initClass({
-  sjsr_AnonFunction5: 0
-}, false, "scala.scalajs.runtime.AnonFunction5", {
-  sjsr_AnonFunction5: 1,
-  sr_AbstractFunction5: 1,
+var $d_sjsr_AnonFunction4 = new $TypeData().initClass({
+  sjsr_AnonFunction4: 0
+}, false, "scala.scalajs.runtime.AnonFunction4", {
+  sjsr_AnonFunction4: 1,
+  sr_AbstractFunction4: 1,
   O: 1,
-  F5: 1
+  F4: 1
 });
-$c_sjsr_AnonFunction5.prototype.$classData = $d_sjsr_AnonFunction5;
+$c_sjsr_AnonFunction4.prototype.$classData = $d_sjsr_AnonFunction4;
 /** @constructor */
 function $c_s_util_Random$() {
   this.s_util_Random__f_self = null;
@@ -38952,10 +38892,12 @@ function $p_Lgooey_calico_Environment__getOrUse$1__I__F0__Lcats_effect_IO($thiz,
   })))
 }
 function $p_Lgooey_calico_Environment__loop$1__Lgooey_Var__Lcats_effect_IO($thiz, proxy) {
-  if (false) {
+  if ((proxy instanceof $c_Lgooey_Var$View)) {
     var x$1 = $as_Lgooey_Var$View(proxy);
-    var x17 = $n(x$1)._1__Lgooey_Var();
-    var x18 = $n(x$1)._2__F1();
+    var this$2 = $n(x$1);
+    var x17 = this$2.Lgooey_Var$View__f_source;
+    var this$3 = $n(x$1);
+    var x18 = this$3.Lgooey_Var$View__f_f;
     return $n($p_Lgooey_calico_Environment__loop$1__Lgooey_Var__Lcats_effect_IO($thiz, x17)).map__F1__Lcats_effect_IO(new $c_sjsr_AnonFunction1(((s) => {
       var s$1 = $as_Lfs2_concurrent_Signal(s);
       var F = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
@@ -38964,8 +38906,8 @@ function $p_Lgooey_calico_Environment__loop$1__Lgooey_Var__Lcats_effect_IO($thiz
   };
   if ((proxy instanceof $c_Lgooey_Var$Constant)) {
     var x12 = $as_Lgooey_Var$Constant(proxy);
-    var this$6 = $n(x12);
-    var x14 = this$6.Lgooey_Var$Constant__f_value;
+    var this$8 = $n(x12);
+    var x14 = this$8.Lgooey_Var$Constant__f_value;
     return $p_Lgooey_calico_Environment__getOrUse$1__I__F0__Lcats_effect_IO($thiz, $n(x12).Lgooey_Var$Constant__f_id, new $c_sjsr_AnonFunction0((() => {
       var F$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
       return $as_Lcats_effect_IO($m_Lfs2_concurrent_SignallingRef$().of__O__Lcats_effect_kernel_GenConcurrent__O(x14, F$1))
@@ -38973,8 +38915,8 @@ function $p_Lgooey_calico_Environment__loop$1__Lgooey_Var__Lcats_effect_IO($thiz
   };
   if ((proxy instanceof $c_Lgooey_WritableVar)) {
     var x9 = $as_Lgooey_WritableVar(proxy);
-    var this$10 = $n(x9);
-    var x11 = this$10.Lgooey_WritableVar__f_default;
+    var this$12 = $n(x9);
+    var x11 = this$12.Lgooey_WritableVar__f_default;
     return $p_Lgooey_calico_Environment__getOrUse$1__I__F0__Lcats_effect_IO($thiz, $n(x9).Lgooey_WritableVar__f_id, new $c_sjsr_AnonFunction0((() => {
       var F$2 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
       return $as_Lcats_effect_IO($m_Lfs2_concurrent_SignallingRef$().of__O__Lcats_effect_kernel_GenConcurrent__O(x11, F$2))
@@ -46238,8 +46180,65 @@ var $d_Lgooey_Var$Constant = new $TypeData().initClass({
   Ljava_io_Serializable: 1
 });
 $c_Lgooey_Var$Constant.prototype.$classData = $d_Lgooey_Var$Constant;
+/** @constructor */
+function $c_Lgooey_Var$View(source, f) {
+  this.Lgooey_Var$View__f_source = null;
+  this.Lgooey_Var$View__f_f = null;
+  this.Lgooey_Var$View__f_source = source;
+  this.Lgooey_Var$View__f_f = f
+}
+$c_Lgooey_Var$View.prototype = new $h_O();
+$c_Lgooey_Var$View.prototype.constructor = $c_Lgooey_Var$View;
+/** @constructor */
+function $h_Lgooey_Var$View() {
+  /*<skip>*/
+}
+$h_Lgooey_Var$View.prototype = $c_Lgooey_Var$View.prototype;
+$c_Lgooey_Var$View.prototype.productIterator__sc_Iterator = (function() {
+  return new $c_s_Product$$anon$1(this)
+});
+$c_Lgooey_Var$View.prototype.hashCode__I = (function() {
+  var this$2 = $m_s_util_hashing_MurmurHash3$();
+  return this$2.productHash__s_Product__I__Z__I(this, (-889275714), false)
+});
+$c_Lgooey_Var$View.prototype.equals__O__Z = (function(x$0) {
+  if ((this === x$0)) {
+    return true
+  } else if ((x$0 instanceof $c_Lgooey_Var$View)) {
+    var x$0$2 = $as_Lgooey_Var$View(x$0);
+    var x = this.Lgooey_Var$View__f_source;
+    var x$2 = $n(x$0$2).Lgooey_Var$View__f_source;
+    if (((x === null) ? (x$2 === null) : $n(x).equals__O__Z(x$2))) {
+      var x$3 = this.Lgooey_Var$View__f_f;
+      var x$4 = $n(x$0$2).Lgooey_Var$View__f_f;
+      return ((x$3 === null) ? (x$4 === null) : $n(x$3).equals__O__Z(x$4))
+    } else {
+      return false
+    }
+  } else {
+    return false
+  }
+});
+$c_Lgooey_Var$View.prototype.toString__T = (function() {
+  return $m_sr_ScalaRunTime$()._toString__s_Product__T(this)
+});
+$c_Lgooey_Var$View.prototype.productArity__I = (function() {
+  return 2
+});
+$c_Lgooey_Var$View.prototype.productPrefix__T = (function() {
+  return "View"
+});
+$c_Lgooey_Var$View.prototype.productElement__I__O = (function(n) {
+  if ((n === 0)) {
+    return this.Lgooey_Var$View__f_source
+  };
+  if ((n === 1)) {
+    return this.Lgooey_Var$View__f_f
+  };
+  throw $ct_jl_IndexOutOfBoundsException__T__(new $c_jl_IndexOutOfBoundsException(), ("" + n))
+});
 function $as_Lgooey_Var$View(obj) {
-  return ((false || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.Var$View"))
+  return (((obj instanceof $c_Lgooey_Var$View) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.Var$View"))
 }
 function $isArrayOf_Lgooey_Var$View(obj, depth) {
   return (!(!(((obj && obj.$classData) && (obj.$classData.arrayDepth === depth)) && obj.$classData.arrayBase.ancestors.Lgooey_Var$View)))
@@ -46247,6 +46246,17 @@ function $isArrayOf_Lgooey_Var$View(obj, depth) {
 function $asArrayOf_Lgooey_Var$View(obj, depth) {
   return (($isArrayOf_Lgooey_Var$View(obj, depth) || (obj === null)) ? obj : $throwArrayCastException(obj, "Lgooey.Var$View;", depth))
 }
+var $d_Lgooey_Var$View = new $TypeData().initClass({
+  Lgooey_Var$View: 0
+}, false, "gooey.Var$View", {
+  Lgooey_Var$View: 1,
+  O: 1,
+  Lgooey_Var: 1,
+  s_Equals: 1,
+  s_Product: 1,
+  Ljava_io_Serializable: 1
+});
+$c_Lgooey_Var$View.prototype.$classData = $d_Lgooey_Var$View;
 /** @constructor */
 function $c_Lgooey_WritableVar(default$1) {
   this.Lgooey_WritableVar__f_default = null;
@@ -56205,6 +56215,13 @@ $c_Lgooey_component_Checkbox.prototype.withLabel__T__Lgooey_component_Checkbox =
   var observers = this.Lgooey_component_Checkbox__f_observers;
   return new $c_Lgooey_component_Checkbox(label$1, default$1, observers)
 });
+$c_Lgooey_component_Checkbox.prototype.withObserver__Lgooey_WritableVar__Lgooey_component_Checkbox = (function(writable) {
+  var this$1 = $n(this.Lgooey_component_Checkbox__f_observers);
+  var observers$1 = this$1.prepend__O__Lcats_data_Chain(writable);
+  var label$1 = this.Lgooey_component_Checkbox__f_label;
+  var default$1 = this.Lgooey_component_Checkbox__f_default;
+  return new $c_Lgooey_component_Checkbox(label$1, default$1, observers$1)
+});
 $c_Lgooey_component_Checkbox.prototype.build__Lgooey_Algebra__O__O = (function(algebra, env) {
   var algebra$1 = $as_Lgooey_component_Checkbox$Algebra(algebra);
   var this$1 = $n(algebra$1);
@@ -60188,7 +60205,8 @@ $c_Lgooey_component_Textbox.prototype.build__Lgooey_Algebra__O__O = (function(al
   var label = this.Lgooey_component_Textbox__f_label;
   var default$1 = this.Lgooey_component_Textbox__f_default;
   var style = this.Lgooey_component_Textbox__f_style;
-  return this$1.textbox__s_Option__T__Lgooey_component_style_TextboxStyle__Lgooey_calico_Environment__Lcats_effect_kernel_Resource(label, default$1, style, $as_Lgooey_calico_Environment(env))
+  var observers = this.Lgooey_component_Textbox__f_observers;
+  return this$1.textbox__s_Option__T__Lgooey_component_style_TextboxStyle__Lcats_data_Chain__Lgooey_calico_Environment__Lcats_effect_kernel_Resource(label, default$1, style, observers, $as_Lgooey_calico_Environment(env))
 });
 function $as_Lgooey_component_Textbox(obj) {
   return (((obj instanceof $c_Lgooey_component_Textbox) || (obj === null)) ? obj : $throwClassCastException(obj, "gooey.component.Textbox"))
@@ -66974,13 +66992,23 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.text__Lgooey_Var__Lgooey_cal
   }));
   return new $c_Lcats_effect_kernel_Resource$Bind(this$7, f)
 });
-$c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey_component_style_TextboxStyle__Lgooey_calico_Environment__Lcats_effect_kernel_Resource = (function(label, default$1, style, env) {
+$c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey_component_style_TextboxStyle__Lcats_data_Chain__Lgooey_calico_Environment__Lcats_effect_kernel_Resource = (function(label, default$1, style, observers, env) {
   var F = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
   var this$3 = $n($as_Lcats_effect_IO($m_Lfs2_concurrent_SignallingRef$().of__O__Lcats_effect_kernel_GenConcurrent__O(default$1, F)));
   $n($m_Lcats_effect_package$().Lcats_effect_package$__f_Resource);
-  var this$23 = new $c_Lcats_effect_kernel_Resource$Eval(this$3);
-  var f = new $c_sjsr_AnonFunction1(((output) => {
+  var this$32 = new $c_Lcats_effect_kernel_Resource$Eval(this$3);
+  var f$1 = new $c_sjsr_AnonFunction1(((output) => {
     var output$1 = $as_Lfs2_concurrent_SignallingRef(output);
+    var tc = $as_Lcats_Traverse($m_Lcats_data_Chain$().Lcats_data_ChainInstances__f_catsDataInstancesForChain);
+    var this$8 = new $c_Lcats_Traverse$ToTraverseOps$$anon$3(observers, tc);
+    var f = new $c_sjsr_AnonFunction1(((v) => {
+      var v$1 = $as_Lgooey_WritableVar(v);
+      return $n(env).addSource__I__Lfs2_concurrent_Signal__Lcats_effect_IO($n(v$1).Lgooey_WritableVar__f_id, output$1)
+    }));
+    var ev$1 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
+    var this$9 = $n($as_Lcats_effect_IO($n(this$8.Lcats_Traverse$ToTraverseOps$$anon$3__f_typeClassInstance).traverse__O__F1__Lcats_Applicative__O(this$8.Lcats_Traverse$ToTraverseOps$$anon$3__f_self, f, ev$1)));
+    $n($m_Lcats_effect_package$().Lcats_effect_package$__f_Resource);
+    var signals = new $c_Lcats_effect_kernel_Resource$Eval(this$9);
     var $$x14 = this.makeLabel__s_Option__Lcats_effect_kernel_Resource(label);
     matchResult1: {
       var $$x1;
@@ -66988,20 +67016,20 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey
       if ((x === null)) {
         var $$x2 = (style === null)
       } else {
-        var this$7 = $n(x);
-        var $$x2 = (this$7 === style)
+        var this$12 = $n(x);
+        var $$x2 = (this$12 === style)
       };
       if ($$x2) {
         var $$x8 = $n($m_Lcalico_html_io$().input__Lcalico_html_HtmlTag());
         var $$x7 = new $c_sjsr_AnonFunction1(((self) => {
-          var this$8 = $n($m_Lcalico_html_io$().value__Lcalico_html_Prop());
-          var _1 = new $c_Lcalico_html_Prop$ConstantModifier(this$8.Lcalico_html_Prop__f_name, this$8.Lcalico_html_Prop__f_encode, default$1);
-          var this$9 = $n($m_Lcalico_html_io$().type__Lcalico_html_HtmlAttr());
-          var _2 = new $c_Lcalico_html_HtmlAttr$ConstantModifier(this$9.Lcalico_html_HtmlAttr__f_key, this$9.Lcalico_html_HtmlAttr__f_encode, "text");
+          var this$13 = $n($m_Lcalico_html_io$().value__Lcalico_html_Prop());
+          var _1 = new $c_Lcalico_html_Prop$ConstantModifier(this$13.Lcalico_html_Prop__f_name, this$13.Lcalico_html_Prop__f_encode, default$1);
+          var this$14 = $n($m_Lcalico_html_io$().type__Lcalico_html_HtmlAttr());
+          var _2 = new $c_Lcalico_html_HtmlAttr$ConstantModifier(this$14.Lcalico_html_HtmlAttr__f_key, this$14.Lcalico_html_HtmlAttr__f_encode, "text");
           $m_Lcalico_html_io$();
           new $c_Lcalico_html_ClassProp();
           var _3 = new $c_Lcalico_html_ClassProp$SingleConstantModifier(this.Lgooey_calico_Algebra$package$Algebra$__f_elementClass);
-          var this$11 = $n($m_Lcalico_html_io$().onInput__Lcalico_html_EventProp());
+          var this$16 = $n($m_Lcalico_html_io$().onInput__Lcalico_html_EventProp());
           var sink = new $c_sjsr_AnonFunction1(((_$11) => {
             var _$11$1 = $as_Lfs2_Stream(_$11);
             return $n(_$11$1).foreach__F1__Lfs2_Stream(new $c_sjsr_AnonFunction1(((_$12) => {
@@ -67012,7 +67040,7 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey
               })))
             })))
           }));
-          var _4 = new $c_Lcalico_html_EventProp$PipeModifier(this$11.Lcalico_html_EventProp__f_key, $n(this$11.Lcalico_html_EventProp__f_pipe).andThen__F1__F1(sink));
+          var _4 = new $c_Lcalico_html_EventProp$PipeModifier(this$16.Lcalico_html_EventProp__f_key, $n(this$16.Lcalico_html_EventProp__f_pipe).andThen__F1__F1(sink));
           return new $c_T4(_1, _2, _3, _4)
         }));
         $m_Lcalico_html_Modifier$();
@@ -67042,15 +67070,15 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey
       if ((x$3 === null)) {
         var $$x9 = (style === null)
       } else {
-        var this$16 = $n(x$3);
-        var $$x9 = (this$16 === style)
+        var this$21 = $n(x$3);
+        var $$x9 = (this$21 === style)
       };
       if ($$x9) {
         var $$x13 = $n($m_Lcalico_html_io$().textArea__Lcalico_html_HtmlTag());
         var $$x12 = new $c_sjsr_AnonFunction1(((self$2) => {
-          var this$17 = $n($m_Lcalico_html_io$().value__Lcalico_html_Prop());
-          var _1$1 = new $c_Lcalico_html_Prop$ConstantModifier(this$17.Lcalico_html_Prop__f_name, this$17.Lcalico_html_Prop__f_encode, default$1);
-          var this$18 = $n($m_Lcalico_html_io$().onInput__Lcalico_html_EventProp());
+          var this$22 = $n($m_Lcalico_html_io$().value__Lcalico_html_Prop());
+          var _1$1 = new $c_Lcalico_html_Prop$ConstantModifier(this$22.Lcalico_html_Prop__f_name, this$22.Lcalico_html_Prop__f_encode, default$1);
+          var this$23 = $n($m_Lcalico_html_io$().onInput__Lcalico_html_EventProp());
           var sink$1 = new $c_sjsr_AnonFunction1(((_$13) => {
             var _$13$1 = $as_Lfs2_Stream(_$13);
             return $n(_$13$1).foreach__F1__Lfs2_Stream(new $c_sjsr_AnonFunction1(((_$14) => {
@@ -67061,7 +67089,7 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey
               })))
             })))
           }));
-          var _2$1 = new $c_Lcalico_html_EventProp$PipeModifier(this$18.Lcalico_html_EventProp__f_key, $n(this$18.Lcalico_html_EventProp__f_pipe).andThen__F1__F1(sink$1));
+          var _2$1 = new $c_Lcalico_html_EventProp$PipeModifier(this$23.Lcalico_html_EventProp__f_key, $n(this$23.Lcalico_html_EventProp__f_pipe).andThen__F1__F1(sink$1));
           return new $c_T2(_1$1, _2$1)
         }));
         $m_Lcalico_html_Modifier$();
@@ -67084,9 +67112,15 @@ $c_Lgooey_calico_Algebra$package$Algebra$.prototype.textbox__s_Option__T__Lgooey
       throw new $c_s_MatchError(style)
     };
     var element = this.makeComponent__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource($$x14, $$x1);
-    return $n(element).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((e) => $m_Lgooey_calico_Component$().apply__Lorg_scalajs_dom_HTMLElement__Lfs2_concurrent_Signal__Lgooey_calico_Component(e, output$1))))
+    var F0 = $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO;
+    var F$1 = new $c_Lcats_effect_kernel_ResourceHOInstances0$$anon$9(F0);
+    var this$30 = new $c_Lcats_syntax_ApplySyntax$$anon$1(signals, F$1);
+    var fb = $n(element).map__F1__Lcats_effect_kernel_Resource(new $c_sjsr_AnonFunction1(((e) => $m_Lgooey_calico_Component$().apply__Lorg_scalajs_dom_HTMLElement__Lfs2_concurrent_Signal__Lgooey_calico_Component(e, output$1))));
+    var this$31 = $n(this$30.Lcats_syntax_ApplySyntax$$anon$1__f_typeClassInstance);
+    var fa = this$30.Lcats_syntax_ApplySyntax$$anon$1__f_self;
+    return $as_Lcats_effect_kernel_Resource(this$31.productR__O__O__O(fa, fb))
   }));
-  return new $c_Lcats_effect_kernel_Resource$Bind(this$23, f)
+  return new $c_Lcats_effect_kernel_Resource$Bind(this$32, f$1)
 });
 $c_Lgooey_calico_Algebra$package$Algebra$.prototype.makeComponent__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource__Lcats_effect_kernel_Resource = (function(label, element) {
   var $$x5 = $n($m_Lcalico_html_io$().div__Lcalico_html_HtmlTag());
