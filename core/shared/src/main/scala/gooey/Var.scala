@@ -63,7 +63,16 @@ object Var {
     Constant(value)
 
   /** Create a `Var` whose value comes from somewhere else; usually from a
-    * `Component`.
+    * `Component`. A default value, taken from a given Default instance, is
+    * needed to initialize the Var. The value will only be transient and
+    * replaced as soon as the system starts running.
+    */
+  def writable[A](using default: Default[A]): WritableVar[A] =
+    WritableVar(default.default)
+
+  /** Create a `Var` whose value comes from somewhere else; usually from a
+    * `Component`. A default value is needed to initialize the Var. The value
+    * will only be transient and replaced as soon as the system starts running.
     */
   def writable[A](default: A): WritableVar[A] =
     WritableVar[A](default)

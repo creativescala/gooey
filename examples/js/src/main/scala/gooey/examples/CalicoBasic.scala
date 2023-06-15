@@ -38,10 +38,10 @@ object CalicoBasic {
   @JSExport
   def mount(id: String): Unit = {
 
-    val awesomeness = Var.writable[Boolean](false)
-    val rating = Var.writable[Int](1)
-    val adjective = Var.writable[Int](1)
-    val reasons = Var.writable[String]("")
+    val awesomeness = Var.writable[Boolean]
+    val rating = Var.writable[Int]
+    val adjective = Var.writable[Int]
+    val reasons = Var.writable[String]
 
     val component = Text(
       "This example demonstrates the components implemented by the Calico backend."
