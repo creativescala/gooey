@@ -1,7 +1,6 @@
 # Gooey
 
-Gooey is a Scala library to build UIs. It's focused on getting workable interfaces running very quickly, at the expense of some amount of customization.
-
+Gooey is a Scala library for creating user interfaces. It's goal is to make it very easy to build user interfaces that are good enough for most uses. The tradeoff is that Gooey only allows limited customization. Gooey is also cross platform. Gooey user interfaces can run on the web or on the JVM, and work with a variety of user interface toolkits.
 
 ## Getting Started
 
