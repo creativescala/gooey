@@ -16,8 +16,9 @@ Now we need to create our user interface. Let's say I'm building a pet rating ap
 
 ```scala
 val petRatingUi =
-    Textbox.empty.withLabel("Pet name")
-      .and(Slider(10, 14).withLabel("Rating"))
+  Textbox.empty
+    .withLabel("Pet name")
+    .and(Slider(10, 14).withLabel("Rating"))
 ```
 
 Now all I need to do is create my user interface with a specific backend, and then render the user interface. 
@@ -26,7 +27,8 @@ Now all I need to do is create my user interface with a specific backend, and th
 val calicoUi = petRatingUi.create
 ```
 ```scala
-calicoUi.renderComponentToId("ui").unsafeRunAndForget()
+calicoUi.renderComponentToId("ui")
+  .unsafeRunAndForget()
 ```
 
 Calling `create` builds a backend specific representation using whichever backend is in the `given` scope. In this case it's the Calico backend which we imported earlier. We then use a backend specific method, `renderComponentToId`, to create the UI in the webpage as the position of the element with the given id (in this case the id is `ui`). Finally we run UI, using the Calico specific operation `unsafeRunAndForget`.
