@@ -20,6 +20,7 @@ import _root_.calico.*
 import _root_.calico.html.io.{_, given}
 import _root_.calico.syntax.*
 import cats.data.Chain
+import cats.data.NonEmptySeq
 import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
@@ -78,8 +79,7 @@ given Algebra: gooey.Algebra
       env: Env
   ): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
-      val signals =
-        observers.traverse(v => env.addSource(v.id, output)).toResource
+      val signals = addSources(observers, output, env)
       val element =
         makeComponent(
           makeLabel(label),
@@ -100,9 +100,12 @@ given Algebra: gooey.Algebra
 
   def dropdown[A](
       label: Option[String],
-      choices: Iterable[(String, A)]
-  )(env: Env): UI[Option[A]] = {
-    SignallingRef[IO].of(none[A]).toResource.flatMap { output =>
+      choices: NonEmptySeq[(String, A)],
+      observers: Chain[WritableVar[A]]
+  )(env: Env): UI[A] = {
+    val (_, a) = choices.head
+    SignallingRef[IO].of(a).toResource.flatMap { output =>
+      val signals = addSources(observers, output, env)
       val element =
         makeComponent(
           makeLabel(label),
@@ -115,13 +118,13 @@ given Algebra: gooey.Algebra
                   .flatMap(choice =>
                     choices
                       .find((c, a) => c == choice)
-                      .fold(output.set(none[A]))((_, a) => output.set(a.some))
+                      .fold(output.set(a))((_, a) => output.set(a))
                   )
               })
             )
           }
         )
-      element.map(e => Component(e, output))
+      signals *> element.map(e => Component(e, output))
     }
   }
 
@@ -164,9 +167,11 @@ given Algebra: gooey.Algebra
       label: Option[String],
       min: Int,
       max: Int,
-      default: Int
+      default: Int,
+      observers: Chain[WritableVar[Int]]
   )(env: Env): UI[Int] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val signals = addSources(observers, output, env)
       val element =
         makeComponent(
           makeLabel(label),
@@ -182,7 +187,7 @@ given Algebra: gooey.Algebra
             )
           }
         )
-      element.map(e => Component(e, output))
+      signals *> element.map(e => Component(e, output))
     }
   }
 
@@ -198,8 +203,7 @@ given Algebra: gooey.Algebra
       observers: Chain[WritableVar[String]]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
-      val signals =
-        observers.traverse(v => env.addSource(v.id, output)).toResource
+      val signals = addSources(observers, output, env)
       val element =
         makeComponent(
           makeLabel(label),
@@ -248,4 +252,11 @@ given Algebra: gooey.Algebra
     theLabel.fold(span(())) { l =>
       label(cls := "block text-gray-700 text-sm font-bold font-sans mb-2", l)
     }
+
+  def addSources[A](
+      observers: Chain[WritableVar[A]],
+      source: Signal[IO, A],
+      env: Environment
+  ): Resource[IO, Chain[Signal[IO, A]]] =
+    observers.traverse(o => env.addSource(o.id, source)).toResource
 }

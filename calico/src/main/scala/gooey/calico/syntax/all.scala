@@ -25,7 +25,7 @@ import gooey.calico.*
 
 object all {
   extension [A](elt: Resource[IO, HtmlElement[IO]]) {
-    def renderIntoId(id: String)(using Dom[IO]): IO[Unit] = {
+    def renderHtmlToId(id: String)(using Dom[IO]): IO[Unit] = {
       val rootElement: IO[Element[cats.effect.IO]] =
         Window[IO].document.getElementById(id).map(_.get)
 
@@ -36,6 +36,12 @@ object all {
           _ <- Resource.make(root.appendChild(e))(_ => root.removeChild(e))
         } yield ()).useForever
       } yield ())
+    }
+  }
+
+  extension [A](elt: Resource[IO, Component[A]]) {
+    def renderComponentToId(id: String)(using Dom[IO]): IO[Unit] = {
+      elt.flatMap(component => component.buildElement).renderHtmlToId(id)
     }
   }
 }

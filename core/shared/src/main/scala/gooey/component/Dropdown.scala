@@ -17,18 +17,19 @@
 package gooey.component
 
 import cats.data.Chain
+import cats.data.NonEmptySeq
 import gooey.WritableVar
 
 /** A dropdown list for selecting a single element from a collection. Each
   * element is a pair of a String and a value of type A. The String is the label
   * for the element, and the value of type A is the value that is returned if
-  * that label is chosen.
+  * that label is chosen. A dropdown starts with the first element selected.
   */
 final case class Dropdown[A](
     label: Option[String],
-    choices: Iterable[(String, A)],
+    choices: NonEmptySeq[(String, A)],
     observers: Chain[WritableVar[A]]
-) extends Component[Dropdown.Algebra, Option[A]],
+) extends Component[Dropdown.Algebra, A],
       Labelable[Dropdown[A]] {
 
   def withLabel(label: String): Dropdown[A] =
@@ -42,17 +43,18 @@ final case class Dropdown[A](
 
   private[gooey] def build(algebra: Dropdown.Algebra)(
       env: algebra.Env
-  ): algebra.UI[Option[A]] =
-    algebra.dropdown(label, choices)(env)
+  ): algebra.UI[A] =
+    algebra.dropdown(label, choices, observers)(env)
 }
 object Dropdown {
   trait Algebra extends gooey.Algebra {
     def dropdown[A](
         label: Option[String],
-        choices: Iterable[(String, A)]
-    )(env: Env): UI[Option[A]]
+        choices: NonEmptySeq[(String, A)],
+        observers: Chain[WritableVar[A]]
+    )(env: Env): UI[A]
   }
 
-  def apply[A](choices: Iterable[(String, A)]): Dropdown[A] =
+  def apply[A](choices: NonEmptySeq[(String, A)]): Dropdown[A] =
     Dropdown(None, choices, Chain.empty)
 }

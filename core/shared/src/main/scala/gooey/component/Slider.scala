@@ -55,7 +55,7 @@ final case class Slider(
   private[gooey] def build(algebra: Slider.Algebra)(
       env: algebra.Env
   ): algebra.UI[Int] =
-    algebra.slider(label, min, max, default)(env)
+    algebra.slider(label, min, max, default, observers)(env)
 }
 object Slider {
   trait Algebra extends gooey.Algebra {
@@ -63,7 +63,8 @@ object Slider {
         label: Option[String],
         min: Int,
         max: Int,
-        default: Int
+        default: Int,
+        observers: Chain[WritableVar[Int]]
     )(env: Env): UI[Int]
   }
 

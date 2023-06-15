@@ -60,6 +60,6 @@ object CalicoForm {
         }
       )
 
-    form.create.flatMap(_.buildElement).renderIntoId(id).unsafeRunAndForget()
+    form.create.renderComponentToId(id).unsafeRunAndForget()
   }
 }

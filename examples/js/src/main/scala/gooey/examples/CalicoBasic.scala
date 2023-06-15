@@ -20,6 +20,7 @@ import calico.*
 import calico.html.io.{_, given}
 import calico.syntax.*
 import calico.unsafe.given
+import cats.data.NonEmptySeq
 import cats.effect.*
 import cats.syntax.all.*
 import fs2.dom.*
@@ -36,8 +37,12 @@ import scala.scalajs.js.annotation.*
 object CalicoBasic {
   @JSExport
   def mount(id: String): Unit = {
+
     val awesomeness = Var.writable[Boolean](false)
+    val rating = Var.writable[Int](1)
+    val adjective = Var.writable[Int](1)
     val reasons = Var.writable[String]("")
+
     val component = Text(
       "This example demonstrates the components implemented by the Calico backend."
     ).as[Algebra] *>
@@ -50,9 +55,13 @@ object CalicoBasic {
           .withLabel(
             "On a scale of 1 to 10, rate the amount of awesomeness"
           )
+          .withObserver(rating)
           .as[Algebra],
-        Dropdown(List(("Superb", 1), ("Stupendous", 3), ("Awesome", 5)))
+        Dropdown(
+          NonEmptySeq.of(("Superb", 1), ("Stupendous", 3), ("Awesome", 5))
+        )
           .withLabel("Chose the adjective that best describes your experience")
+          .withObserver(adjective)
           .as[Algebra],
         Textbox.empty
           .withLabel(
@@ -68,25 +77,15 @@ object CalicoBasic {
           else "Awesomeness needs improvement"
         )
       ).and(
+        Text(rating.map(r => s"The awesomeness rating is $r"))
+      ).and(
+        Text(adjective.map(r => s"The subjective adjective rating is $r"))
+      ).and(
         Text(reasons.map(s => s"Reasons given are: $s"))
       )
 
     component.create
-      .flatMap { c => c.build }
-      .flatMap { case (elt, signal) =>
-        div(
-          elt,
-          p(
-            "Awesomeness rating is ",
-            signal.map((_, r, _, _) => r.toString)
-          ),
-          p(
-            "The subjective adjective rating is ",
-            signal.map((_, _, r, _) => r.fold("unrated")(r => r.toString))
-          )
-        )
-      }
-      .renderIntoId(id)
+      .renderComponentToId(id)
       .unsafeRunAndForget()
   }
 }
