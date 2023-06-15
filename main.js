@@ -7744,10 +7744,18 @@ function $h_Lgooey_examples_CalicoBasic$() {
 }
 $h_Lgooey_examples_CalicoBasic$.prototype = $c_Lgooey_examples_CalicoBasic$.prototype;
 $c_Lgooey_examples_CalicoBasic$.prototype.mount__T__V = (function(id) {
-  var awesomeness = new $c_Lgooey_WritableVar(false);
-  var rating = new $c_Lgooey_WritableVar(1);
-  var adjective = new $c_Lgooey_WritableVar(1);
-  var reasons = new $c_Lgooey_WritableVar("");
+  var default$1 = $m_Lgooey_Default$given\uff3fDefault\uff3fBoolean$();
+  var default$2 = default$1.Lgooey_Default$given\uff3fDefault\uff3fBoolean$__f_default;
+  var awesomeness = new $c_Lgooey_WritableVar(default$2);
+  var default$3 = $m_Lgooey_Default$given\uff3fDefault\uff3fInt$();
+  var default$4 = default$3.Lgooey_Default$given\uff3fDefault\uff3fInt$__f_default;
+  var rating = new $c_Lgooey_WritableVar(default$4);
+  var default$5 = $m_Lgooey_Default$given\uff3fDefault\uff3fInt$();
+  var default$6 = default$5.Lgooey_Default$given\uff3fDefault\uff3fInt$__f_default;
+  var adjective = new $c_Lgooey_WritableVar(default$6);
+  var default$7 = $m_Lgooey_Default$given\uff3fDefault\uff3fString$();
+  var default$8 = default$7.Lgooey_Default$given\uff3fDefault\uff3fString$__f_default;
+  var reasons = new $c_Lgooey_WritableVar(default$8);
   var this$9 = $n($m_Lgooey_component_Text$().apply__T__Lgooey_component_Text("This example demonstrates the components implemented by the Calico backend."));
   var F = new $c_Lgooey_component_Component$componentApplicative();
   var this$27 = new $c_Lcats_syntax_ApplySyntax$$anon$1(this$9, F);
@@ -7761,9 +7769,9 @@ $c_Lgooey_examples_CalicoBasic$.prototype.mount__T__V = (function(id) {
   var this$21 = $n($n($n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Describe, in your own words, the reasons behind your rating")).withObserver__Lgooey_WritableVar__Lgooey_component_Textbox(reasons));
   var style = $s_Lgooey_component_style_TextboxStyle$__SingleLine__Lgooey_component_style_TextboxStyle();
   var label$1 = this$21.Lgooey_component_Textbox__f_label;
-  var default$1 = this$21.Lgooey_component_Textbox__f_default;
+  var default$9 = this$21.Lgooey_component_Textbox__f_default;
   var observers$1 = this$21.Lgooey_component_Textbox__f_observers;
-  var this$22 = new $c_Lgooey_component_Textbox(label$1, default$1, style, observers$1);
+  var this$22 = new $c_Lgooey_component_Textbox(label$1, default$9, style, observers$1);
   var t4 = new $c_T4(this$12, this$13, this$20, this$22);
   var fb = new $c_Lcats_syntax_Tuple4SemigroupalOps(t4).tupled__Lcats_Invariant__Lcats_Semigroupal__O(new $c_Lgooey_component_Component$componentApplicative(), new $c_Lgooey_component_Component$componentApplicative());
   var this$28 = $n(this$27.Lcats_syntax_ApplySyntax$$anon$1__f_typeClassInstance);
@@ -24913,6 +24921,87 @@ var $d_Lfs2_internal_ScopedResource$$anon$1$TheLease$ = new $TypeData().initClas
   O: 1
 });
 $c_Lfs2_internal_ScopedResource$$anon$1$TheLease$.prototype.$classData = $d_Lfs2_internal_ScopedResource$$anon$1$TheLease$;
+/** @constructor */
+function $c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$() {
+  this.Lgooey_Default$given\uff3fDefault\uff3fBoolean$__f_default = false;
+  this.Lgooey_Default$given\uff3fDefault\uff3fBoolean$__f_default = true
+}
+$c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$.prototype = new $h_O();
+$c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$.prototype.constructor = $c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$;
+/** @constructor */
+function $h_Lgooey_Default$given\uff3fDefault\uff3fBoolean$() {
+  /*<skip>*/
+}
+$h_Lgooey_Default$given\uff3fDefault\uff3fBoolean$.prototype = $c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$.prototype;
+var $d_Lgooey_Default$given\uff3fDefault\uff3fBoolean$ = new $TypeData().initClass({
+  Lgooey_Default$given\uff3fDefault\uff3fBoolean$: 0
+}, false, "gooey.Default$given_Default_Boolean$", {
+  Lgooey_Default$given\uff3fDefault\uff3fBoolean$: 1,
+  O: 1,
+  Lgooey_Default: 1
+});
+$c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$.prototype.$classData = $d_Lgooey_Default$given\uff3fDefault\uff3fBoolean$;
+var $n_Lgooey_Default$given\uff3fDefault\uff3fBoolean$;
+function $m_Lgooey_Default$given\uff3fDefault\uff3fBoolean$() {
+  if ((!$n_Lgooey_Default$given\uff3fDefault\uff3fBoolean$)) {
+    $n_Lgooey_Default$given\uff3fDefault\uff3fBoolean$ = new $c_Lgooey_Default$given\uff3fDefault\uff3fBoolean$()
+  };
+  return $n_Lgooey_Default$given\uff3fDefault\uff3fBoolean$
+}
+/** @constructor */
+function $c_Lgooey_Default$given\uff3fDefault\uff3fInt$() {
+  this.Lgooey_Default$given\uff3fDefault\uff3fInt$__f_default = 0;
+  this.Lgooey_Default$given\uff3fDefault\uff3fInt$__f_default = 0
+}
+$c_Lgooey_Default$given\uff3fDefault\uff3fInt$.prototype = new $h_O();
+$c_Lgooey_Default$given\uff3fDefault\uff3fInt$.prototype.constructor = $c_Lgooey_Default$given\uff3fDefault\uff3fInt$;
+/** @constructor */
+function $h_Lgooey_Default$given\uff3fDefault\uff3fInt$() {
+  /*<skip>*/
+}
+$h_Lgooey_Default$given\uff3fDefault\uff3fInt$.prototype = $c_Lgooey_Default$given\uff3fDefault\uff3fInt$.prototype;
+var $d_Lgooey_Default$given\uff3fDefault\uff3fInt$ = new $TypeData().initClass({
+  Lgooey_Default$given\uff3fDefault\uff3fInt$: 0
+}, false, "gooey.Default$given_Default_Int$", {
+  Lgooey_Default$given\uff3fDefault\uff3fInt$: 1,
+  O: 1,
+  Lgooey_Default: 1
+});
+$c_Lgooey_Default$given\uff3fDefault\uff3fInt$.prototype.$classData = $d_Lgooey_Default$given\uff3fDefault\uff3fInt$;
+var $n_Lgooey_Default$given\uff3fDefault\uff3fInt$;
+function $m_Lgooey_Default$given\uff3fDefault\uff3fInt$() {
+  if ((!$n_Lgooey_Default$given\uff3fDefault\uff3fInt$)) {
+    $n_Lgooey_Default$given\uff3fDefault\uff3fInt$ = new $c_Lgooey_Default$given\uff3fDefault\uff3fInt$()
+  };
+  return $n_Lgooey_Default$given\uff3fDefault\uff3fInt$
+}
+/** @constructor */
+function $c_Lgooey_Default$given\uff3fDefault\uff3fString$() {
+  this.Lgooey_Default$given\uff3fDefault\uff3fString$__f_default = null;
+  this.Lgooey_Default$given\uff3fDefault\uff3fString$__f_default = ""
+}
+$c_Lgooey_Default$given\uff3fDefault\uff3fString$.prototype = new $h_O();
+$c_Lgooey_Default$given\uff3fDefault\uff3fString$.prototype.constructor = $c_Lgooey_Default$given\uff3fDefault\uff3fString$;
+/** @constructor */
+function $h_Lgooey_Default$given\uff3fDefault\uff3fString$() {
+  /*<skip>*/
+}
+$h_Lgooey_Default$given\uff3fDefault\uff3fString$.prototype = $c_Lgooey_Default$given\uff3fDefault\uff3fString$.prototype;
+var $d_Lgooey_Default$given\uff3fDefault\uff3fString$ = new $TypeData().initClass({
+  Lgooey_Default$given\uff3fDefault\uff3fString$: 0
+}, false, "gooey.Default$given_Default_String$", {
+  Lgooey_Default$given\uff3fDefault\uff3fString$: 1,
+  O: 1,
+  Lgooey_Default: 1
+});
+$c_Lgooey_Default$given\uff3fDefault\uff3fString$.prototype.$classData = $d_Lgooey_Default$given\uff3fDefault\uff3fString$;
+var $n_Lgooey_Default$given\uff3fDefault\uff3fString$;
+function $m_Lgooey_Default$given\uff3fDefault\uff3fString$() {
+  if ((!$n_Lgooey_Default$given\uff3fDefault\uff3fString$)) {
+    $n_Lgooey_Default$given\uff3fDefault\uff3fString$ = new $c_Lgooey_Default$given\uff3fDefault\uff3fString$()
+  };
+  return $n_Lgooey_Default$given\uff3fDefault\uff3fString$
+}
 function $is_Lgooey_component_And$Algebra(obj) {
   return (!(!((obj && obj.$classData) && obj.$classData.ancestors.Lgooey_component_And$Algebra)))
 }
