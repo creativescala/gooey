@@ -16,7 +16,6 @@
 
 package gooey.examples
 
-import calico.syntax.*
 import calico.unsafe.given
 import gooey.calico.syntax.all.*
 import gooey.calico.{_, given}
