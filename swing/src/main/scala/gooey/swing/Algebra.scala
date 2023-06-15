@@ -44,11 +44,11 @@ given Algebra: gooey.Algebra
   with Textbox.Algebra
   with {
 
-  type Env = Unit
+  type Env = Environment
 
   type UI[A] = Resource[IO, (Component[IO], Signal[IO, A])]
 
-  def initialize(): Env = ()
+  def initialize(): Env = Environment.empty
 
   def and[A, B](f: UI[A], s: UI[B])(env: Env): UI[(A, B)] = {
     for {
@@ -68,6 +68,7 @@ given Algebra: gooey.Algebra
       env: Env
   ): UI[Boolean] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val signals = addSources(observers, output, env)
       val component =
         makeComponent(
           makeLabel(label),
@@ -77,7 +78,7 @@ given Algebra: gooey.Algebra
             }
           }
         )
-      component.map(c => (c, output))
+      signals *> component.map(c => (c, output))
     }
   }
 
@@ -95,6 +96,7 @@ given Algebra: gooey.Algebra
       observers: Chain[WritableVar[String]]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
+      val signals = addSources(observers, output, env)
       val component =
         makeComponent(
           makeLabel(label),
@@ -110,7 +112,7 @@ given Algebra: gooey.Algebra
               ???
           }
         )
-      component.map(c => (c, output))
+      signals *> component.map(c => (c, output))
     }
   }
 
@@ -126,4 +128,10 @@ given Algebra: gooey.Algebra
   def makeLabel(theLabel: Option[String]): Resource[IO, Component[IO]] =
     theLabel.fold(label(text := "")) { l => label(text := l) }
 
+  def addSources[A](
+      observers: Chain[WritableVar[A]],
+      source: Signal[IO, A],
+      env: Environment
+  ): Resource[IO, Chain[Signal[IO, A]]] =
+    observers.traverse(o => env.addSource(o.id, source)).toResource
 }
