@@ -1,4 +1,4 @@
-let CalicoForm,CalicoBasic;
+let CalicoForm,PetRating,CalicoBasic;
 (function(){
 'use strict';
 var $linkingInfo = Object.freeze({
@@ -7895,6 +7895,45 @@ function $m_Lgooey_examples_CalicoForm$() {
     $n_Lgooey_examples_CalicoForm$ = new $c_Lgooey_examples_CalicoForm$()
   };
   return $n_Lgooey_examples_CalicoForm$
+}
+/** @constructor */
+function $c_Lgooey_examples_PetRating$() {
+  /*<skip>*/
+}
+$c_Lgooey_examples_PetRating$.prototype = new $h_O();
+$c_Lgooey_examples_PetRating$.prototype.constructor = $c_Lgooey_examples_PetRating$;
+/** @constructor */
+function $h_Lgooey_examples_PetRating$() {
+  /*<skip>*/
+}
+$h_Lgooey_examples_PetRating$.prototype = $c_Lgooey_examples_PetRating$.prototype;
+$c_Lgooey_examples_PetRating$.prototype.mount__T__V = (function(id) {
+  var c = $n($m_Lgooey_component_Textbox$().Lgooey_component_Textbox$__f_empty).withLabel__T__Lgooey_component_Textbox("Pet name");
+  var second = $n($m_Lgooey_component_Slider$().apply__I__I__Lgooey_component_Slider(10, 14)).withLabel__T__Lgooey_component_Slider("Rating");
+  var petRatingUi = new $c_Lgooey_component_And(c, second);
+  var $$x1 = $m_Lgooey_calico_syntax_all$();
+  var algebra = $m_Lgooey_calico_Algebra$package$Algebra$();
+  var env = $as_scm_Map($m_scm_Map$().empty__O());
+  var env$1 = new $c_Lgooey_calico_Environment(env);
+  $n($n($$x1).renderComponentToId__Lcats_effect_kernel_Resource__T__Lcats_effect_kernel_Async__Lcats_effect_IO($as_Lcats_effect_kernel_Resource(petRatingUi.build__Lgooey_component_And$Algebra__O__O(algebra, env$1)), id, $m_Lcats_effect_IO$().Lcats_effect_IO$__f__asyncForIO)).unsafeRunAndForget__Lcats_effect_unsafe_IORuntime__V($m_Lcalico_unsafe_runtime$package$().given_IORuntime__Lcats_effect_unsafe_IORuntime())
+});
+$c_Lgooey_examples_PetRating$.prototype.mount = (function(arg) {
+  var prep0 = $as_T(arg);
+  this.mount__T__V(prep0)
+});
+var $d_Lgooey_examples_PetRating$ = new $TypeData().initClass({
+  Lgooey_examples_PetRating$: 0
+}, false, "gooey.examples.PetRating$", {
+  Lgooey_examples_PetRating$: 1,
+  O: 1
+});
+$c_Lgooey_examples_PetRating$.prototype.$classData = $d_Lgooey_examples_PetRating$;
+var $n_Lgooey_examples_PetRating$;
+function $m_Lgooey_examples_PetRating$() {
+  if ((!$n_Lgooey_examples_PetRating$)) {
+    $n_Lgooey_examples_PetRating$ = new $c_Lgooey_examples_PetRating$()
+  };
+  return $n_Lgooey_examples_PetRating$
 }
 /** @constructor */
 function $c_jl_Class(data0) {
@@ -88347,6 +88386,7 @@ $d_J.zero = $L0;
 var $t_Lgooey_component_style_TextboxStyle$__SingleLine = null;
 var $t_Lgooey_component_style_TextboxStyle$__MultiLine = null;
 CalicoForm = $m_Lgooey_examples_CalicoForm$();
+PetRating = $m_Lgooey_examples_PetRating$();
 CalicoBasic = $m_Lgooey_examples_CalicoBasic$();
 }).call(this);
 //# sourceMappingURL=main.js.map
