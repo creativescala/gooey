@@ -1,5 +1,7 @@
 # Quick Start
 
+In this section we'll go through a quick example that illustrates all the major features of Gooey.
+
 To start using Gooey you need to import the core Gooey library, and a backend. Here I'll use the [Calico][calico] backend, so I can render the interface right here on this page.
 
 ```scala
