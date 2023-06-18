@@ -67,7 +67,16 @@ lazy val commonSettings = Seq(
 lazy val root = project
   .in(file("."))
   .settings(moduleName := "gooey")
-  .aggregate(core.js, core.jvm, calico, swing, examples.js, examples.jvm)
+  .aggregate(
+    core.js,
+    core.jvm,
+    generic.js,
+    generic.jvm,
+    calico,
+    swing,
+    examples.js,
+    examples.jvm
+  )
 
 lazy val core = crossProject(JSPlatform, JVMPlatform)
   .in(file("core"))
@@ -80,11 +89,20 @@ lazy val core = crossProject(JSPlatform, JVMPlatform)
     moduleName := "gooey-core"
   )
 
+lazy val generic = crossProject(JSPlatform, JVMPlatform)
+  .in(file("generic"))
+  .settings(
+    commonSettings,
+    libraryDependencies += Dependencies.magnolia.value,
+    moduleName := "gooey-generic"
+  )
+
 lazy val calico = project
   .in(file("calico"))
   .settings(
     commonSettings,
-    libraryDependencies ++= Seq(Dependencies.calico.value)
+    libraryDependencies ++= Seq(Dependencies.calico.value),
+    moduleName := "gooey-calico"
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(core.js)

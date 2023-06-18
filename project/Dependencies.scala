@@ -11,6 +11,7 @@ object Dependencies {
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
+  val magnoliaVersion = "1.3.2"
 
   val munitVersion = "0.7.29"
 
@@ -25,6 +26,8 @@ object Dependencies {
   val swingIo = Def.setting(
     "io.github.thedrawingcoder-gamer" %%% "swing-io" % swingIoVersion
   )
+  val magnolia =
+    Def.setting("com.softwaremill.magnolia1_3" %% "magnolia" % magnoliaVersion)
 
   val munit = Def.setting("org.scalameta" %% "munit" % munitVersion % "test")
 }
