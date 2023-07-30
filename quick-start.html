@@ -54,7 +54,7 @@
             <p>Calling <code>create</code> builds a backend specific representation using whichever backend is in the <code>given</code> scope. In this case it&#39;s the Calico backend which we imported earlier. We then use a backend specific method, <code>renderComponentToId</code>, to create the UI in the webpage as the position of the element with the given id (in this case the id is <code>ui</code>). Finally we run UI, using the Calico specific operation <code>unsafeRunAndForget</code>.</p>
             <p>With that all done, we end up with the masterpiece below.</p>
             <div id="pet-rating"></div>
-            <script>PetRating.mount("pet-rating")</script>
+            <script>PetRating.first("pet-rating")</script>
             <p class="nextPage"><a href="calico.html">Calico Backend→</a></p>
         </main>
         <footer>Creative Scala is copyright Noel Welsh</footer>
