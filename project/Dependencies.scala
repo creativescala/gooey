@@ -11,7 +11,7 @@ object Dependencies {
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
-  val magnoliaVersion = "1.3.2"
+  val magnoliaVersion = "1.3.3"
 
   val munitVersion = "0.7.29"
 
