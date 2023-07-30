@@ -31,7 +31,7 @@ trait Component[-Alg <: Algebra, A] {
   /** Utility to change the algebra type associated with this component.
     * Sometimes useful to work around type inference issues.
     */
-  def as[AA <: Alg]: Component[AA, A] = this
+  def widen[AA <: Alg]: Component[AA, A] = this
 
   /** Given implementations of the algebras required by this `Component`,
     * produce a backend specific user interface representation.
