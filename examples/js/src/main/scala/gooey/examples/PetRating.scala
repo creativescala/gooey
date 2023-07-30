@@ -27,7 +27,7 @@ import scala.scalajs.js.annotation.*
 @JSExportTopLevel("PetRating")
 object PetRating {
   @JSExport
-  def mount(id: String): Unit = {
+  def first(id: String): Unit = {
     val petRatingUi =
       Textbox.empty
         .withLabel("Pet name")

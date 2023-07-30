@@ -37,6 +37,6 @@ Calling `create` builds a backend specific representation using whichever backen
 
 With that all done, we end up with the masterpiece below.
 
-@:doodle(pet-rating, PetRating.mount)
+@:doodle(pet-rating, PetRating.first)
 
 [calico]: https://www.armanbilge.com/calico/
