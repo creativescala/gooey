@@ -38,6 +38,12 @@ import scala.collection.mutable
 sealed trait Var[A] {
   import Var.*
 
+  def isConstant: Boolean =
+    this match {
+      case Constant(_) => true
+      case other       => false
+    }
+
   def map[B](f: A => B): Var[B] = {
     val view = View[A, B](this, f)
     view

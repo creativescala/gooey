@@ -18,6 +18,7 @@ package gooey.component
 
 import cats.Applicative
 import gooey.Algebra
+import gooey.Observable
 import gooey.syntax.all.*
 
 /** A UI component that produces a value of type `A` and requires the

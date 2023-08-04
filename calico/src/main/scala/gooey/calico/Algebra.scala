@@ -26,6 +26,7 @@ import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
 import gooey.Var
+import gooey.Visibility
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
@@ -191,7 +192,9 @@ given Algebra: gooey.Algebra
     }
   }
 
-  def text(content: Var[String])(env: Environment): UI[Unit] =
+  def text(content: Var[String], visibility: Var[Visibility])(
+      env: Environment
+  ): UI[Unit] =
     env.getOrCreate(content).toResource.flatMap { signal =>
       p(signal).map(elt => Component(elt, Signal.constant[IO, Unit](())))
     }
@@ -200,7 +203,8 @@ given Algebra: gooey.Algebra
       label: Option[String],
       default: String,
       style: TextboxStyle,
-      observers: Chain[WritableVar[String]]
+      observers: Chain[WritableVar[String]],
+      visibility: Var[gooey.Visibility]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val signals = addSources(observers, output, env)

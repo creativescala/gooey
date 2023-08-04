@@ -18,6 +18,9 @@ package gooey.component
 
 import cats.data.Chain
 import gooey.Algebra
+import gooey.Observable
+import gooey.Var
+import gooey.Visibility
 import gooey.WritableVar
 import gooey.component.style.TextboxStyle
 
@@ -25,10 +28,15 @@ final case class Textbox(
     label: Option[String],
     default: String,
     style: TextboxStyle,
-    observers: Chain[WritableVar[String]]
+    observers: Chain[WritableVar[String]],
+    visibility: Var[Visibility]
 ) extends Component[Textbox.Algebra, String],
       Labelable[Textbox],
-      Styleable[Textbox, TextboxStyle] {
+      Styleable[Textbox, TextboxStyle],
+      Visible[Textbox] {
+  def withDefault(default: String): Textbox =
+    this.copy(default = default)
+
   def withLabel(label: String): Textbox =
     this.copy(label = Some(label))
 
@@ -41,13 +49,13 @@ final case class Textbox(
   def withStyle(style: TextboxStyle): Textbox =
     this.copy(style = style)
 
-  def withDefault(default: String): Textbox =
-    this.copy(default = default)
+  def withVisibility(visibility: Observable[Visibility]): Textbox =
+    this.copy(visibility = Observable.toVar(visibility))
 
   private[gooey] def build(algebra: Textbox.Algebra)(
       env: algebra.Env
   ): algebra.UI[String] =
-    algebra.textbox(label, default, style, observers)(env)
+    algebra.textbox(label, default, style, observers, visibility)(env)
 }
 object Textbox {
   trait Algebra extends gooey.Algebra {
@@ -55,9 +63,16 @@ object Textbox {
         label: Option[String],
         default: String,
         style: TextboxStyle,
-        observers: Chain[WritableVar[String]]
+        observers: Chain[WritableVar[String]],
+        visibility: Var[Visibility]
     )(env: Env): UI[String]
   }
 
-  val empty: Textbox = Textbox(None, "", TextboxStyle.SingleLine, Chain.empty)
+  val empty: Textbox = Textbox(
+    None,
+    "",
+    TextboxStyle.SingleLine,
+    Chain.empty,
+    Var.constant(Visibility.Visible)
+  )
 }
