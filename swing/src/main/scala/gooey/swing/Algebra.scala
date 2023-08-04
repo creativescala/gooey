@@ -19,9 +19,10 @@ package gooey.swing
 import cats.data.Chain
 import cats.effect.IO
 import cats.effect.Resource
-import cats.effect.syntax.all.*
 import cats.syntax.all.*
 import fs2.concurrent.*
+import gooey.Var
+import gooey.Visibility
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
@@ -93,7 +94,8 @@ given Algebra: gooey.Algebra
       label: Option[String],
       default: String,
       style: TextboxStyle,
-      observers: Chain[WritableVar[String]]
+      observers: Chain[WritableVar[String]],
+      visibility: Var[Visibility]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val signals = addSources(observers, output, env)

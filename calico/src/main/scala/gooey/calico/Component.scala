@@ -23,9 +23,6 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
-import gooey.Var
-
-import scala.collection.mutable
 
 final case class Component[A](
     elements: Chain[HtmlElement[IO]],

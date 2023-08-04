@@ -19,7 +19,7 @@ package gooey.component
 import cats.data.Chain
 import gooey.WritableVar
 
-/** Component that produces a value but doesn't produce an visual output. */
+/** Component that produces a value but doesn't produce a visual output. */
 final case class Map[Alg <: gooey.Algebra, A, B](
     source: Component[Alg, A],
     f: A => B

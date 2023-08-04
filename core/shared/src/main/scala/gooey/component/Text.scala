@@ -44,6 +44,6 @@ object Text {
     ): UI[Unit]
   }
 
-  def apply(content: String): Text =
-    Text(Var.constant(content), Var.constant(Visibility.Visible))
+  def apply(content: Observable[String]): Text =
+    Text(Observable.toVar(content), Var.constant(Visibility.Visible))
 }

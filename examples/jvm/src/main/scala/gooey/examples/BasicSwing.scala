@@ -19,7 +19,7 @@ package gooey.examples
 import fs2.concurrent.Signal
 import gooey.component.*
 import gooey.component.style.*
-import gooey.swing.{_, given}
+import gooey.swing.given
 import gooey.syntax.all.*
 import net.bulbyvr.swing.io.IOSwingApp
 import net.bulbyvr.swing.io.all.{_, given}

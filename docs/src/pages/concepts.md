@@ -22,7 +22,7 @@ The type `A` defines the type of values that the `Component` produces. So, for e
 
 The majority of methods on components are *builders*. This means the return a copy of the component they operate on. Builder methods *always* return an updated copy of the component; they *never* mutate a component. This allows reasoning with substitution about components. For example
 
-```scala mdoc:silent 
+```scala mdoc
 import gooey.component.*
 
 val c1 = Textbox.empty.withLabel("A label")
@@ -31,7 +31,7 @@ val c2 = Textbox.empty.withLabel("A label")
 
 is exactly the same as
 
-```scala mdoc:silent
+```scala mdoc:silent:reset
 import gooey.component.*
 
 val c1 = Textbox.empty.withLabel("A label")

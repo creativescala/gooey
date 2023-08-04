@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-package gooey
+package gooey.component
 
-/** Enumeration for specifying if a Component is shown or hidden */
-enum Visibility {
-  case Visible
-  case Invisible
+import gooey.Var
+
+/** Create a Component that takes it's value from a Var. */
+final case class Observed[A](
+    source: Var[A]
+) extends Component[Observed.Algebra, A] {
+
+  private[gooey] def build(algebra: Observed.Algebra)(
+      env: algebra.Env
+  ): algebra.UI[A] =
+    algebra.observed(source)(env)
 }
-object Visibility {
-
-  /** Utility to convert a Boolean to a Visible, under the assumption that true
-    * means visible.
-    */
-  def fromBoolean(visible: Boolean): Visibility =
-    if visible then Visible else Invisible
+object Observed {
+  trait Algebra extends gooey.Algebra {
+    def observed[A](source: Var[A])(env: Env): UI[A]
+  }
 }
