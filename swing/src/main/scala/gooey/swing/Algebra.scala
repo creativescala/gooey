@@ -22,7 +22,7 @@ import cats.effect.Resource
 import cats.syntax.all.*
 import fs2.concurrent.*
 import gooey.Var
-import gooey.Visibility
+import gooey.Display
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
@@ -95,7 +95,7 @@ given Algebra: gooey.Algebra
       default: String,
       style: TextboxStyle,
       observers: Chain[WritableVar[String]],
-      visibility: Var[Visibility]
+      display: Var[Display]
   )(env: Env): UI[String] = {
     SignallingRef[IO].of(default).toResource.flatMap { output =>
       val signals = addSources(observers, output, env)

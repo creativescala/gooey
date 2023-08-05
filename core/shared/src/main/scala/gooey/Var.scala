@@ -17,7 +17,6 @@
 package gooey
 
 import java.util.concurrent.atomic.AtomicInteger
-import scala.collection.mutable
 
 /** A `Var` represents a time varying value. At all points in time a `Var`
   * contains a value of type `A`. Interested parties can subscribe to receive
@@ -53,15 +52,13 @@ object Var {
   private[gooey] final case class View[A, B](source: Var[A], f: A => B)
       extends Var[B]
   private[gooey] final case class Constant[A](value: A) extends Var[A] {
-    import Var.Id
-
-    final val id: Id = Id.next()
+    final val id: Var.Id = Var.Id.next()
   }
 
   opaque type Id = Int
   object Id {
     private[this] val nextId = new AtomicInteger()
-    def next(): Id = nextId.getAndIncrement()
+    def next(): Var.Id = nextId.getAndIncrement()
   }
 
   /** Create a Var that always holds the same value. */
@@ -86,7 +83,5 @@ object Var {
 
 /** A `Var` that allows the value contained within it to be changed. */
 final case class WritableVar[A](default: A) extends Var[A] {
-  import Var.Id
-
-  final val id: Id = Id.next()
+  final val id: Var.Id = Var.Id.next()
 }

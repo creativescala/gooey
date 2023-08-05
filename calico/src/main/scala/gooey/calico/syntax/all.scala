@@ -16,7 +16,6 @@
 
 package gooey.calico.syntax
 
-import calico.syntax.*
 import cats.effect.*
 import fs2.dom.*
 import gooey.calico.*

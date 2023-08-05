@@ -19,9 +19,9 @@ package gooey.component
 import gooey.*
 
 /** Text is a component for displaying text. */
-final case class Text(content: Var[String], visibility: Var[Visibility])
+final case class Text(content: Var[String], display: Var[Display])
     extends Component[Text.Algebra, Unit],
-      Visible[Text] {
+      Displayable[Text] {
 
   def withContent(content: String): Text =
     this.copy(content = Var.constant(content))
@@ -29,21 +29,21 @@ final case class Text(content: Var[String], visibility: Var[Visibility])
   def withContent(content: Var[String]): Text =
     this.copy(content = content)
 
-  def withVisibility(visibility: Observable[Visibility]): Text =
-    this.copy(visibility = Observable.toVar(visibility))
+  def withDisplay(display: Observable[Display]): Text =
+    this.copy(display = Observable.toVar(display))
 
   private[gooey] def build(algebra: Text.Algebra)(
       env: algebra.Env
   ): algebra.UI[Unit] =
-    algebra.text(content, visibility)(env)
+    algebra.text(content, display)(env)
 }
 object Text {
   trait Algebra extends gooey.Algebra {
-    def text(content: Var[String], visibility: Var[Visibility])(
+    def text(content: Var[String], display: Var[Display])(
         env: Env
     ): UI[Unit]
   }
 
   def apply(content: Observable[String]): Text =
-    Text(Observable.toVar(content), Var.constant(Visibility.Visible))
+    Text(Observable.toVar(content), Var.constant(Display.Show))
 }

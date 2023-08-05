@@ -16,9 +16,6 @@
 
 package gooey.component
 
-import cats.data.Chain
-import gooey.WritableVar
-
 /** Component that produces a value but doesn't produce an visual output. */
 final case class Pure[A](value: A) extends Component[Pure.Algebra, A] {
   private[gooey] def build(algebra: Pure.Algebra)(

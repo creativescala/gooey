@@ -16,16 +16,19 @@
 
 package gooey
 
-/** Enumeration for specifying if a Component is shown or hidden */
-enum Visibility {
-  case Visible
-  case Invisible
+/** Enumeration for specifying if a Component is shown or hidden. The semantics
+  * are the same as the 'display' style in CSS: a hidden component is not
+  * visible and takes up no space on the screen.
+  */
+enum Display {
+  case Show
+  case Hide
 }
-object Visibility {
+object Display {
 
-  /** Utility to convert a Boolean to a Visible, under the assumption that true
-    * means visible.
+  /** Utility to convert a Boolean to a Display, under the assumption that true
+    * means shown.
     */
-  def fromBoolean(visible: Boolean): Visibility =
-    if visible then Visible else Invisible
+  def fromBoolean(show: Boolean): Display =
+    if show then Show else Hide
 }
