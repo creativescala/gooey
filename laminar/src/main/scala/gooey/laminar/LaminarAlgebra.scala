@@ -1,9 +1,26 @@
+/*
+ * Copyright 2023 Creative Scala
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package gooey.laminar
 
-import com.raquo.laminar.api.L.{*, given}
+import cats.data.Chain
 import com.raquo.airstream.state.{Var => LVar}
-import gooey.Var
+import com.raquo.laminar.api.L.*
 import gooey.Display
+import gooey.Var
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
@@ -16,7 +33,6 @@ import gooey.component.Slider
 import gooey.component.Text
 import gooey.component.Textbox
 import gooey.component.style.*
-import cats.data.Chain
 
 type LaminarAlgebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Dropdown.Algebra &
@@ -54,7 +70,19 @@ given LaminarAlgebra: gooey.Algebra
       display: Var[Display]
   )(env: Environment): LaminarComponent[String] = {
     val output = LVar(default)
-    val signals = observers.map(o => env.addSource(o.id, output))
+    val signals: List[(Var.Id, Option[Sink[String]])] =
+      observers.map(o => (o.id -> env.get(o.id))).toList
+
+    // Hook up the observers that already exist in the environment to the onInput event
+    val modifiers = signals.collect {
+      case (id -> Some(sink)) => (onInput.mapToValue --> sink)
+    }
+    // Set the IDs that don't have an observer to output
+    signals
+      .collect { case (id -> None) => id }
+      .foreach(id => env.set(id, output))
+
+    // val signals = observers.map(o => env.addSource(o.id, output))
     val element =
       style match {
         case TextboxStyle.SingleLine =>
@@ -67,6 +95,6 @@ given LaminarAlgebra: gooey.Algebra
           textArea(value := default)
       }
 
-    LaminarComponent(element, output.toObservable)
+    LaminarComponent(element.amend(modifiers: _*), output.toObservable)
   }
 }

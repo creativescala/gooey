@@ -24,8 +24,8 @@ import cats.effect.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import fs2.dom.*
-import gooey.Var
 import gooey.Display
+import gooey.Var
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
@@ -193,9 +193,16 @@ given Algebra: gooey.Algebra
   def text(content: Var[String], display: Var[Display])(
       env: Environment
   ): UI[Unit] =
-    env.getOrCreate(content).toResource.flatMap { signal =>
-      p(signal).map(elt => Component(elt, Signal.constant[IO, Unit](())))
-    }
+    (env.getOrCreate(content), env.getOrCreate(display)).tupled.toResource
+      .flatMap { (content, display) =>
+        p(
+          calico.html.io.styleAttr <-- display.map {
+            case Display.Show => ""
+            case Display.Hide => "display: none;"
+          },
+          content
+        ).map(elt => Component(elt, Signal.constant[IO, Unit](())))
+      }
 
   def textbox(
       label: Option[String],

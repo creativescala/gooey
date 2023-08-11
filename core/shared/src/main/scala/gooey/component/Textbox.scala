@@ -18,9 +18,9 @@ package gooey.component
 
 import cats.data.Chain
 import gooey.Algebra
+import gooey.Display
 import gooey.Observable
 import gooey.Var
-import gooey.Display
 import gooey.WritableVar
 import gooey.component.style.TextboxStyle
 

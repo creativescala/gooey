@@ -16,8 +16,8 @@
 
 package gooey.component
 
-import gooey.Observable
 import gooey.Display
+import gooey.Observable
 
 /** API for components that can be shown or hidden. */
 trait Displayable[Self] { self: Self =>

@@ -21,8 +21,8 @@ import cats.effect.IO
 import cats.effect.Resource
 import cats.syntax.all.*
 import fs2.concurrent.*
-import gooey.Var
 import gooey.Display
+import gooey.Var
 import gooey.WritableVar
 import gooey.component.And
 import gooey.component.Checkbox
