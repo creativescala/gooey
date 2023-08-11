@@ -73,6 +73,7 @@ lazy val root = project
     generic.js,
     generic.jvm,
     calico,
+    laminar,
     swing,
     examples.js,
     examples.jvm
@@ -93,7 +94,6 @@ lazy val generic = crossProject(JSPlatform, JVMPlatform)
   .in(file("generic"))
   .settings(
     commonSettings,
-    libraryDependencies += Dependencies.magnolia.value,
     moduleName := "gooey-generic"
   )
   .dependsOn(core)
@@ -104,6 +104,16 @@ lazy val calico = project
     commonSettings,
     libraryDependencies ++= Seq(Dependencies.calico.value),
     moduleName := "gooey-calico"
+  )
+  .enablePlugins(ScalaJSPlugin)
+  .dependsOn(core.js)
+
+lazy val laminar = project
+  .in(file("laminar"))
+  .settings(
+    commonSettings,
+    libraryDependencies ++= Seq(Dependencies.laminar.value),
+    moduleName := "gooey-laminar"
   )
   .enablePlugins(ScalaJSPlugin)
   .dependsOn(core.js)
@@ -132,7 +142,8 @@ lazy val docs =
       mdocIn := file("docs/src/pages"),
       mdocVariables := {
         mdocVariables.value ++ Map(
-          "CALICO_VERSION" -> Dependencies.calicoVersion
+          "CALICO_VERSION" -> Dependencies.calicoVersion,
+          "LAMINAR_VERSION" -> Dependencies.laminarVersion
         )
       },
       css := {
