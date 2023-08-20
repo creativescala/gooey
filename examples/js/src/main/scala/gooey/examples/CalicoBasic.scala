@@ -42,31 +42,31 @@ object CalicoBasic {
 
     val component = Text(
       "This example demonstrates the components implemented by the Calico backend."
-    ).widen[Algebra] *>
+    ).widen[CalicoAlgebra] *>
       (
         Checkbox.empty
           .withLabel("Is this awesome?")
           .withObserver(awesomeness)
-          .widen[Algebra],
+          .widen[CalicoAlgebra],
         Slider(1, 10)
           .withLabel(
             "On a scale of 1 to 10, rate the amount of awesomeness"
           )
           .withObserver(rating)
-          .widen[Algebra],
+          .widen[CalicoAlgebra],
         Dropdown(
           NonEmptySeq.of(("Superb", 1), ("Stupendous", 3), ("Awesome", 5))
         )
           .withLabel("Chose the adjective that best describes your experience")
           .withObserver(adjective)
-          .widen[Algebra],
+          .widen[CalicoAlgebra],
         Textbox.empty
           .withLabel(
             "Describe, in your own words, the reasons behind your rating"
           )
           .withObserver(reasons)
           .withStyle(TextboxStyle.SingleLine)
-          .widen[Algebra],
+          .widen[CalicoAlgebra],
       ).tupled
       <* Text(
         awesomeness.map(a =>

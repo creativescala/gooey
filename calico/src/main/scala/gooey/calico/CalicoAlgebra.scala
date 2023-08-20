@@ -39,12 +39,12 @@ import gooey.component.Text
 import gooey.component.Textbox
 import gooey.component.style.*
 
-type Algebra =
+type CalicoAlgebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Dropdown.Algebra &
     Form.Algebra & Map.Algebra & Observe.Algebra & Pure.Algebra &
     Slider.Algebra & Text.Algebra & Textbox.Algebra
 
-given Algebra: gooey.Algebra
+given CalicoAlgebra: gooey.Algebra
   with And.Algebra
   with Checkbox.Algebra
   with Dropdown.Algebra
@@ -67,7 +67,7 @@ given Algebra: gooey.Algebra
     for {
       fst <- f
       snd <- s
-    } yield fst.product(snd)
+    } yield fst.above(snd)
   }
 
   def checkbox(
@@ -134,20 +134,17 @@ given Algebra: gooey.Algebra
       onSubmit: A => Unit
   )(env: Env): UI[A] = {
     component.flatMap { c =>
-      val elts = c.elements
-      val signal = c.signal
-
       calico.html.io
         .form(
           h2(title),
-          elts.toList,
+          c.render,
           button(
             `type` := "button",
-            onClick --> (_.foreach { _ => signal.get.map(onSubmit) }),
+            onClick --> (_.foreach { _ => c.signal.get.map(onSubmit) }),
             submit
           )
         )
-        .map(elements => Component(elements, signal))
+        .map(elements => Component(elements, c.signal))
     }
   }
 
@@ -160,7 +157,7 @@ given Algebra: gooey.Algebra
     )
 
   def pure[A](value: A)(env: Env): UI[A] =
-    Resource.eval(IO(Component(Chain.empty, Signal.constant[IO, A](value))))
+    Resource.eval(IO(Component.pure(Signal.constant[IO, A](value))))
 
   def slider(
       label: Option[String],

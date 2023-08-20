@@ -33,17 +33,17 @@ object CalicoForm {
   def mount(id: String): Unit = {
     val component =
       (
-        Textbox.empty.withLabel("What is your name?").widen[Algebra],
+        Textbox.empty.withLabel("What is your name?").widen[CalicoAlgebra],
         Slider(1, 10)
           .withLabel(
             "On a scale of 1 (Chihuahua) to 10 (Great Dane), rate how much dog you have in you"
           )
-          .widen[Algebra],
+          .widen[CalicoAlgebra],
         Textbox.empty
           .withLabel(
             "What sort of philosophers are we, who know absolutely nothing about the origin and destiny of cats?"
           )
-          .widen[Algebra]
+          .widen[CalicoAlgebra]
       ).tupled
 
     val form =

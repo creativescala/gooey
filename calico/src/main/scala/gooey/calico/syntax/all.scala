@@ -38,7 +38,7 @@ object all {
 
   extension [A](elt: Resource[IO, Component[A]]) {
     def renderComponentToId(id: String)(using Dom[IO]): IO[Unit] = {
-      elt.flatMap(component => component.buildElement).renderHtmlToId(id)
+      elt.flatMap(component => component.render).renderHtmlToId(id)
     }
   }
 }
