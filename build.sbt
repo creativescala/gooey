@@ -70,8 +70,6 @@ lazy val root = project
   .aggregate(
     core.js,
     core.jvm,
-    generic.js,
-    generic.jvm,
     calico,
     laminar,
     swing,
@@ -89,14 +87,6 @@ lazy val core = crossProject(JSPlatform, JVMPlatform)
     ),
     moduleName := "gooey-core"
   )
-
-lazy val generic = crossProject(JSPlatform, JVMPlatform)
-  .in(file("generic"))
-  .settings(
-    commonSettings,
-    moduleName := "gooey-generic"
-  )
-  .dependsOn(core)
 
 lazy val calico = project
   .in(file("calico"))
