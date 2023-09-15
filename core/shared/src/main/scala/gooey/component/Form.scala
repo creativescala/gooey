@@ -17,6 +17,8 @@
 package gooey.component
 
 import gooey.Algebra
+import gooey.generic.ToComponent
+import gooey.generic.ToComponentAlgebra
 
 /** A Form is a utility to quickly collect information from the user. It trades
   * off flexibility for ease-of-use.
@@ -74,4 +76,9 @@ object Form {
       component: Component[Alg, A]
   ): Form[Alg, A] =
     Form(title, component, "Submit", _ => ())
+
+  def build[A](using
+      builder: ToComponent[A]
+  ): Form[ToComponentAlgebra, A] =
+    Form("Form", builder.toComponent, "Submit", _ => ())
 }

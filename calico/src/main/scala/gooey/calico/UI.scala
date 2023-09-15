@@ -19,4 +19,4 @@ package gooey.calico
 import cats.effect.IO
 import cats.effect.Resource
 
-type UI[A] = Resource[IO, Component[A]]
+type UI[A] = Resource[IO, CalicoComponent[A]]

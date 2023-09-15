@@ -36,7 +36,7 @@ object all {
     }
   }
 
-  extension [A](elt: Resource[IO, Component[A]]) {
+  extension [A](elt: Resource[IO, CalicoComponent[A]]) {
     def renderComponentToId(id: String)(using Dom[IO]): IO[Unit] = {
       elt.flatMap(component => component.render).renderHtmlToId(id)
     }

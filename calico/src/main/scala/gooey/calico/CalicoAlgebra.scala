@@ -93,7 +93,7 @@ given CalicoAlgebra: gooey.Algebra
             )
           }
         )
-      signals *> element.map(e => Component(e, output))
+      signals *> element.map(e => CalicoComponent(e, output))
     }
   }
 
@@ -123,7 +123,7 @@ given CalicoAlgebra: gooey.Algebra
             )
           }
         )
-      signals *> element.map(e => Component(e, output))
+      signals *> element.map(e => CalicoComponent(e, output))
     }
   }
 
@@ -144,7 +144,7 @@ given CalicoAlgebra: gooey.Algebra
             submit
           )
         )
-        .map(elements => Component(elements, c.signal))
+        .map(elements => CalicoComponent(elements, c.signal))
     }
   }
 
@@ -157,7 +157,7 @@ given CalicoAlgebra: gooey.Algebra
     )
 
   def pure[A](value: A)(env: Env): UI[A] =
-    Resource.eval(IO(Component.pure(Signal.constant[IO, A](value))))
+    Resource.eval(IO(CalicoComponent.pure(Signal.constant[IO, A](value))))
 
   def slider(
       label: Option[String],
@@ -183,7 +183,7 @@ given CalicoAlgebra: gooey.Algebra
             )
           }
         )
-      signals *> element.map(e => Component(e, output))
+      signals *> element.map(e => CalicoComponent(e, output))
     }
   }
 
@@ -192,13 +192,12 @@ given CalicoAlgebra: gooey.Algebra
   ): UI[Unit] =
     (env.getOrCreate(content), env.getOrCreate(display)).tupled.toResource
       .flatMap { (content, display) =>
+        val classes = displayToClasses(display)
         p(
-          calico.html.io.styleAttr <-- display.map {
-            case Display.Show => ""
-            case Display.Hide => "display: none;"
-          },
           content
-        ).map(elt => Component(elt, Signal.constant[IO, Unit](())))
+        ).map(elt =>
+          CalicoComponent(elt, classes, Signal.constant[IO, Unit](()))
+        )
       }
 
   def textbox(
@@ -208,36 +207,38 @@ given CalicoAlgebra: gooey.Algebra
       observers: Chain[WritableVar[String]],
       display: Var[gooey.Display]
   )(env: Env): UI[String] = {
-    SignallingRef[IO].of(default).toResource.flatMap { output =>
-      val signals = addSources(observers, output, env)
-      val element =
-        makeComponent(
-          makeLabel(label),
-          style match {
-            case TextboxStyle.SingleLine =>
-              input.withSelf { self =>
-                (
-                  value := default,
-                  `type` := "text",
-                  cls := elementClass,
-                  onInput --> (_.foreach(_ =>
-                    self.value.get.flatMap(output.set)
-                  ))
-                )
-              }
-            case TextboxStyle.MultiLine =>
-              textArea.withSelf { self =>
-                (
-                  value := default,
-                  onInput --> (_.foreach(_ =>
-                    self.value.get.flatMap(output.set)
-                  ))
-                )
-              }
-          }
-        )
-      signals *> element.map(e => Component(e, output))
-    }
+    (SignallingRef[IO].of(default), env.getOrCreate(display)).tupled.toResource
+      .flatMap { (output, display) =>
+        val signals = addSources(observers, output, env)
+        val classes = displayToClasses(display)
+        val element =
+          makeComponent(
+            makeLabel(label),
+            style match {
+              case TextboxStyle.SingleLine =>
+                input.withSelf { self =>
+                  (
+                    value := default,
+                    `type` := "text",
+                    cls := elementClass,
+                    onInput --> (_.foreach(_ =>
+                      self.value.get.flatMap(output.set)
+                    ))
+                  )
+                }
+              case TextboxStyle.MultiLine =>
+                textArea.withSelf { self =>
+                  (
+                    value := default,
+                    onInput --> (_.foreach(_ =>
+                      self.value.get.flatMap(output.set)
+                    ))
+                  )
+                }
+            }
+          )
+        signals *> element.map(e => CalicoComponent(e, classes, output))
+      }
   }
 
   // Utilities -------------------------------------------------------
@@ -265,4 +266,10 @@ given CalicoAlgebra: gooey.Algebra
       env: Environment
   ): Resource[IO, Chain[Signal[IO, A]]] =
     observers.traverse(o => env.addSource(o.id, source)).toResource
+
+  def displayToClasses(display: Signal[IO, Display]): Signal[IO, List[String]] =
+    display.map {
+      case Display.Hide => List("hidden")
+      case Display.Show => List.empty
+    }
 }

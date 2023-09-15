@@ -5,3 +5,5 @@ The Calico backend works with [Calico](https://www.armanbilge.com/calico/) @CALI
 @:doodle(calico-basic, CalicoBasic.mount)
 
 @:doodle(calico-form, CalicoForm.mount)
+
+@:doodle(calico-generic, CalicoGeneric.mount1)
