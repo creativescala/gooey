@@ -7,6 +7,7 @@ Gooey is a Scala library for creating user interfaces. It's goal is to make it v
 To use Gooey, add the following to your `build.sbt`
 
 ```scala
+resolvers ++= Resolver.sonatypeOssRepos("snapshots")
 libraryDependencies += "org.creativescala" %% "gooey" % "@VERSION@"
 ```
 
