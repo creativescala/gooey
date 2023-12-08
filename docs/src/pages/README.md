@@ -8,7 +8,7 @@ To use Gooey, add the following to your `build.sbt`
 
 ```scala
 resolvers ++= Resolver.sonatypeOssRepos("snapshots")
-libraryDependencies += "org.creativescala" %% "gooey" % "@VERSION@"
+libraryDependencies += "org.creativescala" %% "gooey-core" % "@VERSION@"
 ```
 
 ## ScalaDoc
