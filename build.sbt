@@ -46,13 +46,14 @@ ThisBuild / tlSitePublishBranch := Some("main")
 
 // Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
-  "dependencyUpdates" ::
-    "compile" ::
+  "compile" ::
     "test" ::
     "docs / tlSite" ::
     "scalafixAll" ::
     "scalafmtAll" ::
     "headerCreateAll" ::
+    "dependencyUpdates" ::
+    "reload plugins; dependencyUpdates; reload return" ::
     state
 }
 

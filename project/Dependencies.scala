@@ -7,7 +7,7 @@ object Dependencies {
   // Library Versions
   val calicoVersion = "0.2.1"
   val catsVersion = "2.10.0"
-  val catsEffectVersion = "3.5.1"
+  val catsEffectVersion = "3.5.3"
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
