@@ -40,7 +40,17 @@
             <h2 id="getting-started" class="section">Getting Started</h2>
             <p>To use Gooey, add the following to your <code>build.sbt</code></p>
             <pre><code class="nohighlight"><span class="identifier">resolvers</span><span> ++= </span><span class="type-name">Resolver</span><span>.</span><span class="identifier">sonatypeOssRepos</span><span>(</span><span class="string-literal">&quot;snapshots&quot;</span><span>)
-</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-506e1b8-SNAPSHOT&quot;</span></code></pre>
+
+</span><span class="comment">// Use this for JVM projects
+</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-45cc8ae-SNAPSHOT&quot;</span><span>
+
+</span><span class="comment">// Use this for Javascript / web projects, or projects targetting both the JVM and Javascript
+</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-45cc8ae-SNAPSHOT&quot;</span></code></pre>
+            <p>You&#39;ll also need to add the particular backend you intend to use.</p>
+            <p>For the Calico backend:</p>
+            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-calico&quot;</span><span> % </span><span class="string-literal">&quot;0.1-45cc8ae-SNAPSHOT&quot;</span></code></pre>
+            <p>For the Swing backend:</p>
+            <pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-swing&quot;</span><span> % </span><span class="string-literal">&quot;0.1-45cc8ae-SNAPSHOT&quot;</span></code></pre>
             
             <h2 id="scaladoc" class="section">ScalaDoc</h2>
             <p>See the ScalaDoc <a href="https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest/gooey/index.html">index</a> for API documentation.</p>
