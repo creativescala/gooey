@@ -113,7 +113,8 @@ lazy val swing = project
   .in(file("swing"))
   .settings(
     commonSettings,
-    libraryDependencies ++= Seq(Dependencies.swingIo.value)
+    libraryDependencies ++= Seq(Dependencies.swingIo.value),
+    moduleName := "gooey-swing"
   )
   .dependsOn(core.jvm)
 
