@@ -11,8 +11,11 @@ To use Gooey, add the following to your `build.sbt`
 resolvers ++= Resolver.sonatypeOssRepos("snapshots")
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 libraryDependencies += "org.creativescala" %% "gooey-core" % "@VERSION@"
 =======
+=======
+>>>>>>> 5a28a2e (Document backend dependencies)
 =======
 >>>>>>> 5a28a2e (Document backend dependencies)
 
@@ -22,6 +25,9 @@ libraryDependencies += "org.creativescala" %% "gooey-core" % "@VERSION@"
 // Use this for Javascript / web projects, or projects targetting both the JVM and Javascript
 libraryDependencies += "org.creativescala" %%% "gooey-core" % "@VERSION@"
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 5a28a2e (Document backend dependencies)
+=======
 >>>>>>> 5a28a2e (Document backend dependencies)
 =======
 >>>>>>> 5a28a2e (Document backend dependencies)
