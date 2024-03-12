@@ -19,6 +19,7 @@ package gooey.component
 import cats.data.Chain
 import gooey.WritableVar
 
+/** A [[Checkbox]] allows the user to select or deselect a single option. */
 final case class Checkbox(
     label: Option[String],
     default: Boolean,

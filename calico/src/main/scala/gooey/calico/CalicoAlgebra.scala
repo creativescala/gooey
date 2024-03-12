@@ -27,16 +27,7 @@ import fs2.dom.*
 import gooey.Display
 import gooey.Var
 import gooey.WritableVar
-import gooey.component.And
-import gooey.component.Checkbox
-import gooey.component.Dropdown
-import gooey.component.Form
-import gooey.component.Map
-import gooey.component.Observe
-import gooey.component.Pure
-import gooey.component.Slider
-import gooey.component.Text
-import gooey.component.Textbox
+import gooey.component.*
 import gooey.component.style.*
 
 type CalicoAlgebra =
