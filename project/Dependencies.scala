@@ -5,13 +5,13 @@ import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
 
 object Dependencies {
   // Library Versions
-  val calicoVersion = "0.2.0"
-  val catsVersion = "2.9.0"
-  val catsEffectVersion = "3.5.0"
+  val calicoVersion = "0.2.2"
+  val catsVersion = "2.10.0"
+  val catsEffectVersion = "3.5.4"
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
-  val magnoliaVersion = "1.3.2"
+  val magnoliaVersion = "1.3.4"
 
   val munitVersion = "0.7.29"
 
