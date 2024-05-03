@@ -28,13 +28,14 @@ import gooey.component.Checkbox
 import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Textbox
+import gooey.component.Button
 import gooey.component.style.*
 import net.bulbyvr.swing.io.all.{_, given}
 import net.bulbyvr.swing.io.wrapper.*
 
 type Algebra =
   gooey.Algebra & And.Algebra & Checkbox.Algebra & Map.Algebra & Pure.Algebra &
-    Textbox.Algebra
+    Textbox.Algebra & Button.Algebra
 
 given Algebra: gooey.Algebra
   with And.Algebra
@@ -42,6 +43,7 @@ given Algebra: gooey.Algebra
   with Map.Algebra
   with Pure.Algebra
   with Textbox.Algebra
+  with Button.Algebra
   with {
 
   type Env = Environment
@@ -115,6 +117,34 @@ given Algebra: gooey.Algebra
       signals *> component.map(c => (c, output))
     }
   }
+
+  def button(
+      label: Option[String],
+      onClick: () => Unit,
+      observers: Chain[WritableVar[Unit]]
+  )(env: Env): UI[Unit] = {
+      SignallingRef[IO].of(()).toResource.flatMap { clickSignal =>
+          val signals = addObservers(observers, clickSignal)
+          val component = makeComponent(
+              makeLabel(label),
+              buttonWithClick(onClick, clickSignal)
+          )
+          signals *> component.map(c => (c, ()))
+      }
+  }
+
+  private def buttonWithClick(
+      onClick: () => Unit,
+      clickSignal: SignallingRef[IO, Unit]
+  ): Resource[IO, Component[IO]] =
+      Resource.pure[IO, JButton](
+        new JButton().tap { btn =>
+            btn.addActionListener { _ =>
+                onClick()            
+                clickSignal.set(()) 
+            }
+          }
+      ).map(Component(_))
 
   // Utilities -------------------------------------------------------
 
