@@ -17,18 +17,13 @@
 package gooey.examples
 
 import calico.*
-import calico.html.io.{_, given}
-import calico.syntax.*
+import calico.html.io.given
 import calico.unsafe.given
-import cats.effect.*
 import cats.syntax.all.*
-import fs2.dom.*
 import gooey.calico.syntax.all.*
-import gooey.calico.{_, given}
+import gooey.calico.{*, given}
 import gooey.component.Component.componentApplicative
 import gooey.component.*
-import gooey.component.style.*
-import gooey.syntax.all.*
 
 import scala.scalajs.js.annotation.*
 

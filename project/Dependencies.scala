@@ -1,19 +1,19 @@
-import sbt._
+import sbt.*
 import org.scalajs.sbtplugin.ScalaJSPlugin
-import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport._
-import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport._
+import org.scalajs.sbtplugin.ScalaJSPlugin.autoImport.*
+import org.portablescala.sbtplatformdeps.PlatformDepsPlugin.autoImport.*
 
 object Dependencies {
   // Library Versions
-  val calicoVersion = "0.2.2"
-  val catsVersion = "2.10.0"
-  val catsEffectVersion = "3.5.4"
+  val calicoVersion = "0.2.3"
+  val catsVersion = "2.12.0"
+  val catsEffectVersion = "3.5.7"
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
-  val magnoliaVersion = "1.3.4"
+  val magnoliaVersion = "1.3.9"
 
-  val munitVersion = "0.7.29"
+  val munitVersion = "1.0.4"
 
   // Libraries
   val calico = Def.setting("com.armanbilge" %%% "calico" % calicoVersion)

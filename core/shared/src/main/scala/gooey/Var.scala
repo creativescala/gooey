@@ -17,7 +17,6 @@
 package gooey
 
 import java.util.concurrent.atomic.AtomicInteger
-import scala.collection.mutable
 
 /** A `Var` represents a time varying value. At all points in time a `Var`
   * contains a value of type `A`. Interested parties can subscribe to receive
@@ -47,8 +46,6 @@ object Var {
   private[gooey] final case class View[A, B](source: Var[A], f: A => B)
       extends Var[B]
   private[gooey] final case class Constant[A](value: A) extends Var[A] {
-    import Var.Id
-
     final val id: Id = Id.next()
   }
 

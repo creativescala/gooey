@@ -17,7 +17,6 @@
 package gooey.component
 
 import cats.data.Chain
-import gooey.Algebra
 import gooey.WritableVar
 
 final case class Slider(

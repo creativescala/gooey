@@ -19,7 +19,6 @@ package gooey.swing
 import cats.data.Chain
 import cats.effect.IO
 import cats.effect.Resource
-import cats.effect.syntax.all.*
 import cats.syntax.all.*
 import fs2.concurrent.*
 import gooey.WritableVar
@@ -29,7 +28,7 @@ import gooey.component.Map
 import gooey.component.Pure
 import gooey.component.Textbox
 import gooey.component.style.*
-import net.bulbyvr.swing.io.all.{_, given}
+import net.bulbyvr.swing.io.all.{*, given}
 import net.bulbyvr.swing.io.wrapper.*
 
 type Algebra =

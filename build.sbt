@@ -13,10 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import scala.sys.process._
-import laika.rewrite.link.LinkConfig
-import laika.rewrite.link.ApiLinks
+import scala.sys.process.*
+import laika.config.LinkConfig
+import laika.config.ApiLinks
 import laika.theme.Theme
+import laika.helium.config.TextLink
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
@@ -32,27 +33,31 @@ ThisBuild / developers := List(
 )
 
 // true by default, set to false to publish to s01.oss.sonatype.org
-ThisBuild / tlSonatypeUseLegacyHost := true
+ThisBuild / sonatypeCredentialHost := xerial.sbt.Sonatype.sonatypeLegacy
 
-lazy val scala3 = "3.3.3"
+lazy val scala3 = "3.3.4"
 
 ThisBuild / crossScalaVersions := List(scala3)
 ThisBuild / scalaVersion := crossScalaVersions.value.head
-ThisBuild / useSuperShell := false
-ThisBuild / scalafixDependencies += "com.github.liancheng" %% "organize-imports" % "0.6.0"
+ThisBuild / useSuperShell := true
 ThisBuild / semanticdbEnabled := true
 ThisBuild / semanticdbVersion := scalafixSemanticdb.revision
 ThisBuild / tlSitePublishBranch := Some("main")
 
 // Run this (build) to do everything involved in building the project
+// Run this (build) to do everything involved in building the project
 commands += Command.command("build") { state =>
-  "dependencyUpdates" ::
+  "clean" ::
     "compile" ::
     "test" ::
-    "docs / tlSite" ::
     "scalafixAll" ::
     "scalafmtAll" ::
+    "scalafmtSbt" ::
     "headerCreateAll" ::
+    "githubWorkflowGenerate" ::
+    "dependencyUpdates" ::
+    "reload plugins; dependencyUpdates; reload return" ::
+    "docs / tlSite" ::
     state
 }
 
@@ -121,14 +126,18 @@ lazy val docs =
   project
     .in(file("docs"))
     .settings(
+      tlSiteApiUrl := Some(
+        sbt.url(
+          "https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest/"
+        )
+      ),
       laikaConfig := laikaConfig.value.withConfigValue(
-        LinkConfig(apiLinks =
-          Seq(
+        LinkConfig.empty
+          .addApiLinks(
             ApiLinks(baseUri =
               "https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest/"
             )
           )
-        )
       ),
       mdocIn := file("docs/src/pages"),
       mdocVariables := {
@@ -136,35 +145,39 @@ lazy val docs =
           "CALICO_VERSION" -> Dependencies.calicoVersion
         )
       },
-      css := {
-        val src = file("docs/src/css")
-        val dest1 = mdocOut.value
-        val dest2 = (laikaSite / target).value
-        val cmd1 =
-          s"npx tailwindcss -i ${src.toString}/creative-scala.css -o ${dest1.toString}/creative-scala.css"
-        val cmd2 =
-          s"npx tailwindcss -i ${src.toString}/creative-scala.css -o ${dest2.toString}/creative-scala.css"
-        cmd1 !
-
-        cmd2 !
-      },
-      Laika / sourceDirectories ++=
-        Seq(
-          file("docs/src/templates"),
-          (examples.js / Compile / fastOptJS / artifactPath).value
-            .getParentFile() / s"${(examples.js / moduleName).value}-fastopt"
-        ),
-      laikaTheme := Theme.empty,
+      Laika / sourceDirectories ++= Seq(
+        (examples.js / Compile / fastOptJS / artifactPath).value
+          .getParentFile() / s"${(examples.js / moduleName).value}-fastopt"
+      ),
+      laikaTheme := CreativeScalaTheme.empty
+        .addJs(laika.ast.Path.Root / "main.js")
+        .withHome(
+          TextLink.internal(laika.ast.Path.Root / "README.md", "Gooey")
+        )
+        .withCommunity(
+          TextLink.external("https://discord.gg/rRhcFbJxVG", "Community")
+        )
+        .withApi(
+          TextLink.external(
+            "https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest",
+            "API"
+          )
+        )
+        .withSource(
+          TextLink.external(
+            "https://github.com/creativescala/gooey",
+            "Source"
+          )
+        )
+        .build,
       laikaExtensions ++= Seq(
-        laika.markdown.github.GitHubFlavor,
-        laika.parse.code.SyntaxHighlighting,
-        CreativeScalaDirectives
+        laika.format.Markdown.GitHubFlavor,
+        laika.config.SyntaxHighlighting
       ),
       tlSite := Def
         .sequential(
           (examples.js / Compile / fastLinkJS),
           mdoc.toTask(""),
-          css,
           laikaSite
         )
         .value

@@ -17,8 +17,7 @@
 package gooey.calico
 
 import _root_.calico.*
-import _root_.calico.html.io.{_, given}
-import _root_.calico.syntax.*
+import _root_.calico.html.io.{*, given}
 import cats.data.Chain
 import cats.data.NonEmptySeq
 import cats.effect.*
@@ -64,7 +63,6 @@ given Algebra: gooey.Algebra
   def initialize(): Env = Environment.empty
 
   def and[A, B](f: UI[A], s: UI[B])(env: Env): UI[(A, B)] = {
-    import calico.frp.given
     for {
       fst <- f
       snd <- s
@@ -112,12 +110,12 @@ given Algebra: gooey.Algebra
           select.withSelf { self =>
             (
               cls := elementClass,
-              choices.map((name, a) => option(name)).toList,
+              choices.map((name, _) => option(name)).toList,
               onChange --> (_.foreach { _ =>
                 self.value.get
                   .flatMap(choice =>
                     choices
-                      .find((c, a) => c == choice)
+                      .find((c, _) => c == choice)
                       .fold(output.set(a))((_, a) => output.set(a))
                   )
               })

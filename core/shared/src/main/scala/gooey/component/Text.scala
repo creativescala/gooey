@@ -16,7 +16,6 @@
 
 package gooey.component
 
-import gooey.Algebra
 import gooey.Var
 
 /** Text is a component for displaying text. */

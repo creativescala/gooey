@@ -16,10 +16,7 @@
 
 package gooey.calico.syntax
 
-import calico.html.io.{_, given}
-import calico.syntax.*
 import cats.effect.*
-import fs2.concurrent.*
 import fs2.dom.*
 import gooey.calico.*
 
