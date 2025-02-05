@@ -64,7 +64,7 @@
           </div>
         </nav>
         <nav id="home"><a class="text-link" href="#">Gooey</a></nav>
-        <nav id="external"><a class="text-link" href="https://discord.gg/rRhcFbJxVG">Community</a> <a class="text-link" href="https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest">API</a> <a class="text-link" href="https://github.com/creativescala/gooey">Source</a></nav>
+        <nav id="external"><a href="https://discord.gg/rRhcFbJxVG">Community<span><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-square-arrow-out-up-right' > <path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6' /> <path d='m21 3-9 9' /> <path d='M15 3h6v6' /> </svg></span></a> <a href="https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest">API<span><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-square-arrow-out-up-right' > <path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6' /> <path d='m21 3-9 9' /> <path d='M15 3h6v6' /> </svg></span></a> <a href="https://github.com/creativescala/gooey">Source<span><svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='lucide lucide-square-arrow-out-up-right' > <path d='M21 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h6' /> <path d='m21 3-9 9' /> <path d='M15 3h6v6' /> </svg></span></a></nav>
       </div>
     </header>
 
@@ -89,15 +89,15 @@
 <pre><code class="nohighlight"><span class="identifier">resolvers</span><span> ++= </span><span class="type-name">Resolver</span><span>.</span><span class="identifier">sonatypeOssRepos</span><span>(</span><span class="string-literal">&quot;snapshots&quot;</span><span>)
 
 </span><span class="comment">// Use this for JVM projects
-</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-d02fa3b-SNAPSHOT&quot;</span><span>
+</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-5b750bc-SNAPSHOT&quot;</span><span>
 
 </span><span class="comment">// Use this for Javascript / web projects, or projects targetting both the JVM and Javascript
-</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-d02fa3b-SNAPSHOT&quot;</span></code></pre>
+</span><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-core&quot;</span><span> % </span><span class="string-literal">&quot;0.1-5b750bc-SNAPSHOT&quot;</span></code></pre>
 <p>You&#39;ll also need to add the particular backend you intend to use.</p>
 <p>For the Calico backend:</p>
-<pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-calico&quot;</span><span> % </span><span class="string-literal">&quot;0.1-d02fa3b-SNAPSHOT&quot;</span></code></pre>
+<pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-calico&quot;</span><span> % </span><span class="string-literal">&quot;0.1-5b750bc-SNAPSHOT&quot;</span></code></pre>
 <p>For the Swing backend:</p>
-<pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-swing&quot;</span><span> % </span><span class="string-literal">&quot;0.1-d02fa3b-SNAPSHOT&quot;</span></code></pre>
+<pre><code class="nohighlight"><span class="identifier">libraryDependencies</span><span> += </span><span class="string-literal">&quot;org.creativescala&quot;</span><span> %%% </span><span class="string-literal">&quot;gooey-swing&quot;</span><span> % </span><span class="string-literal">&quot;0.1-5b750bc-SNAPSHOT&quot;</span></code></pre>
 
 <h2 id="scaladoc" class="section">ScalaDoc</h2>
 <p>See the ScalaDoc <a class="api" href="https://javadoc.io/doc/org.creativescala/gooey-docs_3/latest/gooey/index.html">index</a> for API documentation.</p>
@@ -113,7 +113,8 @@
           </div>
         </div>
         <footer>
-          Gooey is copyright Noel Welsh. Built with 💖
+          Copyright &copy; Noel Welsh. Built with
+          <span class="hover:text-pink-900">💖</span>
         </footer>
       </div>
       <nav id="pagebar">
