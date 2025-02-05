@@ -11,9 +11,9 @@ object Dependencies {
   val fs2Version = "3.6.1"
   val scalaJsDomVersion = "2.4.0"
   val swingIoVersion = "0.1.0-M1"
-  val magnoliaVersion = "1.3.9"
+  val magnoliaVersion = "1.3.11"
 
-  val munitVersion = "1.0.4"
+  val munitVersion = "1.1.0"
 
   // Libraries
   val calico = Def.setting("com.armanbilge" %%% "calico" % calicoVersion)
